@@ -4,12 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../controller/app_contrller.dart';
+import '../widgets/custom_button.dart';
+import 'global_name_result_screen.dart';
 
 class GlobalNameSearchScreen extends StatelessWidget {
   AppController appController = Get.put(AppController());
 
   List<int> typeOfSearch = [1, 2, 3, 4, 5, 6, 7, 8];
   int currentOption = 1;
+
+  String nameFromTextField = '';
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +38,14 @@ class GlobalNameSearchScreen extends StatelessWidget {
                 ),
                 textInputAction: TextInputAction.search,
                 onSubmitted: (value) {
-                  // setState(() {
-                  //   searchWordText = value;
-                  //   availableSearch = true;
-                  // });
+                  nameFromTextField = value;
+                  Get.to(GlobalNameResultScreen(),
+                      arguments: [currentOption, nameFromTextField]);
                 },
                 autofocus: true,
-                onChanged: (value) {},
+                onChanged: (value) {
+                  nameFromTextField = value;
+                },
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -129,11 +134,17 @@ class GlobalNameSearchScreen extends StatelessWidget {
                     },
                     title: Text('أسماء على وزن معين '),
                   ),
+                  customButton(
+                      text: 'بحث',
+                      buttonWidth: 200.w,
+                      onClick: () {
+                        Get.to(GlobalNameResultScreen(),
+                            arguments: [currentOption, nameFromTextField]);
+                      })
                 ],
               ),
             );
           }),
-          // customButton(text: 'بحث', buttonWidth: 200.w, onClick: () {})
         ],
       ),
     );
