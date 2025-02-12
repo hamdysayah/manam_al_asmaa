@@ -1,4 +1,4 @@
-import 'package:manjam_asmaa/view/namesModel.dart';
+import 'package:manjam_asmaa/medel/namesModel.dart';
 
 import 'dbhelper.dart';
 

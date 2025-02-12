@@ -1,14 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:manjam_asmaa/core/utils/constants.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:manjam_asmaa/view/screens/global_name_char_search_screen.dart';
-import 'package:manjam_asmaa/view/screens/type_of_search_global_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
+
 import '../widgets/custom_button.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class TypeOfSearchGlobalScreen extends StatelessWidget {
+  const TypeOfSearchGlobalScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,40 +18,34 @@ class HomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(),
-          CustomText(
-            text: 'منجم الاسماء',
-            fontSize: 30.sp,
-          ),
-          SizedBox(
-            height: 100.h,
-          ),
+          CustomText(text: 'اختر نوعية البحث'),
           customButton(
-            text: 'ابحث عن الاسماء الدارجة',
+            text: 'بحث من خلال الاحرف',
             buttonWidth: 200.w,
             onClick: () {
-              Get.to(TypeOfSearchGlobalScreen());
+              Get.to(GlobalNameCharSearchScreen());
             },
           ),
           SizedBox(
             height: 10.h,
           ),
           customButton(
-            text: 'استنباط اسم جديد من جذر عربي معروف',
+            text: 'بحث من خلال الموضوع',
             buttonWidth: 200.w,
             onClick: () {
-              showToast('test app');
+
             },
           ),
           SizedBox(
             height: 10.h,
           ),
           customButton(
-            text: 'استنباط اسم جديد من جذر عربي غير مستعمل',
+            text: 'بحث من خلال الجذر',
             buttonWidth: 250.w,
             onClick: () {
-              showToast('test app');
+
             },
-          ),
+          )
         ],
       ),
     );

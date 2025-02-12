@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:manjam_asmaa/view/screens/home_screen.dart';
+import 'package:manjam_asmaa/view/screens/type_of_search_global_screen.dart';
 
 import 'core/utils/constants.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+  //WidgetsFlutterBinding.ensureInitialized();
   runApp(const MangamAlAsmaaApp());
 }
 
@@ -34,7 +35,7 @@ class MangamAlAsmaaApp extends StatelessWidget {
           home: child,
         );
       },
-      child: const HomeScreen(),
+      child:  HomeScreen(),
     );
   }
 }

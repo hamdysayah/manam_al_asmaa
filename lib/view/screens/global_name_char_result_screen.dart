@@ -1,17 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:manjam_asmaa/view/namesModel.dart';
+import 'package:manjam_asmaa/medel/namesModel.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import 'package:get/get.dart';
 
 import '../../controller/app_contrller.dart';
 import '../../core/database/database_queries.dart';
 
-class GlobalNameResultScreen extends StatelessWidget {
+class GlobalCharNameResultScreen extends StatelessWidget {
   //String? searchName;
-
   // GlobalNameResultScreen() {
   //   searchName = Get.arguments[0];
   // }
@@ -34,19 +31,22 @@ class GlobalNameResultScreen extends StatelessWidget {
                       Get.arguments[1].toString(), Get.arguments[0]),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      List<Namesmodel> nameList = snapshot.data!;
-                      return Expanded(
-                        child: ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return CustomText(
-                              text: '${nameList[index].name}',
-                              fontSize: 25.sp,
-                            );
-                          },
-                          itemCount: nameList.length,
-                        ),
-                      );
+                      if (snapshot.data!.isNotEmpty) {
+                        List<Namesmodel> nameList = snapshot.data!;
+                        return Expanded(
+                          child: ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              itemBuilder: (context, index) {
+                                return CustomText(
+                                  text: '${nameList[index].name}',
+                                  fontSize: 25.sp,
+                                );
+                              },
+                              itemCount: nameList.length),
+                        );
+                      } else {
+                        return CustomText(text: 'لا يوجد نتائج');
+                      }
                     } else if (snapshot.hasError) {
                       return CustomText(text: snapshot.error.toString());
                     } else {

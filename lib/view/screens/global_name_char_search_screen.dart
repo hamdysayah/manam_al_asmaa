@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 
 import '../../controller/app_contrller.dart';
 import '../widgets/custom_button.dart';
-import 'global_name_result_screen.dart';
+import 'global_name_char_result_screen.dart';
 
-class GlobalNameSearchScreen extends StatelessWidget {
+class GlobalNameCharSearchScreen extends StatelessWidget {
   AppController appController = Get.put(AppController());
 
   List<int> typeOfSearch = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -39,7 +39,7 @@ class GlobalNameSearchScreen extends StatelessWidget {
                 textInputAction: TextInputAction.search,
                 onSubmitted: (value) {
                   nameFromTextField = value;
-                  Get.to(GlobalNameResultScreen(),
+                  Get.to(GlobalCharNameResultScreen(),
                       arguments: [currentOption, nameFromTextField]);
                 },
                 autofocus: true,
@@ -89,56 +89,56 @@ class GlobalNameSearchScreen extends StatelessWidget {
                     },
                     title: Text('اسماء تحتوي على ..'),
                   ),
-                  RadioListTile(
-                    value: typeOfSearch[3],
-                    groupValue: currentOption,
-                    onChanged: (value) {
-                      currentOption = value!.toInt();
-                      appController.update();
-                    },
-                    title: Text('حسب الموضوع'),
-                  ),
-                  RadioListTile(
-                    value: typeOfSearch[4],
-                    groupValue: currentOption,
-                    onChanged: (value) {
-                      currentOption = value!.toInt();
-                      appController.update();
-                    },
-                    title: Text('أسماء تشترك في جذر معين '),
-                  ),
-                  RadioListTile(
-                    value: typeOfSearch[5],
-                    groupValue: currentOption,
-                    onChanged: (value) {
-                      currentOption = value!.toInt();
-                      appController.update();
-                    },
-                    title: Text('أسماء تشترك في جذر اسم معين '),
-                  ),
-                  RadioListTile(
-                    value: typeOfSearch[6],
-                    groupValue: currentOption,
-                    onChanged: (value) {
-                      currentOption = value!.toInt();
-                      appController.update();
-                    },
-                    title: Text('أسماء على وزن اسم معين'),
-                  ),
-                  RadioListTile(
-                    value: typeOfSearch[7],
-                    groupValue: currentOption,
-                    onChanged: (value) {
-                      currentOption = value!.toInt();
-                      appController.update();
-                    },
-                    title: Text('أسماء على وزن معين '),
-                  ),
+                  // RadioListTile(
+                  //   value: typeOfSearch[3],
+                  //   groupValue: currentOption,
+                  //   onChanged: (value) {
+                  //     currentOption = value!.toInt();
+                  //     appController.update();
+                  //   },
+                  //   title: Text('حسب الموضوع'),
+                  // ),
+                  // RadioListTile(
+                  //   value: typeOfSearch[4],
+                  //   groupValue: currentOption,
+                  //   onChanged: (value) {
+                  //     currentOption = value!.toInt();
+                  //     appController.update();
+                  //   },
+                  //   title: Text('أسماء تشترك في جذر معين '),
+                  // ),
+                  // RadioListTile(
+                  //   value: typeOfSearch[5],
+                  //   groupValue: currentOption,
+                  //   onChanged: (value) {
+                  //     currentOption = value!.toInt();
+                  //     appController.update();
+                  //   },
+                  //   title: Text('أسماء تشترك في جذر اسم معين '),
+                  // ),
+                  // RadioListTile(
+                  //   value: typeOfSearch[6],
+                  //   groupValue: currentOption,
+                  //   onChanged: (value) {
+                  //     currentOption = value!.toInt();
+                  //     appController.update();
+                  //   },
+                  //   title: Text('أسماء على وزن اسم معين'),
+                  // ),
+                  // RadioListTile(
+                  //   value: typeOfSearch[7],
+                  //   groupValue: currentOption,
+                  //   onChanged: (value) {
+                  //     currentOption = value!.toInt();
+                  //     appController.update();
+                  //   },
+                  //   title: Text('أسماء على وزن معين '),
+                  // ),
                   customButton(
                       text: 'بحث',
                       buttonWidth: 200.w,
                       onClick: () {
-                        Get.to(GlobalNameResultScreen(),
+                        Get.to(GlobalCharNameResultScreen(),
                             arguments: [currentOption, nameFromTextField]);
                       })
                 ],
