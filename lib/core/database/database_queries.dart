@@ -60,6 +60,21 @@ class DatabaseQueries {
     return theObjectList;
   }
 
+  Future<String> getNameDetails(String theName) async {
+    List<String> theObjectList = [];
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+
+    list = await dbClient!.rawQuery(
+        "SELECT theNames from theObjectsTbl WHERE theObject='$theObject'");
+
+    for (var item in list) {
+
+      theObjectList.add(item['theNames']);
+    }
+    return theObjectList;
+  }
+
 //
 // // جلب الرسائل من خلال الكلمه
 // Future<List<MessageModel>> getMessagesByWord(String word) async {
