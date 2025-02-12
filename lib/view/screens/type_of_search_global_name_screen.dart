@@ -1,15 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:manjam_asmaa/view/screens/global_name_char_search_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
-
 import '../widgets/custom_button.dart';
+import 'global_name_object_search_screen.dart';
 
-class TypeOfSearchGlobalScreen extends StatelessWidget {
-  const TypeOfSearchGlobalScreen({super.key});
+class TypeOfSearchGlobalNameScreen extends StatelessWidget {
+  const TypeOfSearchGlobalNameScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,7 @@ class TypeOfSearchGlobalScreen extends StatelessWidget {
             text: 'بحث من خلال الموضوع',
             buttonWidth: 200.w,
             onClick: () {
-
+              Get.to(GlobalNameObjectSearchScreen());
             },
           ),
           SizedBox(
@@ -42,9 +40,7 @@ class TypeOfSearchGlobalScreen extends StatelessWidget {
           customButton(
             text: 'بحث من خلال الجذر',
             buttonWidth: 250.w,
-            onClick: () {
-
-            },
+            onClick: () {},
           )
         ],
       ),

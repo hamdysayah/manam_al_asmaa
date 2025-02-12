@@ -9,7 +9,8 @@ class DatabaseQueries {
   // late List<CategoryModel> categoriesList = [];
   // late List<MessageModel> favoriteMessagesList = [];
 
-  Future<List<Namesmodel>> getGlobalNamesFirstThreeOptions(String text, int option) async {
+  Future<List<Namesmodel>> getGlobalNamesFirstThreeOptions(
+      String text, int option) async {
     if (globalNameList.isNotEmpty) {
       globalNameList.clear();
     }
@@ -30,6 +31,35 @@ class DatabaseQueries {
     }
     return globalNameList;
   }
+
+  Future<List<String>> getObjectsNames() async {
+    List<String> theObjectList = [];
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+
+    list = await dbClient!.rawQuery("SELECT theObject from theObjectsTbl");
+
+    for (var item in list) {
+      theObjectList.add(item['theObject']);
+    }
+    return theObjectList;
+  }
+
+  Future<List<String>> getNamesFromObject(String theObject) async {
+    List<String> theObjectList = [];
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+
+    list = await dbClient!.rawQuery(
+        "SELECT theNames from theObjectsTbl WHERE theObject='$theObject'");
+
+    for (var item in list) {
+
+      theObjectList.add(item['theNames']);
+    }
+    return theObjectList;
+  }
+
 //
 // // جلب الرسائل من خلال الكلمه
 // Future<List<MessageModel>> getMessagesByWord(String word) async {

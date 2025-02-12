@@ -3,12 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:manjam_asmaa/core/utils/constants.dart';
 import 'package:manjam_asmaa/view/screens/global_name_char_search_screen.dart';
-import 'package:manjam_asmaa/view/screens/type_of_search_global_screen.dart';
+import 'package:manjam_asmaa/view/screens/type_of_search_global_name_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
+import '../../controller/app_contrller.dart';
 import '../widgets/custom_button.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  AppController appController = Get.put(AppController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class HomeScreen extends StatelessWidget {
             text: 'ابحث عن الاسماء الدارجة',
             buttonWidth: 200.w,
             onClick: () {
-              Get.to(TypeOfSearchGlobalScreen());
+              Get.to(TypeOfSearchGlobalNameScreen());
             },
           ),
           SizedBox(

@@ -8,9 +8,9 @@ import '../widgets/custom_button.dart';
 import 'global_name_char_result_screen.dart';
 
 class GlobalNameCharSearchScreen extends StatelessWidget {
-  AppController appController = Get.put(AppController());
+  AppController appController = Get.find();
 
-  List<int> typeOfSearch = [1, 2, 3, 4, 5, 6, 7, 8];
+  List<int> typeOfSearch = [1, 2, 3];
   int currentOption = 1;
 
   String nameFromTextField = '';
