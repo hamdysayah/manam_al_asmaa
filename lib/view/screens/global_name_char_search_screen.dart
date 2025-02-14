@@ -14,11 +14,15 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
   int currentOption = 1;
 
   String nameFromTextField = '';
+  var _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     currentOption = typeOfSearch[0];
     return Scaffold(
+      appBar: AppBar(
+        title: Text('منجم الاسماء'),
+      ),
       resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,37 +31,41 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
           SizedBox(
             height: 100.h,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10, right: 5, left: 5),
-            child: Directionality(
-              textDirection: TextDirection.rtl,
-              child: TextField(
-                style: TextStyle(
-                  fontSize: 17.sp,
-                  //    color: appController.isDark ? Colors.white : Colors.black,
+          GetBuilder<AppController>(builder: (controller) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 10, right: 5, left: 5),
+              child: Directionality(
+                textDirection: TextDirection.rtl,
+                child: TextField(
+                  controller: _controller,
+                  style: TextStyle(
+                    fontSize: 17.sp,
+                    //    color: appController.isDark ? Colors.white : Colors.black,
+                  ),
+                  textInputAction: TextInputAction.search,
+                  onSubmitted: (value) {
+                    nameFromTextField = value;
+                    _controller.clear();
+                    controller.update();
+                    Get.to(GlobalCharNameResultScreen(),
+                     arguments: [currentOption, nameFromTextField]);
+                  },
+                  autofocus: true,
+                  onChanged: (value) {
+                    nameFromTextField = value;
+                  },
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      hintText: 'ابحث هنا...',
+                      hintStyle: TextStyle(
+                          //     color: appController.isDark ? Colors.white : Colors.black,
+                          )),
                 ),
-                textInputAction: TextInputAction.search,
-                onSubmitted: (value) {
-                  nameFromTextField = value;
-                  Get.to(GlobalCharNameResultScreen(),
-                      arguments: [currentOption, nameFromTextField]);
-                },
-                autofocus: true,
-                onChanged: (value) {
-                  nameFromTextField = value;
-                },
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    hintText: 'ابحث هنا...',
-                    hintStyle: TextStyle(
-                        //     color: appController.isDark ? Colors.white : Colors.black,
-                        )),
               ),
-            ),
-          ),
-          // الخيارات
-
+            );
+            // الخيارات
+          }),
           GetBuilder<AppController>(builder: (controller) {
             return Expanded(
               child: Column(
@@ -89,55 +97,12 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                     },
                     title: Text('اسماء تحتوي على ..'),
                   ),
-                  // RadioListTile(
-                  //   value: typeOfSearch[3],
-                  //   groupValue: currentOption,
-                  //   onChanged: (value) {
-                  //     currentOption = value!.toInt();
-                  //     appController.update();
-                  //   },
-                  //   title: Text('حسب الموضوع'),
-                  // ),
-                  // RadioListTile(
-                  //   value: typeOfSearch[4],
-                  //   groupValue: currentOption,
-                  //   onChanged: (value) {
-                  //     currentOption = value!.toInt();
-                  //     appController.update();
-                  //   },
-                  //   title: Text('أسماء تشترك في جذر معين '),
-                  // ),
-                  // RadioListTile(
-                  //   value: typeOfSearch[5],
-                  //   groupValue: currentOption,
-                  //   onChanged: (value) {
-                  //     currentOption = value!.toInt();
-                  //     appController.update();
-                  //   },
-                  //   title: Text('أسماء تشترك في جذر اسم معين '),
-                  // ),
-                  // RadioListTile(
-                  //   value: typeOfSearch[6],
-                  //   groupValue: currentOption,
-                  //   onChanged: (value) {
-                  //     currentOption = value!.toInt();
-                  //     appController.update();
-                  //   },
-                  //   title: Text('أسماء على وزن اسم معين'),
-                  // ),
-                  // RadioListTile(
-                  //   value: typeOfSearch[7],
-                  //   groupValue: currentOption,
-                  //   onChanged: (value) {
-                  //     currentOption = value!.toInt();
-                  //     appController.update();
-                  //   },
-                  //   title: Text('أسماء على وزن معين '),
-                  // ),
                   customButton(
                       text: 'بحث',
                       buttonWidth: 200.w,
                       onClick: () {
+                        _controller.clear();
+                        appController.update();
                         Get.to(GlobalCharNameResultScreen(),
                             arguments: [currentOption, nameFromTextField]);
                       })

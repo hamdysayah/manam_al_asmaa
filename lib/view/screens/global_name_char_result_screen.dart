@@ -15,6 +15,9 @@ class GlobalCharNameResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     appController.isVisibleDialog = false;
     return Scaffold(
+      appBar: AppBar(
+        title: Text('منجم الاسماء'),
+      ),
       body: SafeArea(
         child: Stack(
           children: [

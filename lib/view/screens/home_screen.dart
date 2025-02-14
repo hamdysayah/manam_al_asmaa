@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:manjam_asmaa/core/utils/constants.dart';
-import 'package:manjam_asmaa/view/screens/global_name_char_search_screen.dart';
 import 'package:manjam_asmaa/view/screens/type_of_search_global_name_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../controller/app_contrller.dart';

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:manjam_asmaa/view/screens/home_screen.dart';
-import 'package:manjam_asmaa/view/screens/type_of_search_global_name_screen.dart';
 
 import 'core/utils/constants.dart';
 

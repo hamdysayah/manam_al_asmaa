@@ -17,6 +17,7 @@ class GlobalObjectNameResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     appController.isVisibleDialog = false;
     return Scaffold(
+      appBar: AppBar(title: Text('منجم الاسماء'),),
       body: SafeArea(
           child: Stack(
         children: [
@@ -25,7 +26,7 @@ class GlobalObjectNameResultScreen extends StatelessWidget {
             children: [
               Container(),
               CustomText(
-                text: 'الاسماء المقترحة حسب الموضوع',
+                text: 'الاسماء المقترحة ل ${Get.arguments}',
                 fontSize: 20.sp,
               ),
               FutureBuilder<List<String>>(
