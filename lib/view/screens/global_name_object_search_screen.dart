@@ -52,22 +52,22 @@ class GlobalNameObjectSearchScreen extends StatelessWidget {
                                       (MediaQuery.of(context).size.height / 7),
                             ),
                             itemBuilder: (BuildContext context, int index) {
-                              return Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white,
-                                  ),
-                                  alignment: Alignment.center,
-                                  margin: EdgeInsets.all(5),
-                                  child: InkWell(
-                                    onTap: () {
-                                      Get.to(GlobalObjectNameResultScreen(),
-                                          arguments: objectList[index]);
-                                    },
+                              return InkWell(
+                                onTap: () {
+                                  Get.to(GlobalObjectNameResultScreen(),
+                                      arguments: objectList[index]);
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white,
+                                    ),
+                                    alignment: Alignment.center,
+                                    margin: EdgeInsets.all(5),
                                     child: CustomText(
                                       text: objectList[index],
-                                    ),
-                                  ));
+                                    )),
+                              );
                             },
                           ),
                         );

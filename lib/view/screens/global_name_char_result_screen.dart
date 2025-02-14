@@ -13,7 +13,7 @@ class GlobalCharNameResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    appController.isVisibleDialog=false;
+    appController.isVisibleDialog = false;
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -47,32 +47,33 @@ class GlobalCharNameResultScreen extends StatelessWidget {
                                       (MediaQuery.of(context).size.height / 7),
                                 ),
                                 itemBuilder: (BuildContext context, int index) {
-                                  return Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.white,
-                                      ),
-                                      alignment: Alignment.center,
-                                      margin: EdgeInsets.all(5),
-                                      //لما يختار الاسم
-                                      child: InkWell(
-                                        onTap: () {
-                                          selectedName = theNamesList[index]
-                                              .toString()
-                                              .replaceAll(' ', '')
-                                              .replaceAll('[', '')
-                                              .replaceAll(']', '');
+                                  return InkWell(
+                                    onTap: () {
+                                      selectedName = theNamesList[index]
+                                          .toString()
+                                          .replaceAll(' ', '')
+                                          .replaceAll('[', '')
+                                          .replaceAll(']', '');
 
-                                          appController.isVisibleDialog = true;
-                                          appController.update();
-                                        },
+                                      appController.isVisibleDialog = true;
+                                      appController.update();
+                                    },
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: Colors.white,
+                                        ),
+                                        alignment: Alignment.center,
+                                        margin: EdgeInsets.all(5),
+                                        //لما يختار الاسم
                                         child: CustomText(
                                           text: theNamesList[index]
                                               .toString()
                                               .replaceAll('[', '')
                                               .replaceAll(']', ''),
-                                        ),
-                                      ));
+                                        )),
+                                  );
                                 },
                               ),
                             );
