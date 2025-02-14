@@ -54,25 +54,23 @@ class DatabaseQueries {
         "SELECT theNames from theObjectsTbl WHERE theObject='$theObject'");
 
     for (var item in list) {
-
       theObjectList.add(item['theNames']);
     }
     return theObjectList;
   }
 
-  Future<String> getNameDetails(String theName) async {
-    List<String> theObjectList = [];
+  Future<Namesmodel> getNameDetails(String theName) async {
     var dbClient = await dbHelper.db;
     List<Map<String, dynamic>> list;
+    Namesmodel result=Namesmodel(id: 1, name: 'name', typeOfName: 'typeOfName', nameWight: 'nameWight', domainName: 'domainName', root: 'root', origin: 'origin', meaning: 'meaning');
+    list = await dbClient!
+        .rawQuery("select * from globalnametbl where name='$theName'");
 
-    list = await dbClient!.rawQuery(
-        "SELECT theNames from theObjectsTbl WHERE theObject='$theObject'");
-
+    print("select * from globalnametbl where name='$theName'");
     for (var item in list) {
-
-      theObjectList.add(item['theNames']);
+      result = Namesmodel.fromMap(item);
     }
-    return theObjectList;
+    return result;
   }
 
 //
