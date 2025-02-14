@@ -61,7 +61,6 @@ class GlobalNameObjectSearchScreen extends StatelessWidget {
                                   margin: EdgeInsets.all(5),
                                   child: InkWell(
                                     onTap: () {
-                                      showToast(objectList[index]);
                                       Get.to(GlobalObjectNameResultScreen(),
                                           arguments: objectList[index]);
                                     },

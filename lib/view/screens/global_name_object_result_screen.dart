@@ -15,6 +15,7 @@ class GlobalObjectNameResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    appController.isVisibleDialog=false;
     return Scaffold(
       body: SafeArea(
           child: Stack(
@@ -57,12 +58,18 @@ class GlobalObjectNameResultScreen extends StatelessWidget {
                                     onTap: () {
                                       selectedName = theNamesList[index]
                                           .toString()
-                                          .replaceAll(' ', '');
+                                          .replaceAll(' ', '')
+                                          .replaceAll('[', '')
+                                          .replaceAll(']', '');
 
+                                      appController.isVisibleDialog = true;
                                       appController.update();
                                     },
                                     child: CustomText(
-                                      text: theNamesList[index],
+                                      text: theNamesList[index]
+                                          .toString()
+                                          .replaceAll('[', '')
+                                          .replaceAll(']', ''),
                                     ),
                                   ));
                             },
@@ -94,7 +101,118 @@ class GlobalObjectNameResultScreen extends StatelessWidget {
             ],
           ),
           GetBuilder<AppController>(builder: (controller) {
-            return NameDetailsDialog(selectedName);
+            return Visibility(
+                visible: controller.isVisibleDialog,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(),
+                    Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Colors.white,
+                          border: Border.all(width: 1)),
+                      width: 300.w,
+                      //  height: 300.h,
+                      child: FutureBuilder<Namesmodel>(
+                          future:
+                              DatabaseQueries().getNameDetails(selectedName),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.topRight,
+                                      child: IconButton(
+                                          onPressed: () {
+                                            controller.isVisibleDialog = false;
+                                            controller.update();
+                                          },
+                                          icon: const Icon(Icons.close)),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 10.w,
+                                        ),
+                                        CustomText(
+                                            text:
+                                                'الاسم : ${snapshot.data!.name}'),
+                                        SizedBox(
+                                          width: 50.w,
+                                        ),
+                                        CustomText(
+                                            text:
+                                                'النوع : ${snapshot.data!.typeOfName}'),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 10.w,
+                                        ),
+                                        CustomText(
+                                            text:
+                                                'الوزن  : ${snapshot.data!.nameWight}'),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        CustomText(
+                                            text:
+                                                'الجذر : ${snapshot.data!.root}'),
+                                        SizedBox(
+                                          width: 50.w,
+                                        ),
+                                        CustomText(
+                                            text:
+                                                'الاصل : ${snapshot.data!.origin}'),
+                                        SizedBox(
+                                          width: 10.w,
+                                        ),
+                                      ],
+                                    ),
+                                    CustomText(
+                                      text:
+                                          'المعنى : ${snapshot.data!.meaning}',
+                                      fontWight: FontWeight.bold,
+                                    ),
+                                  ],
+                                ),
+                              );
+                            } else if (snapshot.hasError) {
+                              return CustomText(
+                                  text: snapshot.error.toString());
+                            } else {
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  Container(),
+                                  const CircularProgressIndicator(),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  CustomText(text: '....جاري التحميل ')
+                                ],
+                              );
+                            }
+                          }),
+                    ),
+                  ],
+                ));
           }),
         ],
       )),

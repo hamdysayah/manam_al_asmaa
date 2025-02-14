@@ -4,12 +4,12 @@ import 'dbhelper.dart';
 
 class DatabaseQueries {
   DBHelper dbHelper = DBHelper();
-  late List<Namesmodel> globalNameList = [];
+  late List<String> globalNameList = [];
 
   // late List<CategoryModel> categoriesList = [];
   // late List<MessageModel> favoriteMessagesList = [];
 
-  Future<List<Namesmodel>> getGlobalNamesFirstThreeOptions(
+  Future<List<String>> getGlobalNamesFirstThreeOptions(
       String text, int option) async {
     if (globalNameList.isNotEmpty) {
       globalNameList.clear();
@@ -18,16 +18,16 @@ class DatabaseQueries {
     List<Map<String, dynamic>> list;
     if (option == 1) {
       list = await dbClient!.rawQuery(
-          "SELECT * from GlobalNameTbl WHERE nameNoTashkel like'$text%'");
+          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'$text%'");
     } else if (option == 2) {
       list = await dbClient!.rawQuery(
-          "SELECT * from GlobalNameTbl WHERE nameNoTashkel like'%$text'");
+          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'%$text'");
     } else {
       list = await dbClient!.rawQuery(
-          "SELECT * from GlobalNameTbl WHERE nameNoTashkel like'%$text%'");
+          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'%$text%'");
     }
     for (var item in list) {
-      globalNameList.add(Namesmodel.fromMap(item));
+      globalNameList.add(item['name']);
     }
     return globalNameList;
   }
@@ -62,7 +62,15 @@ class DatabaseQueries {
   Future<Namesmodel> getNameDetails(String theName) async {
     var dbClient = await dbHelper.db;
     List<Map<String, dynamic>> list;
-    Namesmodel result=Namesmodel(id: 1, name: 'name', typeOfName: 'typeOfName', nameWight: 'nameWight', domainName: 'domainName', root: 'root', origin: 'origin', meaning: 'meaning');
+    Namesmodel result = Namesmodel(
+        id: 1,
+        name: 'name',
+        typeOfName: 'typeOfName',
+        nameWight: 'nameWight',
+        domainName: 'domainName',
+        root: 'root',
+        origin: 'origin',
+        meaning: 'meaning');
     list = await dbClient!
         .rawQuery("select * from globalnametbl where name='$theName'");
 

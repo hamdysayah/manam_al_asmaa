@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 class AppController extends GetxController
 {
 
-  bool choiceGlobalSearchOption=true;
+  bool isVisibleDialog=false;
   @override
   void onInit() {
     super.onInit();
