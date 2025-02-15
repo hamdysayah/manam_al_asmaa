@@ -5,6 +5,7 @@ import 'package:manjam_asmaa/view/screens/global_name_char_search_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../widgets/custom_button.dart';
 import 'global_name_object_search_screen.dart';
+import 'global_name_wight_search_screen.dart';
 
 class TypeOfSearchGlobalNameScreen extends StatelessWidget {
   const TypeOfSearchGlobalNameScreen({super.key});
@@ -32,6 +33,17 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
             buttonWidth: 200.w,
             onClick: () {
               Get.to(GlobalNameObjectSearchScreen());
+            },
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+
+          customButton(
+            text: 'بحث من خلال الوزن',
+            buttonWidth: 200.w,
+            onClick: () {
+              Get.to(GlobalNameWightSearchScreen());
             },
           ),
           SizedBox(

@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import '../../controller/app_contrller.dart';
 import '../../core/database/database_queries.dart';
-import '../widgets/name_details_dialog.dart';
 
 class GlobalObjectNameResultScreen extends StatelessWidget {
   var theNamesList = [];

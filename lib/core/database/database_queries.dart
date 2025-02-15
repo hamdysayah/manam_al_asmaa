@@ -59,6 +59,33 @@ class DatabaseQueries {
     return theObjectList;
   }
 
+  Future<List<String>> getNamesFromWight(String wight) async {
+    List<String> theObjectList = [];
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+
+    list = await dbClient!
+        .rawQuery("SELECT name from GlobalNameTbl WHERE nameWight='$wight'");
+
+    for (var item in list) {
+      theObjectList.add(item['name']);
+    }
+    return theObjectList;
+  }
+
+  Future<List<String>> getWightsFromDb() async {
+    List<String> theWightList = [];
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+
+    list = await dbClient!.rawQuery("SELECT theWight from theWightTable");
+
+    for (var item in list) {
+      theWightList.add(item['theWight']);
+    }
+    return theWightList;
+  }
+
   Future<Namesmodel> getNameDetails(String theName) async {
     var dbClient = await dbHelper.db;
     List<Map<String, dynamic>> list;
