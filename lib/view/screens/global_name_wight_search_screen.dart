@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
-import 'package:screenshot/screenshot.dart';
-
 import '../../controller/app_contrller.dart';
 import '../../core/database/database_queries.dart';
 import '../widgets/custom_button.dart';
@@ -18,8 +16,6 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
   int currentOption = 1;
 
   String nameFromTextField = '';
-
-  // List of items in our dropdown menu
 
   var _controller = TextEditingController();
 
@@ -67,7 +63,7 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                           Get.to(GlobalCharNameResultScreen(),
                               arguments: [currentOption, nameFromTextField]);
                         },
-                        autofocus: true,
+                        autofocus: false,
                         onChanged: (value) {
                           nameFromTextField = value;
                         },
@@ -145,6 +141,7 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                             SizedBox(
                               height: 10.h,
                             ),
+
                             customButton(
                                 text: 'اختر الوزن',
                                 buttonWidth: 200.w,
@@ -180,6 +177,15 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(),
+                      Container(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                            onPressed: () {
+                              controller.isVisibleChoiceWight = false;
+                              controller.update();
+                            },
+                            icon: const Icon(Icons.close)),
+                      ),
                       CustomText(
                         text: 'اختر الوزن',
                         fontSize: 20.sp,
