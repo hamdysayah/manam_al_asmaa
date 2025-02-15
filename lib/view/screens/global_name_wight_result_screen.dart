@@ -14,7 +14,7 @@ class GlobalNameWightResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    appController.isVisibleDialog = false;
+    appController.isVisibleNameDetailsDialog = false;
     return Scaffold(
       appBar: AppBar(title: Text('منجم الاسماء'),),
       body: SafeArea(
@@ -54,7 +54,7 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                                           .replaceAll('[', '')
                                           .replaceAll(']', '');
 
-                                      appController.isVisibleDialog = true;
+                                      appController.isVisibleNameDetailsDialog = true;
                                       appController.update();
                                     },
                                     child: Container(
@@ -102,7 +102,7 @@ class GlobalNameWightResultScreen extends StatelessWidget {
               ),
               GetBuilder<AppController>(builder: (controller) {
                 return Visibility(
-                    visible: controller.isVisibleDialog,
+                    visible: controller.isVisibleNameDetailsDialog,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -128,7 +128,7 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                                           alignment: Alignment.topRight,
                                           child: IconButton(
                                               onPressed: () {
-                                                controller.isVisibleDialog = false;
+                                                controller.isVisibleNameDetailsDialog = false;
                                                 controller.update();
                                               },
                                               icon: const Icon(Icons.close)),

@@ -13,7 +13,7 @@ class GlobalCharNameResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    appController.isVisibleDialog = false;
+    appController.isVisibleNameDetailsDialog = false;
     return Scaffold(
       appBar: AppBar(
         title: Text('منجم الاسماء'),
@@ -58,7 +58,7 @@ class GlobalCharNameResultScreen extends StatelessWidget {
                                           .replaceAll('[', '')
                                           .replaceAll(']', '');
 
-                                      appController.isVisibleDialog = true;
+                                      appController.isVisibleNameDetailsDialog = true;
                                       appController.update();
                                     },
                                     child: Container(
@@ -110,7 +110,7 @@ class GlobalCharNameResultScreen extends StatelessWidget {
             //عرض تفاصيل الاسم
             GetBuilder<AppController>(builder: (controller) {
               return Visibility(
-                  visible: controller.isVisibleDialog,
+                  visible: controller.isVisibleNameDetailsDialog,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -136,7 +136,7 @@ class GlobalCharNameResultScreen extends StatelessWidget {
                                         alignment: Alignment.topRight,
                                         child: IconButton(
                                             onPressed: () {
-                                              controller.isVisibleDialog =
+                                              controller.isVisibleNameDetailsDialog =
                                                   false;
                                               controller.update();
                                             },

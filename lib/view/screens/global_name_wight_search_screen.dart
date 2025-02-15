@@ -19,21 +19,15 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
 
   String nameFromTextField = '';
 
-  String dropdownvalue = 'اختر الوزن';
-
   // List of items in our dropdown menu
-  var items = [
-    'اختر الوزن',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
-  ];
+
   var _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     currentOption = maleOrFemaleList[0];
+    appController.isVisibleChoiceWight = false;
+
     return Scaffold(
         appBar: AppBar(
           title: Text('منجم الاسماء'),
@@ -154,7 +148,10 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                             customButton(
                                 text: 'اختر الوزن',
                                 buttonWidth: 200.w,
-                                onClick: () {}),
+                                onClick: () {
+                                  appController.isVisibleChoiceWight = true;
+                                  appController.update();
+                                }),
                             SizedBox(
                               height: 10.h,
                             ),
@@ -166,96 +163,109 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                 }),
               ],
             ),
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
-              width: 300.w,
-              height: 300.h,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  //عرض ديالوج للاوزان
-                  Container(),
-                  CustomText(
-                    text: 'اختر الوزن',
-                    fontSize: 20.sp,
-                    fontWight: FontWeight.bold,
-                  ),
-                  FutureBuilder<List<String>>(
-                      future: DatabaseQueries().getWightsFromDb(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          if (snapshot.data!.isNotEmpty) {
-                            var theWightList = [];
-                            theWightList = snapshot.data!;
-                            return Expanded(
-                              child: GridView.builder(
-                                itemCount: theWightList.length,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 4,
-                                  mainAxisSpacing: 2,
-                                  childAspectRatio: MediaQuery.of(context)
-                                          .size
-                                          .width /
-                                      (MediaQuery.of(context).size.height / 5),
-                                ),
-                                itemBuilder: (BuildContext context, int index) {
-                                  return InkWell(
-                                    onTap: () {
-                                      Get.to(GlobalNameWightResultScreen(),
-                                          arguments: theWightList[index]
-                                              .toString()
-                                              .replaceAll('[', '')
-                                              .replaceAll(']', ''));
+
+            //عرض ديالوج للاوزان
+
+            GetBuilder<AppController>(builder: (controller) {
+              return Visibility(
+                visible: controller.isVisibleChoiceWight,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  width: 300.w,
+                  height: 300.h,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(),
+                      CustomText(
+                        text: 'اختر الوزن',
+                        fontSize: 20.sp,
+                        fontWight: FontWeight.bold,
+                      ),
+                      FutureBuilder<List<String>>(
+                          future: DatabaseQueries().getWightsFromDb(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              if (snapshot.data!.isNotEmpty) {
+                                var theWightList = [];
+                                theWightList = snapshot.data!;
+                                return Expanded(
+                                  child: GridView.builder(
+                                    itemCount: theWightList.length,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 4,
+                                      mainAxisSpacing: 2,
+                                      childAspectRatio: MediaQuery.of(context)
+                                              .size
+                                              .width /
+                                          (MediaQuery.of(context).size.height /
+                                              5),
+                                    ),
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return InkWell(
+                                        onTap: () {
+                                          appController.isVisibleChoiceWight =
+                                              false;
+                                          appController.update();
+                                          Get.to(GlobalNameWightResultScreen(),
+                                              arguments: theWightList[index]
+                                                  .toString()
+                                                  .replaceAll('[', '')
+                                                  .replaceAll(']', ''));
+                                        },
+                                        child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: Colors.white,
+                                            ),
+                                            alignment: Alignment.center,
+                                            margin: EdgeInsets.all(5),
+                                            //لما يختار الاسم
+                                            child: CustomText(
+                                              text: theWightList[index]
+                                                  .toString()
+                                                  .replaceAll('[', '')
+                                                  .replaceAll(']', ''),
+                                            )),
+                                      );
                                     },
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Colors.white,
-                                        ),
-                                        alignment: Alignment.center,
-                                        margin: EdgeInsets.all(5),
-                                        //لما يختار الاسم
-                                        child: CustomText(
-                                          text: theWightList[index]
-                                              .toString()
-                                              .replaceAll('[', '')
-                                              .replaceAll(']', ''),
-                                        )),
-                                  );
-                                },
-                              ),
-                            );
-                          } else {
-                            return CustomText(text: 'لا يوجد نتائج');
-                          }
-                        } else if (snapshot.hasError) {
-                          return CustomText(text: snapshot.error.toString());
-                        } else {
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              Container(),
-                              const CircularProgressIndicator(),
-                              SizedBox(
-                                height: 5.h,
-                              ),
-                              CustomText(text: '....جاري التحميل ')
-                            ],
-                          );
-                        }
-                      }),
-                ],
-              ),
-            )
+                                  ),
+                                );
+                              } else {
+                                return CustomText(text: 'لا يوجد نتائج');
+                              }
+                            } else if (snapshot.hasError) {
+                              return CustomText(
+                                  text: snapshot.error.toString());
+                            } else {
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  Container(),
+                                  const CircularProgressIndicator(),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  CustomText(text: '....جاري التحميل ')
+                                ],
+                              );
+                            }
+                          }),
+                    ],
+                  ),
+                ),
+              );
+            })
           ],
         ));
   }
