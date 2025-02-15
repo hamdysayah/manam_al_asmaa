@@ -19,6 +19,9 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
 
   var _controller = TextEditingController();
 
+  List<String> theNameList = ['hamdy'];
+  late TextEditingController textEditingControllerTest;
+
   @override
   Widget build(BuildContext context) {
     currentOption = maleOrFemaleList[0];
@@ -44,41 +47,140 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                GetBuilder<AppController>(builder: (controller) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 10, right: 5, left: 5),
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: TextField(
-                        controller: _controller,
-                        style: TextStyle(
-                          fontSize: 17.sp,
-                          //    color: appController.isDark ? Colors.white : Colors.black,
+                // مربع الادخال
+
+                SizedBox(
+                  width: 210.w,
+                  height: 40.h,
+                  child: GetBuilder<AppController>(
+                    builder: (controller) => Autocomplete(
+                      optionsBuilder: (TextEditingValue textEditingValue) {
+                        if (textEditingValue.text == '') {
+                          return const Iterable<String>.empty();
+                        } else {
+                          List<String> matches = <String>[];
+                          matches.addAll(theNameList as Iterable<String>);
+                          matches.retainWhere((s) {
+                            return s.toLowerCase().startsWith(
+                                textEditingValue.text.toLowerCase());
+                          });
+
+                          if (matches.isEmpty) {
+                            matches.add("ابحث في الموقع");
+                          }
+                          return matches;
+                        }
+                      },
+                      fieldViewBuilder: (BuildContext context,
+                          TextEditingController textEditingController,
+                          FocusNode focusNode,
+                          VoidCallback onFieldSubmitted) {
+                        textEditingControllerTest = textEditingController;
+                        return TextField(
+                          cursorColor: const Color(0xFF292925),
+                          textInputAction: TextInputAction.search,
+                          autofocus: false,
+                          controller: textEditingController,
+                          onTapOutside: (event) {
+                            FocusManager.instance.primaryFocus?.unfocus();
+                          },
+                          onChanged: (value) {
+                            // if (value.isNotEmpty) {
+                            //   controller.changeSuffix(true);
+                            // } else {
+                            //   controller.changeSuffix(false);
+                            // }
+                          },
+                          style:
+                              TextStyle(fontSize: 15.sp, color: Colors.black),
+                          textAlign: TextAlign.center,
+                          textAlignVertical: TextAlignVertical.bottom,
+                          decoration: InputDecoration(
+                            suffixIcon: controller.showSuffix
+                                ? IconButton(
+                                    onPressed: () {
+                                      textEditingController.clear();
+                                      controller.showSuffix = false;
+                                    },
+                                    icon: Icon(
+                                      Icons.clear,
+                                      color: Colors.black,
+                                    ))
+                                : null,
+                            hintStyle:
+                                TextStyle(fontSize: 15.sp, color: Colors.black),
+                            hintText: "أدخل كلمة للبحث",
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              // width: 0.0 produces a thin "hairline" border
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.0),
+                            ),
+                          ),
+                          focusNode: focusNode,
+                          onSubmitted: (String value) async {},
+                        );
+                      },
+                      onSelected: (String selection) async {},
+                      optionsViewBuilder: (context, onSelected, options) =>
+                          Align(
+                        alignment: Alignment.topRight,
+                        child: Material(
+                          child: Container(
+                            color: Colors.blue,
+                            width: 210.w,
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                maxWidth: 210.w,
+                                maxHeight: (MediaQuery.of(context).size.height /
+                                        2) -
+                                    (MediaQuery.of(context).viewInsets.bottom /
+                                        3),
+                              ),
+                              child: ListView(
+                                shrinkWrap: true,
+                                padding: EdgeInsets.zero,
+                                children: options
+                                    .map(
+                                      (e) => Column(
+                                        children: [
+                                          InkWell(
+                                            onTap: () => onSelected(e),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 5, bottom: 5, right: 10),
+                                              child: Align(
+                                                alignment: Alignment.topRight,
+                                                child: Text(
+                                                  e,
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 17.sp,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            height: 0.1,
+                                            color: Colors.black,
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                    .toList(),
+                              ),
+                            ),
+                          ),
                         ),
-                        textInputAction: TextInputAction.search,
-                        onSubmitted: (value) {
-                          nameFromTextField = value;
-                          _controller.clear();
-                          controller.update();
-                          Get.to(GlobalCharNameResultScreen(),
-                              arguments: [currentOption, nameFromTextField]);
-                        },
-                        autofocus: false,
-                        onChanged: (value) {
-                          nameFromTextField = value;
-                        },
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            hintText: 'ادخل الاسم',
-                            hintStyle: TextStyle(
-                                //     color: appController.isDark ? Colors.white : Colors.black,
-                                )),
                       ),
                     ),
-                  );
-                  // الخيارات
-                }),
+                  ),
+                ),
+
                 GetBuilder<AppController>(builder: (controller) {
                   return Expanded(
                     child: Column(
@@ -141,7 +243,6 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                             SizedBox(
                               height: 10.h,
                             ),
-
                             customButton(
                                 text: 'اختر الوزن',
                                 buttonWidth: 200.w,
