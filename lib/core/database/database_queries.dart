@@ -6,9 +6,6 @@ class DatabaseQueries {
   DBHelper dbHelper = DBHelper();
   late List<String> globalNameList = [];
 
-  // late List<CategoryModel> categoriesList = [];
-  // late List<MessageModel> favoriteMessagesList = [];
-
   Future<List<String>> getGlobalNamesFirstThreeOptions(
       String text, int option) async {
     if (globalNameList.isNotEmpty) {
@@ -41,6 +38,19 @@ class DatabaseQueries {
 
     for (var item in list) {
       theObjectList.add(item['theObject']);
+    }
+    return theObjectList;
+  }
+
+  Future<List<String>> getNamesFromDb() async {
+    List<String> theObjectList = [];
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+
+    list = await dbClient!.rawQuery("SELECT nameNoTashkel from GlobalNameTbl");
+
+    for (var item in list) {
+      theObjectList.add(item['nameNoTashkel']);
     }
     return theObjectList;
   }
@@ -78,10 +88,10 @@ class DatabaseQueries {
     var dbClient = await dbHelper.db;
     List<Map<String, dynamic>> list;
 
-    list = await dbClient!.rawQuery("SELECT theWight from theWightTable");
+    list = await dbClient!.rawQuery("SELECT result from theWightTable");
 
     for (var item in list) {
-      theWightList.add(item['theWight']);
+      theWightList.add(item['result']);
     }
     return theWightList;
   }
