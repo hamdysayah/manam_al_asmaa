@@ -55,6 +55,37 @@ class DatabaseQueries {
     return theObjectList;
   }
 
+  //جلب الوزن للاسم لجلب جميع الاسماء التي تحمل نفس الوزن
+  Future<List<String>> getWightForNameAndAllName(
+      String name, int maleOrFemale) async {
+    String nameWight = '';
+    String typeOfName = '';
+    List<String> theNamesList = [];
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+
+    typeOfName = maleOrFemale == 1 ? 'مذكر' : 'مؤنث';
+
+    list = await dbClient!.rawQuery(
+        "SELECT nameWight from GlobalNameTbl where nameNoTashkel='$name' ");
+
+    for (var item in list) {
+      nameWight = item['nameWight'];
+    }
+
+    list = await dbClient.rawQuery(
+        "SELECT name from GlobalNameTbl where nameWight='$nameWight' And typeOfName='$typeOfName'");
+
+    for (var item in list) {
+      theNamesList.add(item['name']);
+    }
+
+    print(
+        "'thee nooo SELECT name from GlobalNameTbl where nameWight='$nameWight' And typeOfName='$typeOfName'");
+
+    return theNamesList;
+  }
+
   Future<List<String>> getNamesFromObject(String theObject) async {
     List<String> theObjectList = [];
     var dbClient = await dbHelper.db;

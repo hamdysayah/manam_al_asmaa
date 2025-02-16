@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:manjam_asmaa/view/screens/global_name_wight_result_edittext_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../controller/app_contrller.dart';
 import '../../core/database/database_queries.dart';
 import '../widgets/custom_button.dart';
-import 'global_name_char_result_screen.dart';
 import 'global_name_wight_result_screen.dart';
 
 class GlobalNameWightSearchScreen extends StatelessWidget {
@@ -84,7 +84,6 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                       textEditingController;
                                   return TextField(
                                     cursorColor: const Color(0xFF292925),
-                                    textInputAction: TextInputAction.search,
                                     autofocus: false,
                                     controller: textEditingController,
                                     onTapOutside: (event) {
@@ -92,11 +91,7 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                           ?.unfocus();
                                     },
                                     onChanged: (value) {
-                                      // if (value.isNotEmpty) {
-                                      //   controller.changeSuffix(true);
-                                      // } else {
-                                      //   controller.changeSuffix(false);
-                                      // }
+                                      nameFromTextField = value;
                                     },
                                     style: TextStyle(
                                         fontSize: 15.sp, color: Colors.black),
@@ -128,10 +123,15 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                       ),
                                     ),
                                     focusNode: focusNode,
-                                    onSubmitted: (String value) async {},
                                   );
                                 },
-                                onSelected: (String selection) async {},
+                                onSelected: (String selection) async {
+                                  textEditingControllerTest.clear();
+                                  appController.update();
+
+                                  Get.to(GlobalNameWightResultEdittextScreen(),
+                                      arguments: [selection, currentOption]);
+                                },
                                 optionsViewBuilder:
                                     (context, onSelected, options) => Align(
                                   alignment: Alignment.topRight,
@@ -222,6 +222,7 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                       }
                     }),
 
+                // الخيادات مذكر ومؤنث
                 GetBuilder<AppController>(builder: (controller) {
                   return Expanded(
                     child: Column(
@@ -244,17 +245,7 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                           },
                           title: Text('مؤنث'),
                         ),
-                        customButton(
-                            text: 'بحث',
-                            buttonWidth: 200.w,
-                            onClick: () {
-                              _controller.clear();
-                              appController.update();
-                              Get.to(GlobalCharNameResultScreen(), arguments: [
-                                currentOption,
-                                nameFromTextField
-                              ]);
-                            }),
+
                         SizedBox(
                           height: 10.h,
                         ),
@@ -375,8 +366,7 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                             //لما يختار الوزن
                                             child: CustomText(
                                               text: theWightList[index]
-                                                  .toString()
-                                                  ,
+                                                  .toString(),
                                             )),
                                       );
                                     },
