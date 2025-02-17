@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:manjam_asmaa/view/screens/global_name_wight_result_edittext_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
+import 'package:screenshot/screenshot.dart';
 import '../../controller/app_contrller.dart';
 import '../../core/database/database_queries.dart';
 import '../widgets/custom_button.dart';
@@ -38,11 +39,7 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(),
-                CustomText(
-                  text:
-                  'ابحث من خلال الجذر وسيتم عرض جميع الاسماء التي تحمل نفس الجذر الذي ادخلته',
-                  fontWight: FontWeight.bold,
-                ),
+
                 SizedBox(
                   height: 10.h,
                 ),
@@ -100,20 +97,20 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                     decoration: InputDecoration(
                                       suffixIcon: nameFromTextField.isNotEmpty
                                           ? InkWell(
-                                        onTap: () {
-                                          textEditingController.clear();
-                                          nameFromTextField='';
-                                          appController.update();
-                                        },
-                                        child: Icon(
-                                          Icons.clear,
-                                          color: Colors.black,
-                                        ),
-                                      )
+                                              onTap: () {
+                                                textEditingController.clear();
+                                                nameFromTextField = '';
+                                                appController.update();
+                                              },
+                                              child: Icon(
+                                                Icons.clear,
+                                                color: Colors.black,
+                                              ),
+                                            )
                                           : null,
                                       hintStyle: TextStyle(
                                           fontSize: 15.sp, color: Colors.black),
-                                      hintText: "أدخل الجذر",
+                                      hintText: "اكتب هنا",
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                             color: Colors.black, width: 1.0),
@@ -129,7 +126,7 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                 },
                                 onSelected: (String selection) async {
                                   textEditingControllerTest.clear();
-                                  nameFromTextField='';
+                                  nameFromTextField = '';
                                   appController.update();
 
                                   Get.to(GlobalNameWightResultEdittextScreen(),
@@ -146,12 +143,12 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                         constraints: BoxConstraints(
                                           maxWidth: 210.w,
                                           maxHeight: (MediaQuery.of(context)
-                                              .size
-                                              .height /
-                                              2) -
+                                                      .size
+                                                      .height /
+                                                  2) -
                                               (MediaQuery.of(context)
-                                                  .viewInsets
-                                                  .bottom /
+                                                      .viewInsets
+                                                      .bottom /
                                                   3),
                                         ),
                                         child: ListView(
@@ -160,38 +157,38 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                           children: options
                                               .map(
                                                 (e) => Column(
-                                              children: [
-                                                InkWell(
-                                                  onTap: () =>
-                                                      onSelected(e),
-                                                  child: Padding(
-                                                    padding:
-                                                    const EdgeInsets
-                                                        .only(
-                                                        top: 5,
-                                                        bottom: 5,
-                                                        right: 10),
-                                                    child: Align(
-                                                      alignment: Alignment
-                                                          .topRight,
-                                                      child: Text(
-                                                        e,
-                                                        style: TextStyle(
-                                                          color:
-                                                          Colors.white,
-                                                          fontSize: 17.sp,
+                                                  children: [
+                                                    InkWell(
+                                                      onTap: () =>
+                                                          onSelected(e),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                top: 5,
+                                                                bottom: 5,
+                                                                right: 10),
+                                                        child: Align(
+                                                          alignment: Alignment
+                                                              .topRight,
+                                                          child: Text(
+                                                            e,
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 17.sp,
+                                                            ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
+                                                    Container(
+                                                      height: 0.1,
+                                                      color: Colors.black,
+                                                    )
+                                                  ],
                                                 ),
-                                                Container(
-                                                  height: 0.1,
-                                                  color: Colors.black,
-                                                )
-                                              ],
-                                            ),
-                                          )
+                                              )
                                               .toList(),
                                         ),
                                       ),
@@ -225,71 +222,77 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                       }
                     }),
 
+                SizedBox(
+                  height: 10.h,
+                ),
+                CustomText(
+                  text: 'ابحث من خلال',
+                  fontWight: FontWeight.bold,
+                ),
+                // خيارات البحث في الجذر
+
+                Row(
+                  children: [
+                    Expanded(
+                      child: RadioListTile(
+                        value: maleOrFemaleList[0],
+                        groupValue: currentOption,
+                        onChanged: (value) {
+                          currentOption = value!.toInt();
+                          appController.update();
+                        },
+                        title: Text('الجذر'),
+                      ),
+                    ),
+                    Expanded(
+                      child: RadioListTile(
+                        value: maleOrFemaleList[1],
+                        groupValue: currentOption,
+                        onChanged: (value) {
+                          currentOption = value!.toInt();
+                          appController.update();
+                        },
+                        title: Text('جذر اسم'),
+                      ),
+                    ),
+                  ],
+                ),
+
                 // الخيادات مذكر ومؤنث
                 GetBuilder<AppController>(builder: (controller) {
                   return Expanded(
                     child: Column(
                       children: [
-                        RadioListTile(
-                          value: maleOrFemaleList[0],
-                          groupValue: currentOption,
-                          onChanged: (value) {
-                            currentOption = value!.toInt();
-                            appController.update();
-                          },
-                          title: Text('مذكر'),
-                        ),
-                        RadioListTile(
-                          value: maleOrFemaleList[1],
-                          groupValue: currentOption,
-                          onChanged: (value) {
-                            currentOption = value!.toInt();
-                            appController.update();
-                          },
-                          title: Text('مؤنث'),
-                        ),
-
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        // الفاصل
-                        Row(children: <Widget>[
-                          Expanded(child: Divider()),
-                          CustomText(
-                            text: "او",
-                            fontSize: 20.sp,
-                          ),
-                          Expanded(child: Divider()),
-                        ]),
-                        //البحث من خلال الوزن
-                        SizedBox(
-                          height: 10.h,
-                        ),
                         CustomText(
-                            text:
-                            'قم باختيار الوزن وسيظهر جميع الاسماء التي تحمل نفس الو'),
-                        SizedBox(
-                          height: 10.h,
+                          text: 'اختر جنس الاسم',
+                          fontWight: FontWeight.bold,
                         ),
-                        Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 10.h,
-                                ),
-                                customButton(
-                                    text: 'اختر الوزن',
-                                    buttonWidth: 200.w,
-                                    onClick: () {
-                                      appController.isVisibleChoiceWight = true;
-                                      appController.update();
-                                    }),
-                                SizedBox(
-                                  height: 10.h,
-                                ),
-                              ],
-                            )),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: RadioListTile(
+                                value: maleOrFemaleList[0],
+                                groupValue: currentOption,
+                                onChanged: (value) {
+                                  currentOption = value!.toInt();
+                                  appController.update();
+                                },
+                                title: Text('مذكر'),
+                              ),
+                            ),
+                            Expanded(
+                              child: RadioListTile(
+                                value: maleOrFemaleList[1],
+                                groupValue: currentOption,
+                                onChanged: (value) {
+                                  currentOption = value!.toInt();
+                                  appController.update();
+                                },
+                                title: Text('مؤنث'),
+                              ),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   );
@@ -338,12 +341,12 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                   child: GridView.builder(
                                     itemCount: theWightList.length,
                                     gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
                                       mainAxisSpacing: 2,
                                       childAspectRatio: MediaQuery.of(context)
-                                          .size
-                                          .width /
+                                              .size
+                                              .width /
                                           (MediaQuery.of(context).size.height /
                                               5),
                                     ),
@@ -352,12 +355,12 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                       return InkWell(
                                         onTap: () {
                                           appController.isVisibleChoiceWight =
-                                          false;
+                                              false;
                                           appController.update();
                                           List<String> theWight =
-                                          theWightList[index]
-                                              .toString()
-                                              .split('-');
+                                              theWightList[index]
+                                                  .toString()
+                                                  .split('-');
 
                                           Get.to(GlobalNameWightResultScreen(),
                                               arguments: theWight[0]);
@@ -365,7 +368,7 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                         child: Container(
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(10),
+                                                  BorderRadius.circular(10),
                                               color: Colors.white,
                                             ),
                                             alignment: Alignment.center,
