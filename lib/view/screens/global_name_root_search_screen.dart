@@ -5,6 +5,7 @@ import 'package:manjam_asmaa/view/screens/global_name_wight_result_edittext_scre
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../controller/app_contrller.dart';
 import '../../core/database/database_queries.dart';
+import '../widgets/custom_button.dart';
 import 'global_name_wight_result_screen.dart';
 
 class GlobalNameRootSearchScreen extends StatelessWidget {
@@ -226,7 +227,6 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                         );
                       }
                     }),
-
                 SizedBox(
                   height: 10.h,
                 ),

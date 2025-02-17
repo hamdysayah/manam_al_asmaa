@@ -125,7 +125,6 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
               ),
             ],
           ),
-
           // خيار مذكر او مؤنث
           GetBuilder<AppController>(builder: (controller) {
             return Row(
