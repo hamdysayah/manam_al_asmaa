@@ -3,19 +3,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:manjam_asmaa/view/screens/global_name_wight_result_edittext_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
-import 'package:screenshot/screenshot.dart';
 import '../../controller/app_contrller.dart';
 import '../../core/database/database_queries.dart';
-import '../widgets/custom_button.dart';
 import 'global_name_wight_result_screen.dart';
 
 class GlobalNameRootSearchScreen extends StatelessWidget {
   AppController appController = Get.find();
 
   List<int> maleOrFemaleList = [1, 2];
-  int currentOption = 1;
+  int currentOptionMaleOrFemale = 1;
 
   String nameFromTextField = '';
+
+  List<String> rootOrNameOptions = ['الجذر', 'جذر اسم'];
+
+  String currentOptionRootOrNameOptions = 'الجذر';
 
   var _controller = TextEditingController();
 
@@ -24,7 +26,7 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    currentOption = maleOrFemaleList[0];
+    currentOptionMaleOrFemale = maleOrFemaleList[0];
     appController.isVisibleChoiceWight = false;
 
     return Scaffold(
@@ -130,7 +132,10 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                   appController.update();
 
                                   Get.to(GlobalNameWightResultEdittextScreen(),
-                                      arguments: [selection, currentOption]);
+                                      arguments: [
+                                        selection,
+                                        currentOptionMaleOrFemale
+                                      ]);
                                 },
                                 optionsViewBuilder:
                                     (context, onSelected, options) => Align(
@@ -230,33 +235,34 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                   fontWight: FontWeight.bold,
                 ),
                 // خيارات البحث في الجذر
-
-                Row(
-                  children: [
-                    Expanded(
-                      child: RadioListTile(
-                        value: maleOrFemaleList[0],
-                        groupValue: currentOption,
-                        onChanged: (value) {
-                          currentOption = value!.toInt();
-                          appController.update();
-                        },
-                        title: Text('الجذر'),
+                GetBuilder<AppController>(builder: (controller) {
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: RadioListTile(
+                          value: rootOrNameOptions[0],
+                          groupValue: currentOptionRootOrNameOptions,
+                          onChanged: (value) {
+                            currentOptionRootOrNameOptions = value!;
+                            appController.update();
+                          },
+                          title: Text('الجذر'),
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: RadioListTile(
-                        value: maleOrFemaleList[1],
-                        groupValue: currentOption,
-                        onChanged: (value) {
-                          currentOption = value!.toInt();
-                          appController.update();
-                        },
-                        title: Text('جذر اسم'),
+                      Expanded(
+                        child: RadioListTile(
+                          value: rootOrNameOptions[1],
+                          groupValue: currentOptionRootOrNameOptions,
+                          onChanged: (value) {
+                            currentOptionRootOrNameOptions = value!;
+                            appController.update();
+                          },
+                          title: Text('جذر اسم'),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  );
+                }),
 
                 // الخيادات مذكر ومؤنث
                 GetBuilder<AppController>(builder: (controller) {
@@ -272,9 +278,9 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                             Expanded(
                               child: RadioListTile(
                                 value: maleOrFemaleList[0],
-                                groupValue: currentOption,
+                                groupValue: currentOptionMaleOrFemale,
                                 onChanged: (value) {
-                                  currentOption = value!.toInt();
+                                  currentOptionMaleOrFemale = value!.toInt();
                                   appController.update();
                                 },
                                 title: Text('مذكر'),
@@ -283,9 +289,9 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                             Expanded(
                               child: RadioListTile(
                                 value: maleOrFemaleList[1],
-                                groupValue: currentOption,
+                                groupValue: currentOptionMaleOrFemale,
                                 onChanged: (value) {
-                                  currentOption = value!.toInt();
+                                  currentOptionMaleOrFemale = value!.toInt();
                                   appController.update();
                                 },
                                 title: Text('مؤنث'),
