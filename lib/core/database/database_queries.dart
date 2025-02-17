@@ -56,6 +56,21 @@ class DatabaseQueries {
     return theObjectList;
   }
 
+  // جلب جميع الجذور للعرض كقائمه منسدلة
+  Future<List<String>> getAllRoot() async {
+    List<String> theRootList = [];
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+
+    list = await dbClient!
+        .rawQuery("SELECT root FROM GlobalNameTbl WHERE root !='0'");
+
+    for (var item in list) {
+      theRootList.add(item['root']);
+    }
+    return theRootList;
+  }
+
   //جلب الوزن للاسم لجلب جميع الاسماء التي تحمل نفس الوزن
   Future<List<String>> getWightForNameAndAllName(
       String name, int maleOrFemale) async {

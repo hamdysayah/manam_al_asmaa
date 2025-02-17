@@ -26,7 +26,7 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
     currentOption = typeOfSearch[0];
     return Scaffold(
       appBar: AppBar(
-        title: Text('منجم الاسماء'),
+        title: Text('البحث من خلال الاحرف'),
       ),
       resizeToAvoidBottomInset: false,
       body: Column(

@@ -21,7 +21,7 @@ class GlobalNameObjectSearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('منجم الاسماء'),),
+      appBar: AppBar(title: Text('البحث من خلال الموضوع'),),
 
       body: SafeArea(
         child: Column(

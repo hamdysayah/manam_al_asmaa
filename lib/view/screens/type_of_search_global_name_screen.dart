@@ -5,6 +5,7 @@ import 'package:manjam_asmaa/view/screens/global_name_char_search_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../widgets/custom_button.dart';
 import 'global_name_object_search_screen.dart';
+import 'global_name_root_search_screen.dart';
 import 'global_name_wight_search_screen.dart';
 
 class TypeOfSearchGlobalNameScreen extends StatelessWidget {
@@ -52,7 +53,10 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
           customButton(
             text: 'بحث من خلال الجذر',
             buttonWidth: 250.w,
-            onClick: () {},
+            onClick: () {
+              Get.to(GlobalNameRootSearchScreen());
+
+            },
           )
         ],
       ),
