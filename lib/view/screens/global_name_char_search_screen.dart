@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:manjam_asmaa/core/utils/constants.dart';
 import 'package:screenshot/screenshot.dart';
 
 import '../../controller/app_contrller.dart';
@@ -52,14 +53,18 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                         ),
                         textInputAction: TextInputAction.search,
                         onSubmitted: (value) {
-                          nameFromTextField = value;
-                          _controller.clear();
-                          appController.update();
-                          Get.to(GlobalCharNameResultScreen(), arguments: [
-                            currentOption,
-                            nameFromTextField,
-                            genderCurrentOption
-                          ]);
+                          if (value.isNotEmpty) {
+                            nameFromTextField = '';
+                            _controller.clear();
+                            appController.update();
+                            Get.to(GlobalCharNameResultScreen(), arguments: [
+                              currentOption,
+                              value,
+                              genderCurrentOption
+                            ]);
+                          } else {
+                            showToast('الرجاء ادخال الحروف');
+                          }
                         },
                         autofocus: true,
                         onChanged: (value) {
@@ -71,7 +76,7 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                                 ? InkWell(
                                     onTap: () {
                                       _controller.clear();
-                                      nameFromTextField='';
+                                      nameFromTextField = '';
                                       appController.update();
                                     },
                                     child: Icon(
@@ -102,13 +107,19 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                       text: 'بحث',
                       buttonWidth: 100.w,
                       onClick: () {
-                        _controller.clear();
-                        appController.update();
-                        Get.to(GlobalCharNameResultScreen(), arguments: [
-                          currentOption,
-                          nameFromTextField,
-                          genderCurrentOption
-                        ]);
+                        if (nameFromTextField.isNotEmpty) {
+                          String text = nameFromTextField;
+                          nameFromTextField = '';
+                          _controller.clear();
+                          appController.update();
+                          Get.to(GlobalCharNameResultScreen(), arguments: [
+                            currentOption,
+                            text,
+                            genderCurrentOption
+                          ]);
+                        } else {
+                          showToast('الرحاء ادخال الحروف');
+                        }
                       }),
                 ),
               ),

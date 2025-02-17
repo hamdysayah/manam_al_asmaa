@@ -54,7 +54,6 @@ class GlobalCharNameResultScreen extends StatelessWidget {
                                     onTap: () {
                                       selectedName = theNamesList[index]
                                           .toString()
-                                          .replaceAll(' ', '')
                                           .replaceAll('[', '')
                                           .replaceAll(']', '');
 

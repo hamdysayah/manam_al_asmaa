@@ -130,6 +130,7 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                 },
                                 onSelected: (String selection) async {
                                   textEditingControllerTest.clear();
+                                  nameFromTextField='';
                                   appController.update();
 
                                   Get.to(GlobalNameWightResultEdittextScreen(),

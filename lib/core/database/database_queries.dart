@@ -15,13 +15,13 @@ class DatabaseQueries {
     List<Map<String, dynamic>> list;
     if (option == 1) {
       list = await dbClient!.rawQuery(
-          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'$text%' And  typeOfName='${maleOfFemale}'");
+          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'$text%' And  (typeOfName='${maleOfFemale}' or typeOfName='عائلي' or  typeOfName='مذكر ومؤنث')");
     } else if (option == 2) {
       list = await dbClient!.rawQuery(
-          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'%$text' And  typeOfName='${maleOfFemale}'");
+          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'%$text' And   (typeOfName='${maleOfFemale}' or typeOfName='عائلي' or  typeOfName='مذكر ومؤنث')'");
     } else {
       list = await dbClient!.rawQuery(
-          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'%$text%' And  typeOfName='${maleOfFemale}'");
+          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'%$text%' And   (typeOfName='${maleOfFemale}' or typeOfName='عائلي' or  typeOfName='مذكر ومؤنث')'");
     }
     for (var item in list) {
       globalNameList.add(item['name']);
@@ -47,7 +47,8 @@ class DatabaseQueries {
     var dbClient = await dbHelper.db;
     List<Map<String, dynamic>> list;
 
-    list = await dbClient!.rawQuery("SELECT nameNoTashkel from GlobalNameTbl");
+    list = await dbClient!.rawQuery(
+        "SELECT nameNoTashkel from GlobalNameTbl where  nameWight !=''");
 
     for (var item in list) {
       theObjectList.add(item['nameNoTashkel']);
