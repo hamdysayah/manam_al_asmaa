@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:screenshot/screenshot.dart';
 
 import '../../controller/app_contrller.dart';
 import '../widgets/custom_button.dart';
@@ -15,6 +16,9 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
 
   String nameFromTextField = '';
   var _controller = TextEditingController();
+
+  List<String> maleOrFemaleList = ['مذكر', 'مؤنث'];
+  String genderCurrentOption = 'مذكر';
 
   @override
   Widget build(BuildContext context) {
@@ -31,40 +35,114 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
           SizedBox(
             height: 100.h,
           ),
-          GetBuilder<AppController>(builder: (controller) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 10, right: 5, left: 5),
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: TextField(
-                  controller: _controller,
-                  style: TextStyle(
-                    fontSize: 17.sp,
-                    //    color: appController.isDark ? Colors.white : Colors.black,
+          Row(
+            children: [
+              GetBuilder<AppController>(builder: (controller) {
+                return Expanded(
+                  flex: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10, right: 5, left: 5),
+                    child: Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: TextField(
+                        controller: _controller,
+                        style: TextStyle(
+                          fontSize: 17.sp,
+                          //    color: appController.isDark ? Colors.white : Colors.black,
+                        ),
+                        textInputAction: TextInputAction.search,
+                        onSubmitted: (value) {
+                          nameFromTextField = value;
+                          _controller.clear();
+                          appController.update();
+                          Get.to(GlobalCharNameResultScreen(), arguments: [
+                            currentOption,
+                            nameFromTextField,
+                            genderCurrentOption
+                          ]);
+                        },
+                        autofocus: true,
+                        onChanged: (value) {
+                          nameFromTextField = value;
+                          appController.update();
+                        },
+                        decoration: InputDecoration(
+                            suffixIcon: nameFromTextField.isNotEmpty
+                                ? InkWell(
+                                    onTap: () {
+                                      _controller.clear();
+                                      nameFromTextField='';
+                                      appController.update();
+                                    },
+                                    child: Icon(
+                                      Icons.clear,
+                                      color: Colors.black,
+                                    ),
+                                  )
+                                : null,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            hintText: 'ابحث هنا...',
+                            hintStyle: TextStyle(
+                                //     color: appController.isDark ? Colors.white : Colors.black,
+                                )),
+                      ),
+                    ),
                   ),
-                  textInputAction: TextInputAction.search,
-                  onSubmitted: (value) {
-                    nameFromTextField = value;
-                    _controller.clear();
-                    controller.update();
-                    Get.to(GlobalCharNameResultScreen(),
-                     arguments: [currentOption, nameFromTextField]);
-                  },
-                  autofocus: true,
-                  onChanged: (value) {
-                    nameFromTextField = value;
-                  },
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      hintText: 'ابحث هنا...',
-                      hintStyle: TextStyle(
-                          //     color: appController.isDark ? Colors.white : Colors.black,
-                          )),
+                );
+              }),
+
+              // زر ابحث
+              Padding(
+                padding: EdgeInsets.only(top: 10.h, left: 10.w),
+                child: Container(
+                  width: 80.w,
+                  height: 50.h,
+                  child: customButton(
+                      text: 'بحث',
+                      buttonWidth: 100.w,
+                      onClick: () {
+                        _controller.clear();
+                        appController.update();
+                        Get.to(GlobalCharNameResultScreen(), arguments: [
+                          currentOption,
+                          nameFromTextField,
+                          genderCurrentOption
+                        ]);
+                      }),
                 ),
               ),
+            ],
+          ),
+
+          // خيار مذكر او مؤنث
+          GetBuilder<AppController>(builder: (controller) {
+            return Row(
+              children: [
+                Expanded(
+                  child: RadioListTile(
+                    value: maleOrFemaleList[0],
+                    groupValue: genderCurrentOption,
+                    onChanged: (value) {
+                      genderCurrentOption = value!.toString();
+                      appController.update();
+                    },
+                    title: Text('مذكر'),
+                  ),
+                ),
+                Expanded(
+                  child: RadioListTile(
+                    value: maleOrFemaleList[1],
+                    groupValue: genderCurrentOption,
+                    onChanged: (value) {
+                      genderCurrentOption = value.toString();
+                      appController.update();
+                    },
+                    title: Text('مؤنث'),
+                  ),
+                )
+              ],
             );
-            // الخيارات
           }),
           GetBuilder<AppController>(builder: (controller) {
             return Expanded(
@@ -97,15 +175,6 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                     },
                     title: Text('اسماء تحتوي على ..'),
                   ),
-                  customButton(
-                      text: 'بحث',
-                      buttonWidth: 200.w,
-                      onClick: () {
-                        _controller.clear();
-                        appController.update();
-                        Get.to(GlobalCharNameResultScreen(),
-                            arguments: [currentOption, nameFromTextField]);
-                      })
                 ],
               ),
             );

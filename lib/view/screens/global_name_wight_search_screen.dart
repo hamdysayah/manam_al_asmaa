@@ -92,22 +92,25 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                     },
                                     onChanged: (value) {
                                       nameFromTextField = value;
+                                      appController.update();
                                     },
                                     style: TextStyle(
                                         fontSize: 15.sp, color: Colors.black),
                                     textAlign: TextAlign.center,
                                     textAlignVertical: TextAlignVertical.bottom,
                                     decoration: InputDecoration(
-                                      suffixIcon: controller.showSuffix
-                                          ? IconButton(
-                                              onPressed: () {
+                                      suffixIcon: nameFromTextField.isNotEmpty
+                                          ? InkWell(
+                                              onTap: () {
                                                 textEditingController.clear();
-                                                controller.showSuffix = false;
+                                                nameFromTextField='';
+                                                appController.update();
                                               },
-                                              icon: Icon(
+                                              child: Icon(
                                                 Icons.clear,
                                                 color: Colors.black,
-                                              ))
+                                              ),
+                                            )
                                           : null,
                                       hintStyle: TextStyle(
                                           fontSize: 15.sp, color: Colors.black),
@@ -351,9 +354,13 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                           appController.isVisibleChoiceWight =
                                               false;
                                           appController.update();
+                                          List<String> theWight =
+                                              theWightList[index]
+                                                  .toString()
+                                                  .split('-');
+
                                           Get.to(GlobalNameWightResultScreen(),
-                                              arguments: theWightList[index]
-                                                  .toString());
+                                              arguments: theWight[0]);
                                         },
                                         child: Container(
                                             decoration: BoxDecoration(

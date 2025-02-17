@@ -32,7 +32,7 @@ class GlobalCharNameResultScreen extends StatelessWidget {
                 GetBuilder<AppController>(builder: (controller) {
                   return FutureBuilder<List<String>>(
                       future: DatabaseQueries().getGlobalNamesFirstThreeOptions(
-                          Get.arguments[1].toString(), Get.arguments[0]),
+                          Get.arguments[1].toString(), Get.arguments[0],Get.arguments[2]),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           if (snapshot.data!.isNotEmpty) {

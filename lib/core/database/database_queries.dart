@@ -7,7 +7,7 @@ class DatabaseQueries {
   late List<String> globalNameList = [];
 
   Future<List<String>> getGlobalNamesFirstThreeOptions(
-      String text, int option) async {
+      String text, int option, String maleOfFemale) async {
     if (globalNameList.isNotEmpty) {
       globalNameList.clear();
     }
@@ -15,13 +15,13 @@ class DatabaseQueries {
     List<Map<String, dynamic>> list;
     if (option == 1) {
       list = await dbClient!.rawQuery(
-          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'$text%'");
+          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'$text%' And  typeOfName='${maleOfFemale}'");
     } else if (option == 2) {
       list = await dbClient!.rawQuery(
-          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'%$text'");
+          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'%$text' And  typeOfName='${maleOfFemale}'");
     } else {
       list = await dbClient!.rawQuery(
-          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'%$text%'");
+          "SELECT name from GlobalNameTbl WHERE nameNoTashkel like'%$text%' And  typeOfName='${maleOfFemale}'");
     }
     for (var item in list) {
       globalNameList.add(item['name']);
@@ -63,26 +63,17 @@ class DatabaseQueries {
     List<String> theNamesList = [];
     var dbClient = await dbHelper.db;
     List<Map<String, dynamic>> list;
-
     typeOfName = maleOrFemale == 1 ? 'مذكر' : 'مؤنث';
-
     list = await dbClient!.rawQuery(
         "SELECT nameWight from GlobalNameTbl where nameNoTashkel='$name' ");
-
     for (var item in list) {
       nameWight = item['nameWight'];
     }
-
     list = await dbClient.rawQuery(
         "SELECT name from GlobalNameTbl where nameWight='$nameWight' And typeOfName='$typeOfName'");
-
     for (var item in list) {
       theNamesList.add(item['name']);
     }
-
-    print(
-        "'thee nooo SELECT name from GlobalNameTbl where nameWight='$nameWight' And typeOfName='$typeOfName'");
-
     return theNamesList;
   }
 
