@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:manjam_asmaa/view/screens/global_name_wight_result_edittext_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../controller/app_contrller.dart';
 import '../../core/database/database_queries.dart';
+import 'global_name_root_result_nameRoot_option_screen.dart';
 import 'global_name_root_result_root_option_screen.dart';
-import 'global_name_wight_result_screen.dart';
 
 class GlobalNameRootSearchScreen extends StatelessWidget {
   AppController appController = Get.find();
@@ -150,7 +149,7 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                     else
                                       {
                                         Get.to(
-                                            GlobalNameRootResultRootOptionScreen(),
+                                            GlobalNameRootResultNamerootOptionScreen(),
                                             arguments: [
                                               selection,
                                               currentOptionMaleOrFemale

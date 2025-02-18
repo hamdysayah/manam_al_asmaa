@@ -174,20 +174,18 @@ class DatabaseQueries {
 
   //جلب الجذر للاسم لجلب جميع الاسماء التي تحمل نفس الجذر
   Future<List<String>> getRootForNameAndAllName(
-      String name, int maleOrFemale) async {
-    String nameWight = '';
-    String typeOfName = '';
+      String name, String maleOrFemale) async {
+    String nameRoot = '';
     List<String> theNamesList = [];
     var dbClient = await dbHelper.db;
     List<Map<String, dynamic>> list;
-    typeOfName = maleOrFemale == 1 ? 'مذكر' : 'مؤنث';
     list = await dbClient!.rawQuery(
-        "SELECT nameWight from GlobalNameTbl where nameNoTashkel='$name' ");
+        "SELECT root from GlobalNameTbl where nameNoTashkel='$name'");
     for (var item in list) {
-      nameWight = item['nameWight'];
+      nameRoot = item['root'];
     }
     list = await dbClient.rawQuery(
-        "SELECT name from GlobalNameTbl where nameWight='$nameWight' And (typeOfName='${maleOrFemale}' or typeOfName='عائلي' or  typeOfName='مذكر ومؤنث')");
+        "SELECT name from GlobalNameTbl where root='$nameRoot' And (typeOfName='${maleOrFemale}' or typeOfName='عائلي' or  typeOfName='مذكر ومؤنث')");
     for (var item in list) {
       theNamesList.add(item['name']);
     }

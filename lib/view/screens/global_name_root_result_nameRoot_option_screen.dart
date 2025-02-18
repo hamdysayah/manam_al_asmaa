@@ -27,12 +27,12 @@ class GlobalNameRootResultNamerootOptionScreen extends StatelessWidget {
             children: [
               Container(),
               CustomText(
-                text: 'الاسماء المقترحة ل ',
+                text: 'الاسماء المقترحة  ',
                 fontSize: 20.sp,
               ),
               FutureBuilder<List<String>>(
-                  future: DatabaseQueries()
-                      .getAllNamesFromRoot(Get.arguments[0], Get.arguments[1]),
+                  future: DatabaseQueries().getRootForNameAndAllName(
+                      Get.arguments[0], Get.arguments[1]),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       if (snapshot.data!.isNotEmpty) {
