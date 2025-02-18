@@ -119,7 +119,8 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                         hintStyle: TextStyle(
                                             fontSize: 15.sp,
                                             color: Colors.black),
-                                        hintText: "اكتب هنا",
+                                        hintText:
+                                            " ادخل ${currentOptionRootOrNameOptions == 'الجذر' ? 'الجذر' : 'الاسم'}",
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                               color: Colors.black, width: 1.0),
@@ -145,16 +146,14 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                             selection,
                                             currentOptionMaleOrFemale
                                           ]);
+                                    } else {
+                                      Get.to(
+                                          GlobalNameRootResultNamerootOptionScreen(),
+                                          arguments: [
+                                            selection,
+                                            currentOptionMaleOrFemale
+                                          ]);
                                     }
-                                    else
-                                      {
-                                        Get.to(
-                                            GlobalNameRootResultNamerootOptionScreen(),
-                                            arguments: [
-                                              selection,
-                                              currentOptionMaleOrFemale
-                                            ]);
-                                      }
                                   },
                                   optionsViewBuilder:
                                       (context, onSelected, options) => Align(

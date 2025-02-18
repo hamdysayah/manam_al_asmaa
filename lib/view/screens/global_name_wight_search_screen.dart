@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -29,7 +28,7 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('منجم الاسماء'),
+          title: Text('البحث من خلال الوزن'),
         ),
         resizeToAvoidBottomInset: false,
         body: Stack(
@@ -114,7 +113,7 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                           : null,
                                       hintStyle: TextStyle(
                                           fontSize: 15.sp, color: Colors.black),
-                                      hintText: "أدخل كلمة للبحث",
+                                      hintText: "أدخل الاسم",
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                             color: Colors.black, width: 1.0),
