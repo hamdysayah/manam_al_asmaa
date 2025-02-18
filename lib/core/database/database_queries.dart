@@ -63,7 +63,7 @@ class DatabaseQueries {
     List<Map<String, dynamic>> list;
 
     list = await dbClient!
-        .rawQuery("SELECT root FROM GlobalNameTbl WHERE root !='0'");
+        .rawQuery("SELECT DISTINCT root FROM GlobalNameTbl WHERE root !='0'");
 
     for (var item in list) {
       theRootList.add(item['root']);
@@ -86,7 +86,7 @@ class DatabaseQueries {
       nameWight = item['nameWight'];
     }
     list = await dbClient.rawQuery(
-        "SELECT name from GlobalNameTbl where nameWight='$nameWight' And typeOfName='$typeOfName'");
+        "SELECT name from GlobalNameTbl where nameWight='$nameWight' And (typeOfName='${maleOrFemale}' or typeOfName='عائلي' or  typeOfName='مذكر ومؤنث')");
     for (var item in list) {
       theNamesList.add(item['name']);
     }
@@ -154,5 +154,43 @@ class DatabaseQueries {
       result = Namesmodel.fromMap(item);
     }
     return result;
+  }
+
+  // بحث من خلال الجذر
+  Future<List<String>> getAllNamesFromRoot(
+      String root, String maleOrFemale) async {
+    List<String> theNamesList = [];
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+
+    list = await dbClient!.rawQuery(
+        "SELECT name from GlobalNameTbl WHERE root='$root' AND (typeOfName='${maleOrFemale}' or typeOfName='عائلي' or  typeOfName='مذكر ومؤنث')");
+
+    for (var item in list) {
+      theNamesList.add(item['name']);
+    }
+    return theNamesList;
+  }
+
+  //جلب الجذر للاسم لجلب جميع الاسماء التي تحمل نفس الجذر
+  Future<List<String>> getRootForNameAndAllName(
+      String name, int maleOrFemale) async {
+    String nameWight = '';
+    String typeOfName = '';
+    List<String> theNamesList = [];
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+    typeOfName = maleOrFemale == 1 ? 'مذكر' : 'مؤنث';
+    list = await dbClient!.rawQuery(
+        "SELECT nameWight from GlobalNameTbl where nameNoTashkel='$name' ");
+    for (var item in list) {
+      nameWight = item['nameWight'];
+    }
+    list = await dbClient.rawQuery(
+        "SELECT name from GlobalNameTbl where nameWight='$nameWight' And (typeOfName='${maleOrFemale}' or typeOfName='عائلي' or  typeOfName='مذكر ومؤنث')");
+    for (var item in list) {
+      theNamesList.add(item['name']);
+    }
+    return theNamesList;
   }
 }
