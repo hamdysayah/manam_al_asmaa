@@ -4,8 +4,8 @@ import 'package:manjam_asmaa/medel/namesModel.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import 'package:get/get.dart';
 
-import '../../controller/app_contrller.dart';
-import '../../core/database/database_queries.dart';
+import '../../../controller/app_contrller.dart';
+import '../../../core/database/database_queries.dart';
 
 class GlobalObjectNameResultScreen extends StatelessWidget {
   var theNamesList = [];

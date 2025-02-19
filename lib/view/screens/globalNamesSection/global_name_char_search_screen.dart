@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:manjam_asmaa/core/utils/constants.dart';
 import 'package:screenshot/screenshot.dart';
 
-import '../../controller/app_contrller.dart';
-import '../widgets/custom_button.dart';
+import '../../../controller/app_contrller.dart';
+import '../../widgets/custom_button.dart';
 import 'global_name_char_result_screen.dart';
 
 class GlobalNameCharSearchScreen extends StatelessWidget {

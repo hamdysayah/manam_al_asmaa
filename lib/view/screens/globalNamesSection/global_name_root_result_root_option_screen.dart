@@ -4,10 +4,10 @@ import 'package:manjam_asmaa/medel/namesModel.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import 'package:get/get.dart';
 
-import '../../controller/app_contrller.dart';
-import '../../core/database/database_queries.dart';
+import '../../../controller/app_contrller.dart';
+import '../../../core/database/database_queries.dart';
 
-class GlobalNameWightResultEdittextScreen extends StatelessWidget {
+class GlobalNameRootResultRootOptionScreen extends StatelessWidget {
   var theNamesList = [];
   AppController appController = Get.find();
   String selectedName = '';
@@ -31,8 +31,8 @@ class GlobalNameWightResultEdittextScreen extends StatelessWidget {
                 fontSize: 20.sp,
               ),
               FutureBuilder<List<String>>(
-                  future: DatabaseQueries().getWightForNameAndAllName(
-                      Get.arguments[0], Get.arguments[1]),
+                  future: DatabaseQueries()
+                      .getAllNamesFromRoot(Get.arguments[0], Get.arguments[1]),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       if (snapshot.data!.isNotEmpty) {
@@ -104,8 +104,6 @@ class GlobalNameWightResultEdittextScreen extends StatelessWidget {
                   }),
             ],
           ),
-
-          // عرض تفاصيل الاسم
           GetBuilder<AppController>(builder: (controller) {
             return Visibility(
                 visible: controller.isVisibleNameDetailsDialog,
