@@ -7,7 +7,7 @@ const kPrimaryColor = 0xff324d6b;
 const kPrimaryColorDark = 0xff1c1b1f;
 const kScaffoldBackgroundColor = 0xffF3F3F3;
 const kFontAppName = 'almaraiFont';
-const kDbName = 'MangamNameDb.db';
+const kDbName = 'MangamNameDbV1.db';
 const kBlackDarkColor = 0xFF292925;
 const kWhiteLightColor = 0xfff4f9fc;
 

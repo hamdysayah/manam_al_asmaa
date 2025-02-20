@@ -191,4 +191,36 @@ class DatabaseQueries {
     }
     return theNamesList;
   }
+
+
+  //جلب الوزن للاسم لجلب جميع الاسماء التي تحمل نفس الوزن
+  Future<List<String>> getEstenatRootForNameAndAllName(
+      String name) async {
+    String nameRoot = '';
+    List<String> theNamesList = [];
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+    list = await dbClient!.rawQuery(
+        "SELECT root from GlobalNameTbl where nameNoTashkel='$name' ");
+    for (var item in list) {
+      nameRoot = item['root'];
+    }
+    list = await dbClient.rawQuery(
+        "SELECT * FROM EstenbatNamesMa3rofahTBL WHERE root='$nameRoot'");
+
+
+    for(int x=8;x<236;x++)
+      {
+        if(list[0]['field$x']!='3')
+          {
+            theNamesList.add(list[0]['field$x']);
+
+          }
+
+      }
+    return theNamesList;
+  }
+
+
+
 }
