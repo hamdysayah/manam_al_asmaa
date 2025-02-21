@@ -8,8 +8,6 @@ import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
-import '../../widgets/custom_button.dart';
-import 'global_name_char_result_screen.dart';
 
 class GlobalNameObjectSearchScreen extends StatelessWidget {
   AppController appController = Get.find();

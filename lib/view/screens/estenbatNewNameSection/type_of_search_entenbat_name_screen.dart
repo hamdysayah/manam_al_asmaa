@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:manjam_asmaa/view/screens/estenbatNewNameSection/estenbat_name_from_name_search_screen.dart';
+import 'package:manjam_asmaa/view/screens/estenbatNewNameSection/estenbat_name_from_namecheckbox_search_screen.dart';
 import 'package:manjam_asmaa/view/screens/globalNamesSection/global_name_char_search_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../widgets/custom_button.dart';
@@ -25,7 +26,6 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
             buttonWidth: 200.w,
             onClick: () {
               Get.to(EstenbatNameFromNameSearchScreen());
-
             },
           ),
           SizedBox(
@@ -35,6 +35,7 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
             text: 'أسماء مقترحة على وزن اسم معين',
             buttonWidth: 200.w,
             onClick: () {
+              Get.to(EstenbatNameFromNameCheckBoxSearchScreen());
             },
           ),
           SizedBox(

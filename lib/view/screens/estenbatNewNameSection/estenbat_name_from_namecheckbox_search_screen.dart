@@ -3,10 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:manjam_asmaa/view/screens/estenbatNewNameSection/estenbat_name_from_name_result_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
+import 'package:screenshot/screenshot.dart';
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
 
-class EstenbatNameFromNameSearchScreen extends StatelessWidget {
+class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
   AppController appController = Get.find();
 
   String nameFromTextField = '';
@@ -15,6 +16,9 @@ class EstenbatNameFromNameSearchScreen extends StatelessWidget {
 
   List<String> theNameList = ['hamdy'];
   late TextEditingController textEditingControllerTest;
+
+  List<String> ListText = ['ا', 'ب', 'ب'];
+  List<bool> CheckBoxbool = [false, false, false];
 
   @override
   Widget build(BuildContext context) {
@@ -212,12 +216,52 @@ class EstenbatNameFromNameSearchScreen extends StatelessWidget {
                               SizedBox(
                                 height: 5.h,
                               ),
-                              CustomText(text: '....جاري التحميل ')
+                              CustomText(text: '....جاري التحميل '),
                             ],
                           );
                         }
                       });
                 }),
+                // checkbox خيارات
+                GetBuilder<AppController>(builder: (controller)
+                {
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: CheckboxListTile(
+                          value: CheckBoxbool[0],
+                          onChanged: (value) {
+                            CheckBoxbool[0]=value!;
+                            appController.update();
+                          },
+                          title: CustomText(text: ListText[0]),
+                        ),
+                      ),
+                      Expanded(
+                        child: CheckboxListTile(
+                          value: CheckBoxbool[1],
+                          onChanged: (value) {
+                            CheckBoxbool[1]=value!;
+
+                            appController.update();
+                          },
+                          title: CustomText(text: ListText[1]),
+                        ),
+                      ),
+                      Expanded(
+                        child: CheckboxListTile(
+                          value: CheckBoxbool[2],
+                          onChanged: (value) {
+                            CheckBoxbool[2]=value!;
+
+                            appController.update();
+                          },
+                          title: CustomText(text: ListText[2]),
+                        ),
+                      )
+                    ],
+                  );
+                })
               ],
             ),
           ],
