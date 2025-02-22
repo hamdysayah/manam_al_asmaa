@@ -223,4 +223,18 @@ class DatabaseQueries {
 
 
 
+  // جلب الجذر الخاص بالاسم المختار
+  Future<String> getRootForName(
+      String name) async {
+    String nameRoot = '';
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+    list = await dbClient!.rawQuery(
+        "SELECT root from GlobalNameTbl where nameNoTashkel='$name'");
+    for (var item in list) {
+      nameRoot = item['root'];
+    }
+
+    return nameRoot;
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:manjam_asmaa/core/utils/constants.dart';
 import 'package:manjam_asmaa/view/screens/estenbatNewNameSection/estenbat_name_from_name_result_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import 'package:screenshot/screenshot.dart';
@@ -20,6 +21,10 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
   List<String> ListText = ['ا', 'ب', 'ب'];
   List<bool> CheckBoxbool = [false, false, false];
 
+  String theNameChoice = '';
+  String root = '';
+
+  bool isSelected=false;
   @override
   Widget build(BuildContext context) {
     appController.isVisibleChoiceWight = false;
@@ -126,11 +131,16 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
                                   },
                                   onSelected: (String selection) async {
                                     textEditingControllerTest.clear();
+                                    theNameChoice = selection;
                                     nameFromTextField = '';
-                                    appController.update();
+                                    isSelected=true;
+                                    root = await DatabaseQueries()
+                                        .getRootForName(selection);
+                                    ListText[0] = '${root[0]}';
+                                    ListText[1] = '${root[1]}';
+                                    ListText[2] = '${root[2]}';
 
-                                    Get.to(EstenbatNameFromNameResultScreen(),
-                                        arguments: selection);
+                                    appController.update();
                                   },
                                   optionsViewBuilder:
                                       (context, onSelected, options) => Align(
@@ -222,45 +232,74 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
                         }
                       });
                 }),
-                // checkbox خيارات
-                GetBuilder<AppController>(builder: (controller)
-                {
-                  return Row(
+                SizedBox(
+                  height: 10.h,
+                ),
+                // الاسم الذي اختاره
+                GetBuilder<AppController>(builder: (controller) {
+                  return CustomText(
+                    text: theNameChoice,
+                    fontWight: FontWeight.bold,
+                    fontSize: 20.sp,
+                  );
+                }),
+                GetBuilder<AppController>(builder: (controller) {
+                  return isSelected?CustomText(
+                      text:
+                      'اختر حرفين من الجذر ($root )لتحصل  على اسماء مثل وزن الاسم ${(theNameChoice)}',
+                      fontWight: FontWeight.bold):SizedBox.shrink();
+                }),
+
+                //    checkbox خيارات
+                GetBuilder<AppController>(builder: (controller) {
+                  return isSelected?Row(
                     children: [
                       Expanded(
-                        child: CheckboxListTile(
-                          value: CheckBoxbool[0],
-                          onChanged: (value) {
-                            CheckBoxbool[0]=value!;
-                            appController.update();
-                          },
-                          title: CustomText(text: ListText[0]),
+                        child: ListTileTheme(
+                          horizontalTitleGap: 0,
+                          child: CheckboxListTile(
+                            controlAffinity: ListTileControlAffinity.leading,
+                            value: CheckBoxbool[0],
+                            onChanged: (value) {
+                              CheckBoxbool[0] = value!;
+                              appController.update();
+                            },
+                            title: CustomText(text: ListText[0]),
+                          ),
                         ),
                       ),
                       Expanded(
-                        child: CheckboxListTile(
-                          value: CheckBoxbool[1],
-                          onChanged: (value) {
-                            CheckBoxbool[1]=value!;
+                        child: ListTileTheme(
+                          horizontalTitleGap: 0,
+                          child: CheckboxListTile(
+                            controlAffinity: ListTileControlAffinity.leading,
+                            value: CheckBoxbool[1],
+                            onChanged: (value) {
+                              CheckBoxbool[1] = value!;
 
-                            appController.update();
-                          },
-                          title: CustomText(text: ListText[1]),
+                              appController.update();
+                            },
+                            title: CustomText(text: ListText[1]),
+                          ),
                         ),
                       ),
                       Expanded(
-                        child: CheckboxListTile(
-                          value: CheckBoxbool[2],
-                          onChanged: (value) {
-                            CheckBoxbool[2]=value!;
+                        child: ListTileTheme(
+                          horizontalTitleGap: 0,
+                          child: CheckboxListTile(
+                            controlAffinity: ListTileControlAffinity.leading,
+                            value: CheckBoxbool[2],
+                            onChanged: (value) {
+                              CheckBoxbool[2] = value!;
 
-                            appController.update();
-                          },
-                          title: CustomText(text: ListText[2]),
+                              appController.update();
+                            },
+                            title: CustomText(text: ListText[2]),
+                          ),
                         ),
                       )
                     ],
-                  );
+                  ):SizedBox.shrink();
                 })
               ],
             ),
