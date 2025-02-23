@@ -21,9 +21,23 @@ void showToast(String message) {
     fontSize: 16.0,
   );
 }
+String removeTashkel(String word) {
+  word = word.replaceAll("  َ ".trim(), ""); // Fat7a
+  word = word.replaceAll("  ِ ".trim(), ""); // Kasra
+  word = word.replaceAll("  ُ ".trim(), ""); // damma
+  word = word.replaceAll("  ّ ".trim(), ""); // Shadda
+  word = word.replaceAll("  ْ ".trim(), ""); // Skoun
+  word = word.replaceAll("  ٌ ".trim(), ""); // tnween_damm
+  word = word.replaceAll("  ً ".trim(), ""); // tnween_fat7
+  word = word.replaceAll("  ٍ ".trim(), ""); // tnween_kasr
+  return word;
+}
 
 Future launchUrlFunc(String url) async {
   if (!await launchUrl(Uri.parse(url))) {
     throw Exception('Could not launch $url');
   }
+
+
+
 }

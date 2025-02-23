@@ -179,8 +179,8 @@ class DatabaseQueries {
     List<String> theNamesList = [];
     var dbClient = await dbHelper.db;
     List<Map<String, dynamic>> list;
-    list = await dbClient!.rawQuery(
-        "SELECT root from GlobalNameTbl where nameNoTashkel='$name'");
+    list = await dbClient!
+        .rawQuery("SELECT root from GlobalNameTbl where nameNoTashkel='$name'");
     for (var item in list) {
       nameRoot = item['root'];
     }
@@ -192,10 +192,8 @@ class DatabaseQueries {
     return theNamesList;
   }
 
-
   //جلب الوزن للاسم لجلب جميع الاسماء التي تحمل نفس الوزن
-  Future<List<String>> getEstenatRootForNameAndAllName(
-      String name) async {
+  Future<List<String>> getEstenatRootForNameAndAllName(String name) async {
     String nameRoot = '';
     List<String> theNamesList = [];
     var dbClient = await dbHelper.db;
@@ -208,33 +206,53 @@ class DatabaseQueries {
     list = await dbClient.rawQuery(
         "SELECT * FROM EstenbatNamesMa3rofahTBL WHERE root='$nameRoot'");
 
-
-    for(int x=8;x<236;x++)
-      {
-        if(list[0]['field$x']!='3')
-          {
-            theNamesList.add(list[0]['field$x']);
-
-          }
-
+    for (int x = 8; x < 236; x++) {
+      if (list[0]['field$x'] != '3') {
+        theNamesList.add(list[0]['field$x']);
       }
+    }
     return theNamesList;
   }
 
-
-
   // جلب الجذر الخاص بالاسم المختار
-  Future<String> getRootForName(
-      String name) async {
+  Future<String> getRootForName(String name) async {
     String nameRoot = '';
     var dbClient = await dbHelper.db;
     List<Map<String, dynamic>> list;
-    list = await dbClient!.rawQuery(
-        "SELECT root from GlobalNameTbl where nameNoTashkel='$name'");
+    list = await dbClient!
+        .rawQuery("SELECT root from GlobalNameTbl where nameNoTashkel='$name'");
     for (var item in list) {
       nameRoot = item['root'];
     }
 
     return nameRoot;
+  }
+
+  // النوع الثاني من القسم الثاني
+// البحث من خلال حرفين المستخدم يختارهم
+//جلب الوزن للاسم لجلب جميع الاسماء التي تحمل نفس الوزن
+  Future<List<String>> getEstenatForNameFromTowChar(
+      String char1, String char2, String columnName) async {
+    List<String> theNamesList = [];
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+
+    list = await dbClient!.rawQuery(
+        "SELECT $columnName FROM EstenbatNamesMa3rofahTBL WHERE char1='$char1' and char2='$char2'");
+
+    for (var item in list) {
+      theNamesList.add(item[columnName]);
+    }
+    return theNamesList;
+  }
+
+// معرفة العامود المطابق لوزن الكلمه
+  Future<String> getWightFromName(String name) async {
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+    list = await dbClient!.rawQuery(
+        "SELECT nameWight from GlobalNameTbl WHERE nameNoTashkel='$name'");
+
+    return list[0]['nameWight'];
   }
 }

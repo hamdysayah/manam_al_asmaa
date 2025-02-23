@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
 
-class EstenbatNameFromNameResultScreen extends StatelessWidget {
+class EstenbatNameFromNameCheckboxResultScreen extends StatelessWidget {
   AppController appController = Get.find();
   String selectedName = '';
 
@@ -32,7 +32,7 @@ class EstenbatNameFromNameResultScreen extends StatelessWidget {
                 ),
                 GetBuilder<AppController>(builder: (controller) {
                   return FutureBuilder<List<String>>(
-                      future: DatabaseQueries().getEstenatRootForNameAndAllName(Get.arguments),
+                      future: DatabaseQueries().getEstenatForNameFromTowChar('ب','ي','field187'),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           if (snapshot.data!.isNotEmpty) {
