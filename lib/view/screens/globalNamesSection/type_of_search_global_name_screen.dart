@@ -15,16 +15,20 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('اختر نوع البحث '),
+        title: Text('البحث في الاسماء المعروفة '),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(),
-          CustomText(text: 'اختر نوعية البحث'),
+          CustomText(
+            text: 'اختر نوعية البحث',
+            fontWight: FontWeight.bold,
+          ),
+          SizedBox(height: 10.h,),
           customButton(
-            text: 'بحث من خلال الاحرف',
-            buttonWidth: 200.w,
+            text: 'بحث من خلال الآحرف',
+            buttonWidth: 250.w,
             onClick: () {
               Get.to(GlobalNameCharSearchScreen());
             },
@@ -34,7 +38,7 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
           ),
           customButton(
             text: 'بحث من خلال الموضوع',
-            buttonWidth: 200.w,
+            buttonWidth: 250.w,
             onClick: () {
               Get.to(GlobalNameObjectSearchScreen());
             },
@@ -44,7 +48,7 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
           ),
           customButton(
             text: 'بحث من خلال الوزن',
-            buttonWidth: 200.w,
+            buttonWidth: 250.w,
             onClick: () {
               Get.to(GlobalNameWightSearchScreen());
             },

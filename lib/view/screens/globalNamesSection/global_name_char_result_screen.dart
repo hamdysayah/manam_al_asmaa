@@ -26,7 +26,7 @@ class GlobalCharNameResultScreen extends StatelessWidget {
               children: [
                 Container(),
                 CustomText(
-                  text: 'الاسماء المقترحة',
+                  text: ' الاسماء المقترحة انقر على الاسم',
                   fontSize: 20.sp,
                 ),
                 GetBuilder<AppController>(builder: (controller) {

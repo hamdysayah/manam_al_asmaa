@@ -22,7 +22,7 @@ class EstenbatNameFromNameSearchScreen extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('البحث من خلال الجذر'),
+          title: Text('اشتقاق من خلال جذر اسم معين'),
         ),
         resizeToAvoidBottomInset: false,
         body: Stack(

@@ -27,7 +27,7 @@ class GlobalNameRootResultNamerootOptionScreen extends StatelessWidget {
             children: [
               Container(),
               CustomText(
-                text: 'الاسماء المقترحة  ',
+                text: 'اسماء تشترك في الجذر ${Get.arguments[0]} انقر على الاسم ',
                 fontSize: 20.sp,
               ),
               FutureBuilder<List<String>>(

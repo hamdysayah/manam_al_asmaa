@@ -3,11 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:manjam_asmaa/core/utils/constants.dart';
+import 'package:manjam_asmaa/medel/nameTashkelAndNo.dart';
 import 'package:manjam_asmaa/view/screens/estenbatNewNameSection/estenbat_name_from_name_result_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import 'package:screenshot/screenshot.dart';
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
+import '../../widgets/custom_button.dart';
 import 'estenbat_name_from_name_checkBox_result_screen.dart';
 
 class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
@@ -27,238 +29,207 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
   String root = '';
 
   bool isSelected = false;
-
   Map<String, String> wordsMap = {
-    'field8': 'اسْتِفْعَالَة',
-    'field9': 'اسْتِفْعَال',
-    'field10': 'مِفْعَلَانَة',
-    'field11': 'مِفْعَلَان',
-    'field12': 'مِفْعِيل',
-    'field13': 'مُنْفَعِلَة',
-    'field14': 'مُنْفَعَلَة',
-    'field15': 'مُنْفَعِل',
-    'field16': 'مُنْفَعَل',
-    'field17': 'مِفْعَلَة',
-    'field18': 'مِفْعِل',
-    'field19': 'مِفْعَل',
-    'field20': 'مِفْعَالَة',
-    'field21': 'مِفْعَالِيّ',
-    'field22': 'مُفْعَالَة',
-    'field23': 'مِفْعَال',
-    'field24': 'مُفْعَال',
-    'field25': 'مُفْعِل',
-    'field26': 'مُفْعَوَّل',
-    'field27': 'مُفْعِلَّة',
-    'field28': 'مُفْعَلَّة',
-    'field29': 'مُفْعِلّ',
-    'field30': 'مُفْعَلّ',
-    'field31': 'مُفْعَّلَة',
-    'field32': 'مَفْعِلَة',
-    'field33': 'مُفْعِلِيّ',
-    'field34': 'مُفْعِلَة',
-    'field35': 'مُفْعِل',
-    'field36': 'مُفْعَلَة',
-    'field37': 'مُفْعَل',
-    'field38': 'مُفْتَعِلَة',
-    'field39': 'مُفْتَعِل',
-    'field40': 'مُفْتَعَلَة',
-    'field41': 'مُفْتَعَل',
-    'field42': 'مُفَعِّلَة',
-    'field43': 'مُفَعَّلَة',
-    'field44': 'مُفَعِّل',
-    'field45': 'مُفَعَّل',
-    'field46': 'مُفَاعَلَة',
-    'field47': 'مَفَاعِلَة',
-    'field48': 'مُفَاعِلَة',
-    'field49': 'مُفَاعَل',
-    'field50': 'مَفَاعِل',
-    'field51': 'مُفَاعِل',
-    'field52': 'مُسْتَفْعِل',
-    'field53': 'مُسْتَفْعَل',
-    'field54': 'مُتَفَعِّل',
-    'field55': 'مُتَفَعَّل',
-    'field56': 'تُفَاعِل',
-    'field57': 'مُتَفَاعِل',
-    'field58': 'مُتَفَاعَل',
-    'field59': 'مَفْعِل',
-    'field60': 'مَفْعُولَة',
-    'field61': 'مَفْعُولَاء',
-    'field62': 'مَفْعُول',
-    'field63': 'مَفْعَل',
-    'field64': 'فِعليل',
-    'field65': 'فِعّالة',
-    'field66': 'فِعِّيلَة',
-    'field67': 'فِعِّيلى',
-    'field68': 'فِعِّيل',
-    'field69': 'فِعْلِياء',
-    'field70': 'فُعْلَى',
-    'field71': 'فِعْلَى',
-    'field72': 'فِعْلَات',
-    'field73': 'فُعْلَت',
-    'field74': 'فِعْلَت',
-    'field75': 'فِعْلَة',
-    'field76': 'فِعَل',
-    'field77': 'فِعْل',
-    'field78': 'فِعَالِيّ',
-    'field79': 'فِعَالَات',
-    'field80': 'فِعَالَة',
-    'field81': 'فِعَلّى',
-    'field82': 'فِعَال',
-    'field83': 'فُنْعُلاء',
-    'field84': 'فُعَّيْلَى',
-    'field85': 'فُعَّلَى',
-    'field86': 'فُعَّل',
-    'field87': 'فُعَّالَة',
-    'field88': 'فُعَّالَى',
-    'field89': 'فُعَّال',
-    'field90': 'فُعْلَى',
-    'field91': 'فُعَّلَة',
-    'field92': 'فُعْلَة',
-    'field93': 'فُعْل',
-    'field94': 'فُعُولَة',
-    'field95': 'فُعُول',
-    'field96': 'فُعُلَّى',
-    'field97': 'فُعُلَّة',
-    'field98': 'فُعُل',
-    'field99': 'فُعَيِّل',
-    'field100': 'فُعَلَى',
-    'field101': 'فُعَلاء',
-    'field102': 'فُعَلَة',
-    'field103': 'فُعَل',
-    'field104': 'فُعَالِيّ',
-    'field105': 'فُعَالَة',
-    'field106': 'فِعَالَى',
-    'field107': 'فُعَالَى',
-    'field108': 'فُعَال',
-    'field109': 'فَيْعُول',
-    'field110': 'فُوَيْعَل',
-    'field111': 'فَيْعَل',
-    'field112': 'فَيْعَلَة',
-    'field113': 'فَيْعَلَان',
-    'field114': 'فَوَاعِل',
-    'field115': 'فَوْعَل',
-    'field116': 'فَعِّيلَة',
-    'field117': 'فَعِّيل',
-    'field118': 'فَعُّولَة',
-    'field119': 'فَعُّول',
-    'field120': 'فَعَّالِيّ',
-    'field121': 'فَعَّالَة',
-    'field122': 'فَعَّال',
-    'field123': 'فَعْلُوت',
-    'field124': 'فُعْلَانَة',
-    'field125': 'فِعْلَاوِي',
-    'field126': 'فَعْلَاوِي',
-    'field127': 'فِعْلَانَة',
-    'field128': 'فَعْلَانِيّ',
-    'field129': 'فَعْلَات',
-    'field130': 'فَعْلَاوِي',
-    'field131': 'فَعْلَانَة',
-    'field132': 'فُعْلَان',
-    'field133': 'فِعْلَان',
-    'field134': 'فَعْلَتِي',
-    'field135': 'فَعَلُول',
-    'field136': 'فَعْلَان',
-    'field137': 'فَعْلَت',
-    'field138': 'فَعْلَى',
-    'field139': 'فَعَلَة',
-    'field140': 'فَعْلَة',
-    'field141': 'فَعْلَاء',
-    'field142': 'فَعْل',
-    'field143': 'فَعِيلَات',
-    'field144': 'فَعِيلِيّ',
-    'field145': 'فَعِيلَة',
-    'field146': 'فَعِيل',
-    'field147': 'فَعِلَة',
-    'field148': 'فَعِل',
-    'field149': 'فَعَلَاتِي',
-    'field150': 'فَعَلَانَة',
-    'field151': 'فَعَلات',
-    'field152': 'فَعَلَان',
-    'field153': 'فَعَلَى',
-    'field154': 'فَعَلَاء',
-    'field155': 'فَعَل',
-    'field156': 'فَعَالِيَّة',
-    'field157': 'فَعَالِيَة',
-    'field158': 'فَعَالِي',
-    'field159': 'فَعَالَى',
-    'field160': 'فَعَالَة',
-    'field161': 'فَعَالِيّ',
-    'field162': 'فَعَال',
-    'field163': 'فَاعِلاء',
-    'field164': 'فَاعِيل',
-    'field165': 'فَاعِلِيَّة',
-    'field166': 'فَاعِلِيّ',
-    'field167': 'فَاعِلِين',
-    'field168': 'فَاعِلَة',
-    'field169': 'أَفَاعِل',
-    'field170': 'أَفَاعِيل',
-    'field171': 'فَاعِل',
-    'field172': 'فَيْعَالَة',
-    'field173': 'فَيْعُولِ',
-    'field174': 'فَاعُولِيّ',
-    'field175': 'فَاعُول',
-    'field176': 'فَعُولِيّ',
-    'field177': 'فَعُولَة',
-    'field178': 'فَعُل',
-    'field179': 'فَعُول',
-    'field180': 'أَفْعَالَة',
-    'field181': 'أَفْعَال',
-    'field182': 'أفْعَالِيّ',
-    'field183': 'إفْعَالَة',
-    'field184': 'إفْعَال',
-    'field185': 'اسْتِفَعْلَة',
-    'field186': 'افْتِعَالَة',
-    'field187': 'افْتِعَال',
-    'field188': 'إِفْعِلالَة',
-    'field189': 'فِعْلَالَة',
-    'field190': 'فِعْلَال',
-    'field191': 'إِفْعِلَال',
-    'field192': 'انْفِعَالَة',
-    'field193': 'انْفِعَال',
-    'field194': 'أُفْعِلَة',
-    'field195': 'إِفْعِلَة',
-    'field196': 'إفْعَلَة',
-    'field197': 'أَفْعَل',
-    'field198': 'أَفْعِلَاء',
-    'field199': 'أَفْعِلَان',
-    'field200': 'تَفَاعُلَة',
-    'field201': 'تَفَاعِيل',
-    'field202': 'تَفَاعِل',
-    'field203': 'تَفَاعُل',
-    'field204': 'تَفَعُّلَة',
-    'field205': 'تَفَعُّل',
-    'field206': 'تَفْعِلَات',
-    'field207': 'تَفْعِلَة',
-    'field208': 'تَفْعِيلَة',
-    'field209': 'تِفْعَالَة',
-    'field210': 'تَفْعِيل',
-    'field211': 'تِفْعَال',
-    'field212': 'تِفِعّال',
-    'field213': 'فُعَيْل',
-    'field214': 'فُعَيْلِيّ',
-    'field215': 'فُعَيْلَاء',
-    'field216': 'فِعَيْلَان',
-    'field217': 'فُعَيْلَان',
-    'field218': 'فْعَيْلَان',
-    'field219': 'فُعَيْلَى',
-    'field220': 'فُعَيْلَة',
-    'field221': 'فِعْلِيّ',
-    'field222': 'فُعْلِيّ',
-    'field223': 'فِعْلِيَّة',
-    'field224': 'فُعْلِيَّة',
-    'field225': 'فَعْلِيّ',
-    'field226': 'فَعْلِيَّة',
-    'field227': 'فَعَلِيّ',
-    'field228': 'فَعَلِيَّة',
-    'field229': 'فَعَايِل',
-    'field230': 'فَعَايِل',
-    'field231': 'فَعَلِيْن',
-    'field232': 'فَعَلُون',
-    'field233': 'فَعْلُول',
-    'field234': 'فَعْلُوْنَة',
-    'field235': 'فَعْلُوْن',
+    'field8': 'اسْتِفْعَال',
+    'field9': 'مِفْعَلَانَة',
+    'field10': 'مِفْعَلَان',
+    'field11': 'مِفْعِيل',
+    'field12': 'مُنْفَعِلَة',
+    'field13': 'مُنْفَعِل',
+    'field14': 'مِفْعَلَة',
+    'field15': 'مِفْعِل',
+    'field16': 'مِفْعَل',
+    'field17': 'مِفْعَالِيّ',
+    'field18': 'مِفْعَال',
+    'field19': 'مُفْعَال',
+    'field20': 'مَفْعِلَة',
+    'field21': 'مُفْعِلِيّ',
+    'field22': 'مُفْعِلَة',
+    'field23': 'مُفْعِل',
+    'field24': 'مُفْعَلَة',
+    'field25': 'مُفْعَل',
+    'field26': 'مُفْتَعِلَة',
+    'field27': 'مُفْتَعِل',
+    'field28': 'مُفْتَعَلَة',
+    'field29': 'مُفْتَعَل',
+    'field30': 'مُفَعِّلَة',
+    'field31': 'مُفَعَّلَة',
+    'field32': 'مُفَعِّل',
+    'field33': 'مُفَعَّل',
+    'field34': 'مُفَاعَلَة',
+    'field35': 'مُفَاعِلَة',
+    'field36': 'مُفَاعَل',
+    'field37': 'مَفَاعِل',
+    'field38': 'مُفَاعِل',
+    'field39': 'مُسْتَفْعِل',
+    'field40': 'مُتَفَعِّل',
+    'field41': 'تُفَاعِل',
+    'field42': 'مُتَفَاعِل',
+    'field43': 'مَفْعِل',
+    'field44': 'مَفْعُولَة',
+    'field45': 'مَفْعُولَاء',
+    'field46': 'مَفْعُول',
+    'field47': 'مَفْعَل',
+    'field48': 'فِعليل',
+    'field49': 'فِعِّيلَة',
+    'field50': 'فِعِّيل',
+    'field51': 'فِعْلِياء',
+    'field52': 'فُعْلَى',
+    'field53': 'فِعْلَى',
+    'field54': 'فِعْلَات',
+    'field55': 'فُعْلَت',
+    'field56': 'فِعْلَت',
+    'field57': 'فِعْلَة',
+    'field58': 'فِعَل',
+    'field59': 'فِعْل',
+    'field60': 'فِعَالِيّ',
+    'field61': 'فِعَالَات',
+    'field62': 'فِعَالَة',
+    'field63': 'فِعَال',
+    'field64': 'فُنْعُلاء',
+    'field65': 'فُعَّالَة',
+    'field66': 'فُعَّال',
+    'field67': 'فُعَّلَة',
+    'field68': 'فُعْلَة',
+    'field69': 'فُعْل',
+    'field70': 'فُعُولَة',
+    'field71': 'فُعُول',
+    'field72': 'فُعَيِّل',
+    'field73': 'فُعَلَى',
+    'field74': 'فُعَلاء',
+    'field75': 'فُعَلَة',
+    'field76': 'فُعَل',
+    'field77': 'فُعَالِيّ',
+    'field78': 'فُعَالَة',
+    'field79': 'فِعَالَى',
+    'field80': 'فُعَالَى',
+    'field81': 'فُعَال',
+    'field82': 'فَيْعُول',
+    'field83': 'فُوَيْعَل',
+    'field84': 'فَيْعَل',
+    'field85': 'فَيْعَلَة',
+    'field86': 'فَيْعَلَان',
+    'field87': 'فَوَاعِل',
+    'field88': 'فَوْعَل',
+    'field89': 'فَعُّولَة',
+    'field90': 'فَعُّول',
+    'field91': 'فَعَّالِيّ',
+    'field92': 'فَعَّالَة',
+    'field93': 'فَعَّال',
+    'field94': 'فَعْلُوت',
+    'field95': 'فُعْلَانَة',
+    'field96': 'فِعْلَاوِي',
+    'field97': 'فَعْلَاوِي',
+    'field98': 'فِعْلَانَة',
+    'field99': 'فَعْلَانِيّ',
+    'field100': 'فَعْلَات',
+    'field101': 'فَعْلَانَة',
+    'field102': 'فُعْلَان',
+    'field103': 'فِعْلَان',
+    'field104': 'فَعْلَتِي',
+    'field105': 'فَعَلُول',
+    'field106': 'فَعْلَان',
+    'field107': 'فَعْلَت',
+    'field108': 'فَعْلَى',
+    'field109': 'فَعَلَة',
+    'field110': 'فَعْلَة',
+    'field111': 'فَعْلَاء',
+    'field112': 'فَعْل',
+    'field113': 'فَعِيلَات',
+    'field114': 'فَعِيلِيّ',
+    'field115': 'فَعِيلَة',
+    'field116': 'فَعِيْل',
+    'field117': 'فَعِلَة',
+    'field118': 'فَعِل',
+    'field119': 'فَعَلَاتِي',
+    'field120': 'فَعَلَانَة',
+    'field121': 'فَعَلات',
+    'field122': 'فَعَلَان',
+    'field123': 'فَعَلَى',
+    'field124': 'فَعَلَاء',
+    'field125': 'فَعَل',
+    'field126': 'فَعَالِيَّة',
+    'field127': 'فَعَالِيَة',
+    'field128': 'فَعَالِي',
+    'field129': 'فَعَالَى',
+    'field130': 'فَعَالَة',
+    'field131': 'فَعَالِيّ',
+    'field132': 'فَعَال',
+    'field133': 'فَاعِلاء',
+    'field134': 'فَاعِيل',
+    'field135': 'فَاعِلِيَّة',
+    'field136': 'فَاعِلِيّ',
+    'field137': 'فَاعِلِين',
+    'field138': 'فَاعِلَة',
+    'field139': 'أَفَاعِل',
+    'field140': 'أَفَاعِيل',
+    'field141': 'فَاعِل',
+    'field142': 'فَيْعَالَة',
+    'field143': 'فَاعُولِيّ',
+    'field144': 'فَاعُول',
+    'field145': 'فَعُولِيّ',
+    'field146': 'فَعُولَة',
+    'field147': 'فَعُل',
+    'field148': 'فَعُول',
+    'field149': 'أَفْعَالَة',
+    'field150': 'أَفْعَال',
+    'field151': 'أفْعَالِيّ',
+    'field152': 'إفْعَالَة',
+    'field153': 'إفْعَال',
+    'field154': 'افْتِعَالَة',
+    'field155': 'افْتِعَال',
+    'field156': 'إِفْعِلالَة',
+    'field157': 'فِعْلَالَة',
+    'field158': 'فِعْلَال',
+    'field159': 'إِفْعِلَال',
+    'field160': 'انْفِعَالَة',
+    'field161': 'انْفِعَال',
+    'field162': 'أُفْعِلَة',
+    'field163': 'إِفْعِلَة',
+    'field164': 'إفْعَلَة',
+    'field165': 'أَفْعَل',
+    'field166': 'أَفْعِلَاء',
+    'field167': 'أَفْعِلَان',
+    'field168': 'تَفَاعُلَة',
+    'field169': 'تَفَاعِيل',
+    'field170': 'تَفَاعِل',
+    'field171': 'تَفَاعُل',
+    'field172': 'تَفَعُّل',
+    'field173': 'تَفْعِلَات',
+    'field174': 'تَفْعِلَة',
+    'field175': 'تَفْعِيلَة',
+    'field176': 'تِفْعَالَة',
+    'field177': 'تَفْعِيل',
+    'field178': 'تِفْعَال',
+    'field179': 'فُعَيْل',
+    'field180': 'فُعَيْلِيّ',
+    'field181': 'فُعَيْلَاء',
+    'field182': 'فِعَيْلَان',
+    'field183': 'فُعَيْلَان',
+    'field184': 'فَعَيْلَان',
+    'field185': 'فُعَيْلَى',
+    'field186': 'فُعَيْلَة',
+    'field187': 'فِعْلِيّ',
+    'field188': 'فُعْلِيّ',
+    'field189': 'فِعْلِيَّة',
+    'field190': 'فُعْلِيَّة',
+    'field191': 'فَعْلِيّ',
+    'field192': 'فَعْلِيَّة',
+    'field193': 'فَعَلِيّ',
+    'field194': 'فَعَلِيَّة',
+    'field195': 'فَعَائِل',
+    'field196': 'فَعَايِل',
+    'field197': 'فَعَلْين',
+    'field198': 'فَعَلُون',
+    'field199': 'فَعْلُول',
+    'field200': 'فَعْلُوْنَة',
+    'field201': 'فَعْلُوْن',
   };
+  Map<String, String> wordsMapsTashkel = {};
 
+  Map<String, String> nameTashkelMap = {
+    '': '',
+  };
   String theColumnName = '';
 
   @override
@@ -267,7 +238,7 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('البحث من خلال الجذر'),
+          title: Text('اشتقاق من خلال وزن اسم معين'),
         ),
         resizeToAvoidBottomInset: false,
         body: Stack(
@@ -288,6 +259,7 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
                         if (snapshot.hasData) {
                           if (snapshot.data!.isNotEmpty) {
                             theNameList = snapshot.data!;
+
                             return SizedBox(
                               width: 210.w,
                               height: 40.h,
@@ -367,31 +339,115 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
                                   },
                                   onSelected: (String selection) async {
                                     textEditingControllerTest.clear();
-                                    theNameChoice = selection;
                                     nameFromTextField = '';
                                     isSelected = true;
-                                    root = await DatabaseQueries()
-                                        .getRootForName(selection);
-                                    ListText[0] = '${root[0]}';
-                                    ListText[1] = '${root[1]}';
-                                    ListText[2] = '${root[2]}';
-                                    String wight = await DatabaseQueries()
-                                        .getWightFromName(selection);
-                                    wight = removeTashkel(wight);
-                                    for (int x = 8; x < 235; x++) {
-                                      if (wight ==
-                                          removeTashkel(wordsMap['field$x']!)) {
-                                        theColumnName = 'field$x';
-                                        print('the $theColumnName');
+
+                                    if (await DatabaseQueries()
+                                        .checkNoFoundMoreName(selection)) {
+                                      theNameChoice = selection;
+
+                                      root = await DatabaseQueries()
+                                          .getRootForName(selection);
+                                      ListText[0] = '${root[0]}';
+                                      ListText[1] = '${root[1]}';
+                                      ListText[2] = '${root[2]}';
+                                      String wight = await DatabaseQueries()
+                                          .getWightFromName(selection);
+                                      for (int x = 8;
+                                          x < wordsMap.length - 1;
+                                          x++) {
+                                        if (wight == wordsMap['field$x']!) {
+                                          theColumnName = 'field$x';
+                                        }
                                       }
+                                      appController.update();
+                                    } else {
+                                      List<String> names =
+                                          await DatabaseQueries()
+                                              .getNameWithTashkel(selection);
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text("اختر الكلمه"),
+                                            content: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                customButton(
+                                                    text: names[0],
+                                                    buttonWidth: 100.w,
+                                                    onClick: () async {
+                                                      theNameChoice = names[0];
+
+                                                      root = await DatabaseQueries()
+                                                          .getRootForTashkelName(
+                                                              names[0]);
+                                                      ListText[0] =
+                                                          '${root[0]}';
+                                                      ListText[1] =
+                                                          '${root[1]}';
+                                                      ListText[2] =
+                                                          '${root[2]}';
+                                                      String wight =
+                                                          await DatabaseQueries()
+                                                              .getWightFromTashkelName(
+                                                                  names[0]);
+                                                      for (int x = 8;
+                                                          x <
+                                                              wordsMap.length -
+                                                                  1;
+                                                          x++) {
+                                                        if (wight ==
+                                                            wordsMap[
+                                                                'field$x']!) {
+                                                          theColumnName =
+                                                              'field$x';
+                                                        }
+                                                      }
+                                                      appController.update();
+                                                      Navigator.pop(context);
+                                                    }),
+                                                customButton(
+                                                    text: names[1],
+                                                    buttonWidth: 100.w,
+                                                    onClick: () async {
+                                                      theNameChoice = names[1];
+
+                                                      root = await DatabaseQueries()
+                                                          .getRootForTashkelName(
+                                                              names[1]);
+                                                      ListText[0] =
+                                                          '${root[0]}';
+                                                      ListText[1] =
+                                                          '${root[1]}';
+                                                      ListText[2] =
+                                                          '${root[2]}';
+                                                      String wight =
+                                                          await DatabaseQueries()
+                                                              .getWightFromTashkelName(
+                                                                  names[1]);
+                                                      for (int x = 8;
+                                                          x <
+                                                              wordsMap.length -
+                                                                  1;
+                                                          x++) {
+                                                        if (wight ==
+                                                            wordsMap[
+                                                                'field$x']!) {
+                                                          theColumnName =
+                                                              'field$x';
+                                                        }
+                                                      }
+                                                      appController.update();
+                                                      Navigator.pop(context);
+                                                    })
+                                              ],
+                                            ),
+                                            actions: [],
+                                          );
+                                        },
+                                      );
                                     }
-
-                                    appController.update();
-
-                                    Get.to(
-                                        EstenbatNameFromNameCheckboxResultScreen(),arguments:[ ListText[0], ListText[1]]);
-
-
                                   },
                                   optionsViewBuilder:
                                       (context, onSelected, options) => Align(
@@ -556,6 +612,59 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
                               ),
                             )
                           ],
+                        )
+                      : SizedBox.shrink();
+                }),
+                GetBuilder<AppController>(builder: (controller) {
+                  return isSelected
+                      ? Padding(
+                          padding: EdgeInsets.only(top: 10.h, left: 10.w),
+                          child: Container(
+                            width: 80.w,
+                            height: 50.h,
+                            child: customButton(
+                                text: 'بحث',
+                                buttonWidth: 100.w,
+                                onClick: () {
+                                  if (CheckBoxbool[0] == true &&
+                                      CheckBoxbool[1] == true &&
+                                      CheckBoxbool[2] == true) {
+                                    showToast('يجب اختيار حرفين فقط');
+                                  } else if (CheckBoxbool[0] == true &&
+                                      CheckBoxbool[1] == true) {
+                                    Get.to(
+                                        EstenbatNameFromNameCheckboxResultScreen(),
+                                        arguments: [
+                                          ListText[0],
+                                          ListText[1],
+                                          theColumnName,
+                                          [0, 1],theNameChoice
+                                        ]);
+                                  } else if (CheckBoxbool[0] == true &&
+                                      CheckBoxbool[2] == true) {
+                                    Get.to(
+                                        EstenbatNameFromNameCheckboxResultScreen(),
+                                        arguments: [
+                                          ListText[0],
+                                          ListText[2],
+                                          theColumnName,
+                                          [0, 2],theNameChoice
+                                        ]);
+                                  } else if (CheckBoxbool[1] == true &&
+                                      CheckBoxbool[2] == true) {
+                                    Get.to(
+                                        EstenbatNameFromNameCheckboxResultScreen(),
+                                        arguments: [
+                                          ListText[1],
+                                          ListText[2],
+                                          theColumnName,
+                                          [1, 2],theNameChoice
+                                        ]);
+                                  } else {
+                                    showToast('الرجاء اختيار حرفين');
+                                  }
+                                }),
+                          ),
                         )
                       : SizedBox.shrink();
                 })

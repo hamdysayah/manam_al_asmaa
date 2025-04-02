@@ -6,6 +6,10 @@ import 'package:manjam_asmaa/view/screens/estenbatNewNameSection/estenbat_name_f
 import 'package:manjam_asmaa/view/screens/globalNamesSection/global_name_char_search_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../widgets/custom_button.dart';
+import '../../widgets/custom_drawer.dart';
+import 'estenbat_name_from_last_towchar_root_search_screen.dart';
+import 'estenbat_name_from_root_search_screen.dart';
+import 'estenbat_name_from_towchar_wight_search_screen.dart';
 
 class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
   const TypeOfSearchEntenbatNameScreen({super.key});
@@ -13,16 +17,13 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('استنباط الاسماء من جذر ثلاث '),
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(),
           CustomText(text: 'اختر نوعية البحث'),
           customButton(
-            text: 'أسماء مقترحة مشتقة من جذر اسم معين',
+            text: 'أسماء مشتقة من جذر اسم معين',
             buttonWidth: 200.w,
             onClick: () {
               Get.to(EstenbatNameFromNameSearchScreen());
@@ -32,7 +33,7 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
             height: 10.h,
           ),
           customButton(
-            text: 'أسماء مقترحة على وزن اسم معين',
+            text: 'أسماء مشتقة على وزن اسم معين',
             buttonWidth: 200.w,
             onClick: () {
               Get.to(EstenbatNameFromNameCheckBoxSearchScreen());
@@ -44,7 +45,9 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
           customButton(
             text: 'أسماء مشتقة من جذر',
             buttonWidth: 200.w,
-            onClick: () {},
+            onClick: () {
+              Get.to(estenbat_name_from_root_search_screen());
+            },
           ),
           SizedBox(
             height: 10.h,
@@ -52,7 +55,9 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
           customButton(
             text: 'أسماء مشتقة من جذر أوله حرفين',
             buttonWidth: 250.w,
-            onClick: () {},
+            onClick: () {
+              Get.to(estenbat_name_from_towchar_wight_search_screen());
+            },
           ),
           SizedBox(
             height: 10.h,
@@ -60,7 +65,10 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
           customButton(
             text: 'أسماء مشتقة من جذر آخره حرفين',
             buttonWidth: 250.w,
-            onClick: () {},
+            onClick: () {
+              Get.to(estenbat_name_from_last_towchar_root_search_screen());
+
+            },
           )
         ],
       ),

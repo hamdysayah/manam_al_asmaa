@@ -25,7 +25,7 @@ class GlobalObjectNameResultScreen extends StatelessWidget {
             children: [
               Container(),
               CustomText(
-                text: 'الاسماء المقترحة ل ${Get.arguments}',
+                text: ' اسماء تحتمل موضوع ${Get.arguments} انقر على الاسم ',
                 fontSize: 20.sp,
               ),
               FutureBuilder<List<String>>(

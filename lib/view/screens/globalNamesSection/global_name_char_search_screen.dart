@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:manjam_asmaa/core/utils/constants.dart';
+import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import 'package:screenshot/screenshot.dart';
 
 import '../../../controller/app_contrller.dart';
@@ -165,7 +166,7 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                       currentOption = value!.toInt();
                       appController.update();
                     },
-                    title: Text('اسماء تبدا ب.. '),
+                    title: Text('اسماء تبدا بحروف '),
                   ),
                   RadioListTile(
                     value: typeOfSearch[1],
@@ -174,7 +175,7 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                       currentOption = value!.toInt();
                       appController.update();
                     },
-                    title: Text('اسماء تنتهي ب..'),
+                    title: Text('اسماء تنتهي بحروف'),
                   ),
                   RadioListTile(
                     value: typeOfSearch[2],
@@ -183,8 +184,20 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                       currentOption = value!.toInt();
                       appController.update();
                     },
-                    title: Text('اسماء تحتوي على ..'),
+                    title: Text('اسماء تحتوي على حروف'),
                   ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: CustomText(
+                      text:
+                          'في هذه الجزء يمكن ان تبحث عن الاسماء المستخدمة تبدآ او تنتهي او تحتوي على حروف معينة ومن جنس معين.',
+                      fontSize: 18.sp,
+                      fontWight: FontWeight.bold,
+                    ),
+                  )
                 ],
               ),
             );

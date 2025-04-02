@@ -7,11 +7,11 @@ const kPrimaryColor = 0xff324d6b;
 const kPrimaryColorDark = 0xff1c1b1f;
 const kScaffoldBackgroundColor = 0xffF3F3F3;
 const kFontAppName = 'almaraiFont';
-const kDbName = 'MangamNameDbV1.db';
+const kDbName = 'MangamNameDbV2.db';
 const kBlackDarkColor = 0xFF292925;
 const kWhiteLightColor = 0xfff4f9fc;
-
 void showToast(String message) {
+
   Fluttertoast.showToast(
     msg: message,
     toastLength: Toast.LENGTH_SHORT,

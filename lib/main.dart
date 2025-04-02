@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:manjam_asmaa/view/screens/home_screen.dart';
 
 import 'core/utils/constants.dart';
+import 'core/utils/languages/translation.dart';
 
 void main() {
-  //WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MangamAlAsmaaApp());
 }
 
@@ -23,18 +28,14 @@ class MangamAlAsmaaApp extends StatelessWidget {
       // Use builder only if you need to use library outside ScreenUtilInit context
       builder: (_, child) {
         return GetMaterialApp(
+          translations: Translation(),
+          locale: Locale(GetStorage().read('langCode') ?? 'ar'),
           debugShowCheckedModeBanner: false,
           title: kAppName,
-          locale: const Locale('ar'),
-//           darkTheme:
-//           ThemeData(scaffoldBackgroundColor: const Color(kBlackDarkColor)),
-//           theme:
-// ThemeData(scaffoldBackgroundColor: const Color(kWhiteLightColor)),
-//           //themeMode: SwitchLightDarkTheme().getCurrentThemeMode(),
           home: child,
         );
       },
-      child:  HomeScreen(),
+      child: HomeScreen(),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:manjam_asmaa/medel/namesModel.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import 'package:get/get.dart';
 
@@ -11,28 +10,35 @@ class EstenbatNameFromNameCheckboxResultScreen extends StatelessWidget {
   AppController appController = Get.find();
   String selectedName = '';
 
-
   @override
   Widget build(BuildContext context) {
     appController.isVisibleNameDetailsDialog = false;
     return Scaffold(
       appBar: AppBar(
-        title: Text('منجم الاسماء'),
+        title: Text(''),
       ),
       body: SafeArea(
         child: Stack(
           children: [
+            SizedBox(
+              height: 10.h,
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(),
                 CustomText(
-                  text: 'الاسماء المقترحة',
+                  text:
+                      'الاسماء المشتقة على وزن الاسم (${Get.arguments[4]}) ومشتركة في الحرفين (${Get.arguments[0] + Get.arguments[1]}) ',
                   fontSize: 20.sp,
                 ),
                 GetBuilder<AppController>(builder: (controller) {
                   return FutureBuilder<List<String>>(
-                      future: DatabaseQueries().getEstenatForNameFromTowChar('ب','ي','field187'),
+                      future: DatabaseQueries().getEstenatForNameFromTowChar(
+                          Get.arguments[0],
+                          Get.arguments[1],
+                          Get.arguments[2],
+                          Get.arguments[3]),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           if (snapshot.data!.isNotEmpty) {
@@ -57,7 +63,8 @@ class EstenbatNameFromNameCheckboxResultScreen extends StatelessWidget {
                                           .replaceAll('[', '')
                                           .replaceAll(']', '');
 
-                                      appController.isVisibleNameDetailsDialog = true;
+                                      appController.isVisibleNameDetailsDialog =
+                                          true;
                                       appController.update();
                                     },
                                     child: Container(
@@ -105,7 +112,6 @@ class EstenbatNameFromNameCheckboxResultScreen extends StatelessWidget {
                 }),
               ],
             ),
-
             //عرض تفاصيل الاسم
             GetBuilder<AppController>(builder: (controller) {
               return Visibility(
@@ -122,9 +128,9 @@ class EstenbatNameFromNameCheckboxResultScreen extends StatelessWidget {
                             border: Border.all(width: 1)),
                         width: 300.w,
                         //  height: 300.h,
-                        child: FutureBuilder<Namesmodel>(
-                            future:
-                                DatabaseQueries().getNameDetails(selectedName),
+                        child: FutureBuilder<List<String>>(
+                            future: DatabaseQueries()
+                                .getResultFormEstenbatWithNoWight(selectedName,Get.arguments[2]),
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
                                 return Padding(
@@ -135,66 +141,21 @@ class EstenbatNameFromNameCheckboxResultScreen extends StatelessWidget {
                                         alignment: Alignment.topRight,
                                         child: IconButton(
                                             onPressed: () {
-                                              controller.isVisibleNameDetailsDialog =
-                                                  false;
+                                              controller
+                                                  .isVisibleNameDetailsDialog =
+                                              false;
                                               controller.update();
                                             },
                                             icon: const Icon(Icons.close)),
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          SizedBox(
-                                            width: 10.w,
-                                          ),
-                                          CustomText(
-                                              text:
-                                                  'الاسم : ${snapshot.data!.name}'),
-                                          SizedBox(
-                                            width: 50.w,
-                                          ),
-                                          CustomText(
-                                              text:
-                                                  'النوع : ${snapshot.data!.typeOfName}'),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          SizedBox(
-                                            width: 10.w,
-                                          ),
-                                          CustomText(
-                                              text:
-                                                  'الوزن  : ${snapshot.data!.nameWight}'),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          CustomText(
-                                              text:
-                                                  'الجذر : ${snapshot.data!.root}'),
-                                          SizedBox(
-                                            width: 50.w,
-                                          ),
-                                          CustomText(
-                                              text:
-                                                  'الاصل : ${snapshot.data!.origin}'),
-                                          SizedBox(
-                                            width: 10.w,
-                                          ),
-                                        ],
+                                      SizedBox(
+                                        width: 10.w,
                                       ),
                                       CustomText(
-                                        text:
-                                            'المعنى : ${snapshot.data!.meaning}',
-                                        fontWight: FontWeight.bold,
-                                      ),
-                                    ],
+                                          text:
+                                          'الاسم $selectedName مشتق على الوزن ( ${snapshot.data?[0]})  من الجذر (${snapshot.data?[1].replaceAll('1', '')}) وهو جذر (${snapshot.data?[2]=='معروف'?'مستخدم':'غير مستخدم'} ) في اللغة العربية. لمعرفة معنى الجذر إن كان مستخدما ارجع على موقع almaany.com.  إذا أعجبك هذا الاشتقاق وترى أنه يصلح اسم لشخص انقر على أيقونة شارك لمشاركته مع الآخرين في صورة.'),
+
+                                      ],
                                   ),
                                 );
                               } else if (snapshot.hasError) {

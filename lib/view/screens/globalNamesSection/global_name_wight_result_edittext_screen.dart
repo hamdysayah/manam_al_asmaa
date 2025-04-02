@@ -27,7 +27,7 @@ class GlobalNameWightResultEdittextScreen extends StatelessWidget {
             children: [
               Container(),
               CustomText(
-                text: 'الاسماء المقترحة ل ',
+                text: ' اسماء على وزن ${Get.arguments[0] } انقر على الاسم ',
                 fontSize: 20.sp,
               ),
               FutureBuilder<List<String>>(

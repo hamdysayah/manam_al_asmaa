@@ -43,15 +43,29 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                 Container(),
 
                 SizedBox(
-                  height: 10.h,
+                  height: 5.h,
+                ),
+
+                Padding(
+                  padding: EdgeInsets.all(5),
+                  child: CustomText(
+                    text:
+                        'يمكنك ان تختار جذر معين او تبحث من خلال جذر اسم معين ',
+                    fontWight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 5.h,
                 ),
                 // مربع الادخال
 
                 GetBuilder<AppController>(builder: (controller) {
                   return FutureBuilder<List<String>>(
                       future: currentOptionRootOrNameOptions == 'الجذر'
-                          ? DatabaseQueries().getAllRoot()
-                          : DatabaseQueries().getNamesFromDb(),
+                          ? DatabaseQueries()
+                              .getAllRoot(currentOptionMaleOrFemale)
+                          : DatabaseQueries().getNamesFromDbForRootSection(
+                              currentOptionMaleOrFemale),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           if (snapshot.data!.isNotEmpty) {

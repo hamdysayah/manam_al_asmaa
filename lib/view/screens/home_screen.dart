@@ -6,6 +6,7 @@ import 'package:manjam_asmaa/view/screens/globalNamesSection/type_of_search_glob
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../controller/app_contrller.dart';
 import '../widgets/custom_button.dart';
+import '../widgets/custom_drawer.dart';
 import 'estenbatNewNameSection/type_of_search_entenbat_name_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,45 +15,143 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(),
-          CustomText(
-            text: 'منجم الاسماء',
-            fontSize: 30.sp,
+      key: appController.scaffoldKey,
+      drawer: const CustomDrawer(),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/home_screen_background.png"),
+            fit: BoxFit.cover,
           ),
-          SizedBox(
-            height: 100.h,
+        ),
+        child: SafeArea(
+          child: Column(
+            children: [
+              InkWell(
+                onTap: () {
+                  appController.openDrawer();
+                },
+                child: Container(
+                  padding: EdgeInsets.only(right: 5.w),
+                  alignment: Alignment.topRight,
+                  child: Icon(
+                    Icons.menu,
+                    color: Colors.white,
+                    size: 30.w,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    CustomText(
+                      text: 'homeScreenTitle'.tr,
+                      fontSize: 25.sp,
+                      textColor: Colors.white,
+                      fontWight: FontWeight.bold,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    CustomText(
+                      text: 'homeScreenDescriptionApp'.tr,
+                      fontSize: 15.sp,
+                      textColor: Colors.white,
+                      fontWight: FontWeight.bold,
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+
+                    // زر الاول
+                    InkWell(
+                      onTap: () {
+                        Get.to(TypeOfSearchGlobalNameScreen());
+                      },
+                      child: Container(
+                        width: 290.w,
+                        height: 45.h,
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment(0.9, 0.1),
+                                colors: [
+                                  Color(0xFF7060D4),
+                                  Color(0xFF9785EE),
+                                ]),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.groups,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 5.w,
+                            ),
+                            CustomText(
+                              text: 'اختر من الاسماء المستخدمة',
+                              textColor: Colors.white,
+                              fontWight: FontWeight.bold,
+                              fontSize: 15.sp,
+
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 20.h,
+                    ),
+
+                    // زر الثاني
+                    InkWell(
+                      onTap: () {
+                        Get.to(TypeOfSearchEntenbatNameScreen());
+                      },
+                      child: Container(
+                        width: 290.w,
+                        height: 45.h,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Color(0xFF9785EE)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: Color(0xFF9785EE),
+                            ),
+                            SizedBox(
+                              width: 5.w,
+                            ),
+                            CustomText(
+                              text: 'ابتكر اسم جديد من جذور لغتنا العربية',
+                              textColor: Color(0xFF9785EE),
+                              fontWight: FontWeight.bold,
+                              fontSize: 15.sp,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 40.h,
+                    ),
+                  ],
+                ),
+              )
+            ],
           ),
-          customButton(
-            text: 'ابحث عن الاسماء الدارجة',
-            buttonWidth: 200.w,
-            onClick: () {
-              Get.to(TypeOfSearchGlobalNameScreen());
-            },
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          customButton(
-            text: 'استنباط اسم جديد من جذر عربي معروف',
-            buttonWidth: 200.w,
-            onClick: () {
-              Get.to(TypeOfSearchEntenbatNameScreen());
-            },
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          customButton(
-            text: 'استنباط اسم جديد من جذر عربي غير مستعمل',
-            buttonWidth: 250.w,
-            onClick: () {
-              showToast('test app');
-            },
-          ),
-        ],
+        ),
       ),
     );
   }

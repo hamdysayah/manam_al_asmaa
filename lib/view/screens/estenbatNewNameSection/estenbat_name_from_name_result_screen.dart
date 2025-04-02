@@ -11,7 +11,6 @@ class EstenbatNameFromNameResultScreen extends StatelessWidget {
   AppController appController = Get.find();
   String selectedName = '';
 
-
   @override
   Widget build(BuildContext context) {
     appController.isVisibleNameDetailsDialog = false;
@@ -27,12 +26,14 @@ class EstenbatNameFromNameResultScreen extends StatelessWidget {
               children: [
                 Container(),
                 CustomText(
-                  text: 'الاسماء المقترحة',
+                  text:
+                      'الاسماء المشتقه من جذر الاسم ${Get.arguments} انقر على الاسم الذي يعجبك ',
                   fontSize: 20.sp,
                 ),
                 GetBuilder<AppController>(builder: (controller) {
                   return FutureBuilder<List<String>>(
-                      future: DatabaseQueries().getEstenatRootForNameAndAllName(Get.arguments),
+                      future: DatabaseQueries()
+                          .getEstenatRootForNameAndAllName(Get.arguments),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           if (snapshot.data!.isNotEmpty) {
@@ -57,7 +58,8 @@ class EstenbatNameFromNameResultScreen extends StatelessWidget {
                                           .replaceAll('[', '')
                                           .replaceAll(']', '');
 
-                                      appController.isVisibleNameDetailsDialog = true;
+                                      appController.isVisibleNameDetailsDialog =
+                                          true;
                                       appController.update();
                                     },
                                     child: Container(
@@ -122,9 +124,9 @@ class EstenbatNameFromNameResultScreen extends StatelessWidget {
                             border: Border.all(width: 1)),
                         width: 300.w,
                         //  height: 300.h,
-                        child: FutureBuilder<Namesmodel>(
-                            future:
-                                DatabaseQueries().getNameDetails(selectedName),
+                        child: FutureBuilder<List<String>>(
+                            future: DatabaseQueries()
+                                .getResultFormEstenbat(selectedName),
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
                                 return Padding(
@@ -135,66 +137,22 @@ class EstenbatNameFromNameResultScreen extends StatelessWidget {
                                         alignment: Alignment.topRight,
                                         child: IconButton(
                                             onPressed: () {
-                                              controller.isVisibleNameDetailsDialog =
+                                              controller
+                                                      .isVisibleNameDetailsDialog =
                                                   false;
                                               controller.update();
                                             },
                                             icon: const Icon(Icons.close)),
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          SizedBox(
-                                            width: 10.w,
-                                          ),
-                                          CustomText(
-                                              text:
-                                                  'الاسم : ${snapshot.data!.name}'),
-                                          SizedBox(
-                                            width: 50.w,
-                                          ),
-                                          CustomText(
-                                              text:
-                                                  'النوع : ${snapshot.data!.typeOfName}'),
-                                        ],
+                                      SizedBox(
+                                        width: 10.w,
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          SizedBox(
-                                            width: 10.w,
-                                          ),
-                                          CustomText(
-                                              text:
-                                                  'الوزن  : ${snapshot.data!.nameWight}'),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          CustomText(
-                                              text:
-                                                  'الجذر : ${snapshot.data!.root}'),
-                                          SizedBox(
-                                            width: 50.w,
-                                          ),
-                                          CustomText(
-                                              text:
-                                                  'الاصل : ${snapshot.data!.origin}'),
-                                          SizedBox(
-                                            width: 10.w,
-                                          ),
-                                        ],
-                                      ),
+
                                       CustomText(
-                                        text:
-                                            'المعنى : ${snapshot.data!.meaning}',
-                                        fontWight: FontWeight.bold,
-                                      ),
-                                    ],
+                                          text:
+                                          'الاسم $selectedName مشتق على الوزن ( ${snapshot.data?[0]})  من الجذر (${snapshot.data?[1].replaceAll('1', '')}) وهو جذر (${snapshot.data?[2]=='معروف'?'مستخدم':'غير مستخدم'} ) في اللغة العربية. لمعرفة معنى الجذر إن كان مستخدما ارجع على موقع almaany.com.  إذا أعجبك هذا الاشتقاق وترى أنه يصلح اسم لشخص انقر على أيقونة شارك لمشاركته مع الآخرين في صورة.'),
+
+                                        ],
                                   ),
                                 );
                               } else if (snapshot.hasError) {
