@@ -27,7 +27,7 @@ class CustomText extends StatelessWidget {
       style: TextStyle(
           color: textColor,
           fontSize: fontSize ?? 16.sp,
-          fontFamily: fontFamily,
+          fontFamily: fontFamily??"ZainRegular",
           fontWeight: fontWight ?? FontWeight.normal),
       textAlign: textAlign ?? TextAlign.center,
     );

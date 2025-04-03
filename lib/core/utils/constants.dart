@@ -3,8 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 const kAppName = 'منجم الاسماء';
-const kPrimaryColor = 0xff324d6b;
-const kPrimaryColorDark = 0xff1c1b1f;
+const kPrimaryColor = 0xff9785EE;
 const kScaffoldBackgroundColor = 0xffF3F3F3;
 const kFontAppName = 'almaraiFont';
 const kDbName = 'MangamNameDbV2.db';

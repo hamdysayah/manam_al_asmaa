@@ -29,19 +29,27 @@ class HomeScreen extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              InkWell(
-                onTap: () {
-                  appController.openDrawer();
-                },
-                child: Container(
-                  padding: EdgeInsets.only(right: 5.w),
-                  alignment: Alignment.topRight,
-                  child: Icon(
-                    Icons.menu,
-                    color: Colors.white,
-                    size: 30.w,
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      appController.openDrawer();
+                    },
+                    child: Container(
+                        padding: EdgeInsets.only(right: 10.w, top: 10.h),
+                        alignment: Alignment.topLeft,
+                        child: Image.asset(
+                          'assets/images/drawer_open_icon.png',
+                          scale: 0.5,
+                        )),
                   ),
-                ),
+                  Spacer(),
+                  CustomText(
+                    fontSize: 30.sp,
+                    text: 'منجم الآسماء',
+                    textColor: Colors.white,
+                  ),
+                ],
               ),
               Expanded(
                 child: Column(
@@ -99,7 +107,6 @@ class HomeScreen extends StatelessWidget {
                               textColor: Colors.white,
                               fontWight: FontWeight.bold,
                               fontSize: 15.sp,
-
                             ),
                           ],
                         ),
