@@ -40,12 +40,12 @@ class HomeScreen extends StatelessWidget {
                         alignment: Alignment.topLeft,
                         child: Image.asset(
                           'assets/images/drawer_open_icon.png',
-                          scale: 0.5,
+                          scale: 0.7,
                         )),
                   ),
                   Spacer(),
                   CustomText(
-                    fontSize: 30.sp,
+                    fontSize: 25.sp,
                     text: 'منجم الآسماء',
                     textColor: Colors.white,
                   ),

@@ -12,8 +12,7 @@ import 'global_name_root_search_screen.dart';
 import 'global_name_wight_search_screen.dart';
 
 class TypeOfSearchGlobalNameScreen extends StatelessWidget {
-
-  AppController appController =Get.find();
+  AppController appController = Get.find();
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -21,7 +20,6 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-
       drawer: CustomDrawer(),
       body: Container(
         width: double.infinity,
@@ -35,10 +33,11 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
+              SizedBox(height: 10.h,),
               Row(
                 children: [
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       Get.back();
                     },
                     child: Icon(
@@ -55,7 +54,7 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
                   ),
                   Spacer(),
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       scaffoldKey.currentState?.openDrawer();
                     },
                     child: Container(
@@ -89,14 +88,17 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
               SizedBox(
                 height: 10.h,
               ),
-              CustomText(
-                textColor: Colors.white,
-                text:
-                    'حدد تفاصيل البحث التي تناسبك , سواء كنت تبحث عن اسم يحوي حرف معين , يحمل معنى معينا , او مشتق من جذر لغوي , حدد جنس المولود واتبع الخطوات البسيطة',
-                fontWight: FontWeight.bold,
+              Padding(
+                padding: EdgeInsets.all(10.w),
+                child: CustomText(
+                  textColor: Colors.white,
+                  text:
+                      'حدد تفاصيل البحث التي تناسبك , سواء كنت تبحث عن اسم يحوي حرف معين , يحمل معنى معينا , او مشتق من جذر لغوي , حدد جنس المولود واتبع الخطوات البسيطة',
+                  fontWight: FontWeight.bold,
+                ),
               ),
               SizedBox(
-                height: 40.h,
+                height: 30.h,
               ),
 
               // الازرار
@@ -183,7 +185,14 @@ class MyCustomButton extends StatelessWidget {
       width: 310.w,
       height: 55.h,
       decoration: BoxDecoration(
-          border: Border.all(color: Color(0xFF9785EE)),
+          border: Border(
+            top: BorderSide(width: 1, color: Color(0xFF9785EE)),
+            left: BorderSide(width: 1, color: Color(0xFF9785EE)),
+            bottom: BorderSide(width: 1, color: Color(0xFF9785EE)),
+
+            right: BorderSide(width: 5.w, color: Color(0xFF9785EE)),
+          ),
+        //  border: Border.all(color: Color(0xFF9785EE)),
           borderRadius: const BorderRadius.all(Radius.circular(10))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
