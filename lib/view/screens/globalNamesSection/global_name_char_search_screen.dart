@@ -142,9 +142,7 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                           child: TextField(
                             controller: _controller,
                             style: TextStyle(
-                              fontSize: 17.sp,
-                              //    color: appController.isDark ? Colors.white : Colors.black,
-                            ),
+                                fontSize: 17.sp, color: Colors.white60),
                             textInputAction: TextInputAction.search,
                             onSubmitted: (value) {
                               if (value.isNotEmpty) {
@@ -161,9 +159,8 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                                 showToast('الرجاء ادخال الحروف');
                               }
                             },
-                            onTapOutside: (s){
+                            onTapOutside: (s) {
                               FocusScope.of(context).unfocus();
-
                             },
                             autofocus: false,
                             onChanged: (value) {
@@ -206,7 +203,6 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 10.h, left: 10.w),
                     child: Container(
-                      width: 80.w,
                       height: 50.h,
                       child: customButton(
                           text: 'بحث',
@@ -296,7 +292,9 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                 );
               }),
 
-              SizedBox(height: 30.h,),
+              SizedBox(
+                height: 30.h,
+              ),
               // الاختيارات تبدا او تنتهي بحرف
               GetBuilder<AppController>(builder: (controller) {
                 return Expanded(

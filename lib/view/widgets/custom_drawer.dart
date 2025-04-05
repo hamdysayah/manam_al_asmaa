@@ -29,7 +29,8 @@ class CustomDrawer extends StatelessWidget {
                     color: Colors.black,
                     image: DecorationImage(
                         image: AssetImage("assets/images/drawer_header.png"),
-                        fit: BoxFit.cover)),
+                        fit: BoxFit.cover)
+                ),
                 child: Column(
                   children: [
                     Row(

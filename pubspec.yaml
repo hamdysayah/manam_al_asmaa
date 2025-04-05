@@ -17,7 +17,6 @@ dependencies:
   flutter_screenutil: ^5.9.3
   sqflite: ^2.4.1
   share_plus: ^10.1.4
-
   path_provider: ^2.1.5
   get: ^4.6.6
   get_storage: ^2.1.1
@@ -29,6 +28,7 @@ dependencies:
   url_launcher: ^6.3.1
   google_fonts: ^6.2.1
   cupertino_icons: ^1.0.8
+  sizer: ^2.0.15
   screenshot: ^3.0.0
 
 dev_dependencies:
@@ -67,3 +67,6 @@ flutter:
     - family: ZainRegular
       fonts:
         - asset: assets/fonts/Zain_Regular_font.ttf
+    - family: BIXIE_Regular
+      fonts:
+        - asset: assets/fonts/BIXIE_Regular.ttf

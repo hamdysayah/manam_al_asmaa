@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:manjam_asmaa/core/utils/constants.dart';
-import 'package:manjam_asmaa/medel/nameTashkelAndNo.dart';
-import 'package:manjam_asmaa/view/screens/estenbatNewNameSection/estenbat_name_from_name_result_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
-import 'package:screenshot/screenshot.dart';
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
 import '../../widgets/custom_button.dart';
@@ -638,7 +634,8 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
                                           ListText[0],
                                           ListText[1],
                                           theColumnName,
-                                          [0, 1],theNameChoice
+                                          [0, 1],
+                                          theNameChoice
                                         ]);
                                   } else if (CheckBoxbool[0] == true &&
                                       CheckBoxbool[2] == true) {
@@ -648,7 +645,8 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
                                           ListText[0],
                                           ListText[2],
                                           theColumnName,
-                                          [0, 2],theNameChoice
+                                          [0, 2],
+                                          theNameChoice
                                         ]);
                                   } else if (CheckBoxbool[1] == true &&
                                       CheckBoxbool[2] == true) {
@@ -658,7 +656,8 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
                                           ListText[1],
                                           ListText[2],
                                           theColumnName,
-                                          [1, 2],theNameChoice
+                                          [1, 2],
+                                          theNameChoice
                                         ]);
                                   } else {
                                     showToast('الرجاء اختيار حرفين');
