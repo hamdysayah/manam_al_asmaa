@@ -82,11 +82,23 @@ class GlobalCharNameResultScreen extends StatelessWidget {
                   ),
                   // باقي التصميم
                   Container(),
-                  CustomText(
-                    text:
-                        'الاسماء المقترحة لاسم يبدا بحرف “ ${Get.arguments[1].toString()} ”',
-                    fontSize: 20.sp,
-                  ),
+                  Get.arguments[0] == 1
+                      ? CustomText(
+                          text:
+                              'الاسماء المقترحة لاسم يبدا بـ “ ${Get.arguments[1].toString()} ”',
+                          fontSize: 20.sp,
+                        )
+                      : Get.arguments[0] == 2
+                          ? CustomText(
+                              text:
+                                  'الاسماء المقترحة لاسم ينتهي بـ “ ${Get.arguments[1].toString()} ”',
+                              fontSize: 20.sp,
+                            )
+                          : CustomText(
+                              text:
+                                  'الاسماء المقترحة لاسم يحتوي على “ ${Get.arguments[1].toString()} ”',
+                              fontSize: 20.sp,
+                            ),
                   SizedBox(
                     height: 10.h,
                   ),
@@ -163,7 +175,9 @@ class GlobalCharNameResultScreen extends StatelessWidget {
                                 ),
                               );
                             } else {
-                              return CustomText(text: 'لا يوجد نتائج');
+                              return Expanded(
+                                child: CustomText(text: 'لا يوجد نتائج'),
+                              );
                             }
                           } else if (snapshot.hasError) {
                             return CustomText(text: snapshot.error.toString());
@@ -438,6 +452,13 @@ class GlobalCharNameResultScreen extends StatelessWidget {
                               margin: EdgeInsets.only(right: 30.w, left: 30.w),
                               height: 45.h,
                               decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment(0.9, 0.1),
+                                      colors: [
+                                        Color(0xFF7060D4),
+                                        Color(0xFF9785EE),
+                                      ]),
                                   border: Border.all(color: Color(0xFF9785EE)),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(10))),
@@ -446,14 +467,14 @@ class GlobalCharNameResultScreen extends StatelessWidget {
                                 children: [
                                   Icon(
                                     Icons.share,
-                                    color: Color(0xFF9785EE),
+                                    color: Colors.white,
                                   ),
                                   SizedBox(
                                     width: 5.w,
                                   ),
                                   CustomText(
                                     text: 'مشاركة الاسم كصورة',
-                                    textColor: Color(0xFF9785EE),
+                                    textColor: Colors.white,
                                     fontWight: FontWeight.bold,
                                     fontSize: 17.sp,
                                   ),
@@ -471,6 +492,4 @@ class GlobalCharNameResultScreen extends StatelessWidget {
       ),
     );
   }
-
-
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:manjam_asmaa/view/screens/home_screen.dart';
 
 import '../../core/utils/constants.dart';
 import 'custom_text.dart';
@@ -25,20 +28,30 @@ class CustomDrawer extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.black,
                     image: DecorationImage(
                         image: AssetImage("assets/images/drawer_header.png"),
-                        fit: BoxFit.cover)
-                ),
+                        fit: BoxFit.cover)),
                 child: Column(
                   children: [
                     Row(
                       children: [
-                        CustomText(
-                          text: 'منجم الآسماء',
-                          fontSize: 25.sp,
-                          textColor: Colors.white,
+                        Image.asset(
+                          'assets/images/logo_for_drawer.png',
+                          width: 25.w,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 7.h),
+                          child: CustomText(
+                            text: 'منجم الآسماء',
+                            fontSize: 30.sp,
+                            textColor: Colors.white,
+                            fontFamily: 'BIXIE_Regular',
+                          ),
                         ),
                       ],
                     ),
@@ -65,7 +78,9 @@ class CustomDrawer extends StatelessWidget {
                 text: 'الصفحة الرئيسية',
                 fontSize: 20.sp,
               ),
-              onTap: () {},
+              onTap: () {
+                Get.offAll(HomeScreen());
+              },
             ),
             ListTile(
               leading: const Icon(

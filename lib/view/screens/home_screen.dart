@@ -45,9 +45,20 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Spacer(),
                   CustomText(
-                    fontSize: 25.sp,
+                    fontSize: 35.sp,
                     text: 'منجم الآسماء',
                     textColor: Colors.white,
+                    fontFamily: 'BIXIE_Regular',
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Image.asset(
+                    'assets/images/logo_for_drawer.png',
+                    width: 28.w,
+                  ),
+                  SizedBox(
+                    width: 5.w,
                   ),
                 ],
               ),

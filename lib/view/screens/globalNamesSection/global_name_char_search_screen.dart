@@ -37,7 +37,7 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    currentOption = typeOfSearch[0];
+
     return Scaffold(
       drawer: CustomDrawer(),
       key: scaffoldKey,
@@ -120,7 +120,7 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(5.w),
                 child: CustomText(
-                  textColor: Colors.white,
+                  textColor: Colors.white60,
                   text:
                       'ابحث عن الاسم من خلال حرف يبدا به الاسم او حرفين او ثلاثة وكذلك الامر لحرف ينتهي به او يحتويه الاسم',
                   fontWight: FontWeight.bold,
@@ -177,14 +177,15 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                                         },
                                         child: Icon(
                                           Icons.clear,
-                                          color: Colors.black,
+                                          color: Colors.white,
                                         ),
                                       )
                                     : null,
                                 border: OutlineInputBorder(
                                     borderSide: const BorderSide(
                                         color: Color(0xff7B7B7B), width: 2),
-                                    borderRadius: BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(10)
+                                ),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
                                         color: Color(0xff7B7B7B), width: 2),
@@ -303,6 +304,8 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                       return InkWell(
                         onTap: () {
                           currentOption = ++index;
+                          print('the index  $currentOption');
+
                           appController.update();
                         },
                         child: Container(
