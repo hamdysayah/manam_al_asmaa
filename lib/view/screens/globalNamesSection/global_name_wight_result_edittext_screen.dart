@@ -4,15 +4,18 @@ import 'package:manjam_asmaa/medel/namesModel.dart';
 import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import 'package:get/get.dart';
+import 'package:screenshot/screenshot.dart';
 
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
+import '../../../core/utils/constants.dart';
 
 class GlobalNameWightResultEdittextScreen extends StatelessWidget {
   var theNamesList = [];
   AppController appController = Get.find();
   String selectedName = '';
   var scaffoldKey = GlobalKey<ScaffoldState>();
+  final _screenshotController = ScreenshotController();
 
   @override
   Widget build(BuildContext context) {
@@ -167,125 +170,291 @@ class GlobalNameWightResultEdittextScreen extends StatelessWidget {
                 ],
               ),
 
-              // عرض تفاصيل الاسم
+              //عرض تفاصيل الاسم
               GetBuilder<AppController>(builder: (controller) {
                 return Visibility(
                     visible: controller.isVisibleNameDetailsDialog,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(),
-                        Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              color: Colors.white,
-                              border: Border.all(width: 1)),
-                          width: 300.w,
-                          //  height: 300.h,
-                          child: FutureBuilder<Namesmodel>(
-                              future: DatabaseQueries()
-                                  .getNameDetails(selectedName),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  return Padding(
-                                    padding: EdgeInsets.all(10),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          alignment: Alignment.topRight,
-                                          child: IconButton(
-                                              onPressed: () {
-                                                controller
-                                                        .isVisibleNameDetailsDialog =
-                                                    false;
-                                                controller.update();
-                                              },
-                                              icon: const Icon(Icons.close)),
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            SizedBox(
-                                              width: 10.w,
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(),
+                          Screenshot(
+                            controller: _screenshotController,
+                            child: Container(
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment.bottomRight,
+                                    end: Alignment.topLeft,
+                                    colors: [
+                                      Color(0xFF020202),
+                                      Color(0xFF292A2D),
+                                    ]),
+                                border: Border.all(
+                                    color: Color(0xFF585858), width: 2),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                color: Colors.black,
+                              ),
+                              //width: 300.w,
+                              //  height: 300.h,
+                              child: FutureBuilder<Namesmodel>(
+                                  future: DatabaseQueries()
+                                      .getNameDetails(selectedName),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Column(
+                                        children: [
+                                          // الشكل الذي سيتم مشاركته
+                                          Container(
+                                            width: double.infinity,
+                                            height: 200.h,
+                                            decoration: BoxDecoration(
+                                                color: Colors.black,
+                                                image: DecorationImage(
+                                                    image: AssetImage(
+                                                        "assets/images/drawer_header.png"),
+                                                    fit: BoxFit.cover)),
+                                            child: Column(
+                                              children: [
+                                                // ايقونة اغلاق الديالوج
+                                                Container(
+                                                  alignment: Alignment.topRight,
+                                                  child: IconButton(
+                                                      onPressed: () {
+                                                        controller
+                                                                .isVisibleNameDetailsDialog =
+                                                            false;
+                                                        controller.update();
+                                                      },
+                                                      icon: const Icon(
+                                                        Icons.close,
+                                                        color: Colors.white,
+                                                      )),
+                                                ),
+
+                                                // اسم الشخص
+                                                CustomText(
+                                                  text:
+                                                      ' ${snapshot.data!.name}',
+                                                  fontSize: 90.sp,
+                                                  fontFamily: 'BIXIE_Regular',
+                                                ),
+                                                // نوع الاسم
+                                                CustomText(
+                                                  text:
+                                                      '${snapshot.data!.typeOfName}',
+                                                  fontWight: FontWeight.bold,
+                                                  fontSize: 20.sp,
+                                                ),
+                                              ],
                                             ),
-                                            CustomText(
-                                                text:
-                                                    'الاسم : ${snapshot.data!.name}'),
-                                            SizedBox(
-                                              width: 50.w,
+                                          ),
+
+                                          SizedBox(
+                                            height: 20.h,
+                                          ),
+                                          // الوزن الفعل الاصل
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  decoration: BoxDecoration(
+                                                      color: Color(0XFF1C1A1A),
+                                                      border: Border.all(
+                                                          color:
+                                                              Color(0xFF585858),
+                                                          width: 1),
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  7))),
+                                                  padding: EdgeInsets.only(
+                                                      right: 20.w, left: 20.w),
+                                                  height: 70.h,
+                                                  alignment: Alignment.center,
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      CustomText(text: 'الوزن'),
+                                                      SizedBox(
+                                                        height: 5.h,
+                                                      ),
+                                                      CustomText(
+                                                          text: snapshot.data!
+                                                                      .nameWight ==
+                                                                  '1'
+                                                              ? '_'
+                                                              : snapshot.data!
+                                                                  .nameWight),
+                                                    ],
+                                                  )),
+                                              SizedBox(
+                                                width: 20.w,
+                                              ),
+                                              // الجذر
+                                              Container(
+                                                  decoration: BoxDecoration(
+                                                      color: Color(0XFF1C1A1A),
+                                                      border: Border.all(
+                                                          color:
+                                                              Color(0xFF585858),
+                                                          width: 1),
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  7))),
+                                                  padding: EdgeInsets.only(
+                                                      right: 20.w, left: 20.w),
+                                                  height: 70.h,
+                                                  alignment: Alignment.center,
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      CustomText(
+                                                          text: 'الجذر '),
+                                                      SizedBox(
+                                                        height: 5.h,
+                                                      ),
+                                                      CustomText(
+                                                          text:
+                                                              '${snapshot.data!.root}'),
+                                                    ],
+                                                  )),
+                                              SizedBox(
+                                                width: 20.w,
+                                              ),
+                                              // الاصل
+                                              Container(
+                                                  decoration: BoxDecoration(
+                                                      color: Color(0XFF1C1A1A),
+                                                      border: Border.all(
+                                                          color:
+                                                              Color(0xFF585858),
+                                                          width: 1),
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  7))),
+                                                  padding: EdgeInsets.only(
+                                                      right: 20.w, left: 20.w),
+                                                  height: 70.h,
+                                                  alignment: Alignment.center,
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      CustomText(
+                                                          text: 'الاصل '),
+                                                      SizedBox(
+                                                        height: 5.h,
+                                                      ),
+                                                      CustomText(
+                                                          fontSize: 18.sp,
+                                                          text:
+                                                              '  ${snapshot.data!.origin}'),
+                                                    ],
+                                                  )),
+                                              SizedBox(
+                                                width: 10.w,
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 20.h,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.all(10),
+                                            child: CustomText(
+                                              textAlign: TextAlign.right,
+                                              text:
+                                                  'المعنى :  \n${snapshot.data!.meaning}',
+                                              fontWight: FontWeight.bold,
                                             ),
-                                            CustomText(
-                                                text:
-                                                    'النوع : ${snapshot.data!.typeOfName}'),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            SizedBox(
-                                              width: 10.w,
-                                            ),
-                                            CustomText(
-                                                text:
-                                                    'الوزن  : ${snapshot.data!.nameWight}'),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            CustomText(
-                                                text:
-                                                    'الجذر : ${snapshot.data!.root}'),
-                                            SizedBox(
-                                              width: 50.w,
-                                            ),
-                                            CustomText(
-                                                text:
-                                                    'الاصل : ${snapshot.data!.origin}'),
-                                            SizedBox(
-                                              width: 10.w,
-                                            ),
-                                          ],
-                                        ),
-                                        CustomText(
-                                          text:
-                                              'المعنى : ${snapshot.data!.meaning}',
-                                          fontWight: FontWeight.bold,
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                } else if (snapshot.hasError) {
-                                  return CustomText(
-                                      text: snapshot.error.toString());
-                                } else {
-                                  return Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        height: 10.h,
-                                      ),
-                                      Container(),
-                                      const CircularProgressIndicator(),
-                                      SizedBox(
-                                        height: 5.h,
-                                      ),
-                                      CustomText(text: '....جاري التحميل ')
-                                    ],
-                                  );
-                                }
-                              }),
-                        ),
-                      ],
+                                          ),
+                                        ],
+                                      );
+                                    } else if (snapshot.hasError) {
+                                      return CustomText(
+                                          text: snapshot.error.toString());
+                                    } else {
+                                      return Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                            height: 10.h,
+                                          ),
+                                          Container(),
+                                          const CircularProgressIndicator(),
+                                          SizedBox(
+                                            height: 5.h,
+                                          ),
+                                          CustomText(text: '....جاري التحميل ')
+                                        ],
+                                      );
+                                    }
+                                  }),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          //زر مشاركة كصورة
+                          InkWell(
+                            onTap: () {
+                              takeScreenshot(_screenshotController);
+                            },
+                            child: Container(
+                              margin: EdgeInsets.only(right: 30.w, left: 30.w),
+                              height: 45.h,
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment(0.9, 0.1),
+                                      colors: [
+                                        Color(0xFF7060D4),
+                                        Color(0xFF9785EE),
+                                      ]),
+                                  border: Border.all(color: Color(0xFF9785EE)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10))),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.share,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  CustomText(
+                                    text: 'مشاركة الاسم كصورة',
+                                    textColor: Colors.white,
+                                    fontWight: FontWeight.bold,
+                                    fontSize: 17.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ));
               }),
+
+              /////////////////////////////////////////////////
             ],
           ),
         ),

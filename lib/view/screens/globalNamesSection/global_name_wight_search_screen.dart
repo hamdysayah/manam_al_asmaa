@@ -788,9 +788,14 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                   visible: controller.isVisibleChoiceWight,
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                      border: Border.all(color: Colors.white60, width: 2),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      image: DecorationImage(
+                        image: AssetImage(
+                            "assets/images/background_screen_search.png"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                     width: 300.w,
                     height: 300.h,
                     child: Column(
@@ -824,13 +829,13 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                       gridDelegate:
                                           SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
-                                        mainAxisSpacing: 2,
+                                        mainAxisSpacing: 1,
                                         childAspectRatio:
                                             MediaQuery.of(context).size.width /
                                                 (MediaQuery.of(context)
                                                         .size
                                                         .height /
-                                                    5),
+                                                    3),
                                       ),
                                       itemBuilder:
                                           (BuildContext context, int index) {
@@ -852,10 +857,20 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                           },
                                           child: Container(
                                               decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                color: Colors.white,
+                                                border: Border.all(
+                                                    width: 1,
+                                                    color: Colors.white60),
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                gradient: LinearGradient(
+                                                    begin:
+                                                        Alignment.bottomRight,
+                                                    end: Alignment.topLeft,
+                                                    colors: [
+                                                      Color(0xFF020202),
+                                                      Color(0xFF292A2D),
+                                                    ]),
                                               ),
+                                              padding: EdgeInsets.all(10),
                                               alignment: Alignment.center,
                                               margin: EdgeInsets.all(5),
                                               //لما يختار الوزن
