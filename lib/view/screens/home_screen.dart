@@ -111,7 +111,7 @@ class HomeScreen extends StatelessWidget {
                               color: Colors.white,
                             ),
                             SizedBox(
-                              width: 5.w,
+                              width: 10.w,
                             ),
                             CustomText(
                               text: 'اختر من الاسماء المستخدمة',
@@ -143,12 +143,14 @@ class HomeScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
-                              Icons.star,
+
+                            Image.asset(
+                              'assets/images/Icon_star.png',
                               color: Color(0xFF9785EE),
+                              scale: 1.8,
                             ),
                             SizedBox(
-                              width: 5.w,
+                              width: 10.w,
                             ),
                             CustomText(
                               text: 'ابتكر اسم جديد من جذور لغتنا العربية',

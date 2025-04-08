@@ -3,75 +3,241 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:manjam_asmaa/view/screens/estenbatNewNameSection/estenbat_name_from_name_search_screen.dart';
 import 'package:manjam_asmaa/view/screens/estenbatNewNameSection/estenbat_name_from_namecheckbox_search_screen.dart';
-import 'package:manjam_asmaa/view/screens/globalNamesSection/global_name_char_search_screen.dart';
+import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../widgets/custom_button.dart';
-import '../../widgets/custom_drawer.dart';
 import 'estenbat_name_from_last_towchar_root_search_screen.dart';
 import 'estenbat_name_from_root_search_screen.dart';
 import 'estenbat_name_from_towchar_wight_search_screen.dart';
 
 class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
-  const TypeOfSearchEntenbatNameScreen({super.key});
+  var scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(),
-          CustomText(text: 'اختر نوعية البحث'),
-          customButton(
-            text: 'أسماء مشتقة من جذر اسم معين',
-            buttonWidth: 200.w,
-            onClick: () {
-              Get.to(EstenbatNameFromNameSearchScreen());
-            },
+      key: scaffoldKey,
+      drawer: CustomDrawer(),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background_screen_search.png"),
+            fit: BoxFit.cover,
           ),
-          SizedBox(
-            height: 10.h,
-          ),
-          customButton(
-            text: 'أسماء مشتقة على وزن اسم معين',
-            buttonWidth: 200.w,
-            onClick: () {
-              Get.to(EstenbatNameFromNameCheckBoxSearchScreen());
-            },
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          customButton(
-            text: 'أسماء مشتقة من جذر',
-            buttonWidth: 200.w,
-            onClick: () {
-              Get.to(estenbat_name_from_root_search_screen());
-            },
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          customButton(
-            text: 'أسماء مشتقة من جذر أوله حرفين',
-            buttonWidth: 250.w,
-            onClick: () {
-              Get.to(estenbat_name_from_towchar_wight_search_screen());
-            },
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          customButton(
-            text: 'أسماء مشتقة من جذر آخره حرفين',
-            buttonWidth: 250.w,
-            onClick: () {
-              Get.to(estenbat_name_from_last_towchar_root_search_screen());
+        ),
+        child: SafeArea(
+          child: Column(
+            children: [
+              // الهيدر
+              SizedBox(
+                height: 10.h,
+              ),
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  CustomText(
+                    text: 'ابتكر اسم جديد من جذور لغتنا العربية',
+                    textColor: Colors.white,
+                  ),
+                  Spacer(),
+                  InkWell(
+                    onTap: () {
+                      scaffoldKey.currentState?.openDrawer();
+                    },
+                    child: Container(
+                        padding: EdgeInsets.only(left: 10.w),
+                        alignment: Alignment.topLeft,
+                        child: Image.asset(
+                          'assets/images/drawer_open_icon.png',
+                          scale: 0.8,
+                        )),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              // باقي التصميم
+              Container(),
 
-            },
-          )
-        ],
+              SizedBox(
+                height: 30.h,
+              ),
+              Image.asset(
+                'assets/images/Icon_star.png',
+                color: Color(0xFF9785EE),
+                scale: 1.1,
+              ),
+
+              SizedBox(
+                height: 10.h,
+              ),
+              CustomText(
+                text: 'ابتكر اسما جديد مميز\n لطفلك!',
+                fontWight: FontWeight.bold,
+                textColor: Colors.white,
+                fontSize: 25.sp,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Padding(
+                padding: EdgeInsets.all(5.w),
+                child: CustomText(
+                  textColor: Colors.white60,
+                  text:
+                      ' اختر الجذر اللغوي، وسنساعدك في ابتكار أسماء جديدة ومميزة تحمل معاني جميلة ومبتكرة!',
+                  fontWight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Container(),
+
+
+              // بداية الازرار
+              InkWell(
+                onTap: () {
+                  Get.to(EstenbatNameFromNameSearchScreen());
+                },
+                child: MyCustomButton(
+                  theTitle: 'اسم مشتق من جذر معين',
+                  theIconName: 'wight_search_icon.png',
+                  subTitle:
+                      'أدخل الجذر "ر ه ف" لنبتكر اسم مثل : استرهاف  , رهيف',
+                ),
+              ),
+
+              SizedBox(
+                height: 10.h,
+              ),
+              InkWell(
+                onTap: () {
+                  Get.to(EstenbatNameFromNameCheckBoxSearchScreen());
+                },
+                child: MyCustomButton(
+                  theTitle: 'اسم مشتق من جذر اسم معين تحبه',
+                  theIconName: 'wight_search_icon.png',
+                  subTitle:
+                      'أدخل اسم "رهف" (جذره: ر  ه ف) لنبتكر  اسم مثل: مرهفة , مراهف',
+                ),
+              ),
+
+              SizedBox(
+                height: 10.h,
+              ),
+
+              InkWell(
+                onTap: () {
+                  Get.to(estenbat_name_from_root_search_screen());
+                },
+                child: MyCustomButton(
+                    theTitle: 'اسم مشتق على وزن اسم معين تحبه',
+                    theIconName: 'wight_search_icon.png',
+                    subTitle:
+                        'أدخل اسم "رهف" واختر حرفين من جذره “ه ف” لنبتكر اسم مثل: شهف'),
+              ),
+
+              SizedBox(
+                height: 10.h,
+              ),
+
+              InkWell(
+                onTap: () {
+                  Get.to(estenbat_name_from_towchar_wight_search_screen());
+                },
+                child: MyCustomButton(
+                    theTitle: 'اسم مشتق من جذر اوله حرفين ووزن تحبهما',
+                    theIconName: 'wight_search_icon.png',
+                    subTitle:
+                        'أدخل الحرفين “ ه ف” والوزن استفعال لنبتكر اسم : استهفات'),
+              ),
+
+              SizedBox(
+                height: 10.h,
+              ),
+
+              InkWell(
+                onTap: () {
+                  Get.to(estenbat_name_from_last_towchar_root_search_screen());
+                },
+                child: MyCustomButton(
+                    theTitle: 'اسم مشتق من جذر اخره حرفين  ووزن تحبهما',
+                    theIconName: 'wight_search_icon.png',
+                    subTitle:
+                        'أدخل الحرفين “ ه ف” والوزن استفعال لنبتكر اسم : استجهاف'),
+              ),
+            ],
+          ),
+        ),
       ),
     );
+  }
+}
+
+// زر مصمم بطريقه مخصصه
+class MyCustomButton extends StatelessWidget {
+  MyCustomButton({
+    required this.theTitle,
+    required this.subTitle,
+    required this.theIconName,
+  });
+
+  String? theIconName;
+  String theTitle;
+  String subTitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 310.w,
+        height: 55.h,
+        decoration: BoxDecoration(
+            border: Border(
+              top: BorderSide(width: 1, color: Color(0xFF9785EE)),
+              left: BorderSide(width: 1, color: Color(0xFF9785EE)),
+              bottom: BorderSide(width: 1, color: Color(0xFF9785EE)),
+              right: BorderSide(width: 5.w, color: Color(0xFF9785EE)),
+            ),
+            //  border: Border.all(color: Color(0xFF9785EE)),
+            borderRadius: const BorderRadius.all(Radius.circular(10))),
+        child: Padding(
+          padding: EdgeInsets.only(right: 10.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomText(
+                textAlign: TextAlign.right,
+                text: theTitle,
+                textColor: Colors.white,
+                fontWight: FontWeight.bold,
+                fontSize: 15.sp,
+              ),
+              //نص فرعي
+              CustomText(
+                textAlign: TextAlign.right,
+                text: subTitle,
+                textColor: Colors.grey,
+                fontWight: FontWeight.bold,
+                fontSize: 13.sp,
+              ),
+            ],
+          ),
+        ));
   }
 }

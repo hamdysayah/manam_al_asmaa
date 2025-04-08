@@ -30,25 +30,33 @@ class CustomTextField extends StatelessWidget {
       controller: textEditingController,
       textInputAction: TextInputAction.next,
       onChanged: onChanged,
-      inputFormatters: [
-        LengthLimitingTextInputFormatter(1)
-      ],
+      style: TextStyle(
+          color: Colors.white, fontSize: 17.sp, fontWeight: FontWeight.bold),
+      inputFormatters: [LengthLimitingTextInputFormatter(1)],
       decoration: InputDecoration(
           suffixIcon: Visibility(
             visible: showSuffixIcon,
             child: IconButton(
-                icon: const Icon(Icons.clear_sharp),
+                icon: const Icon(
+                  Icons.clear_sharp,
+                  color: Colors.white,
+                ),
                 onPressed: suffixIconClick),
           ),
+          enabledBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(10.0),
+              ),
+              borderSide: BorderSide(color: Color(0xFF7060D4))),
           border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(10.0),
-            ),
-          ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10.0),
+              ),
+              borderSide: BorderSide(color: Color(0xFF7060D4))),
           filled: true,
-          hintStyle: TextStyle(color: Colors.grey[700], fontSize: 10.sp),
+          hintStyle: TextStyle(color: Colors.white60, fontSize: 10.sp),
           hintText: hintText,
-          fillColor: Colors.white70),
+          fillColor: Colors.black),
     );
   }
 }

@@ -126,9 +126,10 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                         return FutureBuilder<List<String>>(
                             future: currentOptionRootOrNameOptions == 'الجذر'
                                 ? DatabaseQueries()
-                                .getAllRoot(currentOptionMaleOrFemale)
-                                : DatabaseQueries().getNamesFromDbForRootSection(
-                                currentOptionMaleOrFemale),
+                                    .getAllRoot(currentOptionMaleOrFemale)
+                                : DatabaseQueries()
+                                    .getNamesFromDbForRootSection(
+                                        currentOptionMaleOrFemale),
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
                                 if (snapshot.data!.isNotEmpty) {
@@ -138,14 +139,15 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                     height: 40.h,
                                     child: GetBuilder<AppController>(
                                       builder: (controller) => Autocomplete(
-                                        optionsBuilder:
-                                            (TextEditingValue textEditingValue) {
+                                        optionsBuilder: (TextEditingValue
+                                            textEditingValue) {
                                           if (textEditingValue.text == '') {
-                                            return const Iterable<String>.empty();
+                                            return const Iterable<
+                                                String>.empty();
                                           } else {
                                             List<String> matches = <String>[];
-                                            matches.addAll(
-                                                theNameList as Iterable<String>);
+                                            matches.addAll(theNameList
+                                                as Iterable<String>);
                                             matches.retainWhere((s) {
                                               return s.toLowerCase().contains(
                                                   textEditingValue.text
@@ -157,13 +159,14 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                         },
                                         fieldViewBuilder: (BuildContext context,
                                             TextEditingController
-                                            textEditingController,
+                                                textEditingController,
                                             FocusNode focusNode,
                                             VoidCallback onFieldSubmitted) {
                                           textEditingControllerTest =
                                               textEditingController;
                                           return TextField(
-                                            cursorColor: const Color(0xFF292925),
+                                            cursorColor:
+                                                const Color(0xFF292925),
                                             autofocus: false,
                                             controller: textEditingController,
                                             onTapOutside: (event) {
@@ -179,40 +182,42 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                                 color: Colors.white60),
                                             textAlign: TextAlign.center,
                                             textAlignVertical:
-                                            TextAlignVertical.bottom,
+                                                TextAlignVertical.bottom,
                                             decoration: InputDecoration(
                                               suffixIcon: nameFromTextField
-                                                  .isNotEmpty
+                                                      .isNotEmpty
                                                   ? InkWell(
-                                                onTap: () {
-                                                  textEditingController
-                                                      .clear();
-                                                  nameFromTextField = '';
-                                                  appController.update();
-                                                },
-                                                child: const Icon(
-                                                  Icons.clear,
-                                                  color: Colors.white,
-                                                ),
-                                              )
+                                                      onTap: () {
+                                                        textEditingController
+                                                            .clear();
+                                                        nameFromTextField = '';
+                                                        appController.update();
+                                                      },
+                                                      child: const Icon(
+                                                        Icons.clear,
+                                                        color: Colors.white,
+                                                      ),
+                                                    )
                                                   : null,
                                               hintStyle: const TextStyle(
                                                   color: Colors.white54,
                                                   fontFamily: 'ZainRegular'),
                                               hintText:
-                                              " ادخل ${currentOptionRootOrNameOptions == 'الجذر' ? 'الجذر' : 'الاسم'}",
+                                                  " ادخل ${currentOptionRootOrNameOptions == 'الجذر' ? 'الجذر' : 'الاسم'}",
                                               border: OutlineInputBorder(
                                                   borderSide: const BorderSide(
                                                       color: Color(0xff7B7B7B),
                                                       width: 2),
                                                   borderRadius:
-                                                  BorderRadius.circular(10)),
+                                                      BorderRadius.circular(
+                                                          10)),
                                               focusedBorder: OutlineInputBorder(
                                                   borderSide: const BorderSide(
                                                       color: Color(0xff7B7B7B),
                                                       width: 2),
                                                   borderRadius:
-                                                  BorderRadius.circular(10)),
+                                                      BorderRadius.circular(
+                                                          10)),
                                             ),
                                             focusNode: focusNode,
                                           );
@@ -240,82 +245,84 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                         },
                                         optionsViewBuilder:
                                             (context, onSelected, options) =>
-                                            Align(
-                                              alignment: Alignment.topRight,
-                                              child: Material(
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    gradient: LinearGradient(
-                                                        begin: Alignment.bottomRight,
-                                                        end: Alignment.topLeft,
-                                                        colors: [
-                                                          Color(0xFF020202),
-                                                          Color(0xFF292A2D),
-                                                        ]),
-                                                  ),
-                                                  width: 280.w,
-                                                  child: ConstrainedBox(
-                                                    constraints: BoxConstraints(
-                                                      maxWidth: 280.w,
-                                                      maxHeight:
-                                                      (MediaQuery.of(context)
-                                                          .size
-                                                          .height /
+                                                Align(
+                                          alignment: Alignment.topRight,
+                                          child: Material(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                gradient: LinearGradient(
+                                                    begin:
+                                                        Alignment.bottomRight,
+                                                    end: Alignment.topLeft,
+                                                    colors: [
+                                                      Color(0xFF020202),
+                                                      Color(0xFF292A2D),
+                                                    ]),
+                                              ),
+                                              width: 280.w,
+                                              child: ConstrainedBox(
+                                                constraints: BoxConstraints(
+                                                  maxWidth: 280.w,
+                                                  maxHeight: (MediaQuery.of(
+                                                                  context)
+                                                              .size
+                                                              .height /
                                                           2) -
-                                                          (MediaQuery.of(context)
+                                                      (MediaQuery.of(context)
                                                               .viewInsets
                                                               .bottom /
-                                                              3),
-                                                    ),
-                                                    child: ListView(
-                                                      shrinkWrap: true,
-                                                      padding: EdgeInsets.zero,
-                                                      children: options
-                                                          .map(
-                                                            (e) => Column(
+                                                          3),
+                                                ),
+                                                child: ListView(
+                                                  shrinkWrap: true,
+                                                  padding: EdgeInsets.zero,
+                                                  children: options
+                                                      .map(
+                                                        (e) => Column(
                                                           children: [
                                                             InkWell(
                                                               onTap: () =>
                                                                   onSelected(e),
                                                               child: Padding(
                                                                 padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    top: 5,
-                                                                    bottom: 5,
-                                                                    right:
-                                                                    10),
+                                                                    const EdgeInsets
+                                                                        .only(
+                                                                        top: 5,
+                                                                        bottom:
+                                                                            5,
+                                                                        right:
+                                                                            10),
                                                                 child: Align(
                                                                   alignment:
-                                                                  Alignment
-                                                                      .topRight,
+                                                                      Alignment
+                                                                          .topRight,
                                                                   child: Text(
                                                                     e,
                                                                     style: TextStyle(
                                                                         color: Colors
                                                                             .white,
-                                                                        fontSize:
-                                                                        18.sp,
+                                                                        fontSize: 18
+                                                                            .sp,
                                                                         fontFamily:
-                                                                        'HekayaFont'),
+                                                                            'HekayaFont'),
                                                                   ),
                                                                 ),
                                                               ),
                                                             ),
                                                             Container(
                                                               height: 0.1,
-                                                              color:
-                                                              Colors.white60,
+                                                              color: Colors
+                                                                  .white60,
                                                             )
                                                           ],
                                                         ),
                                                       )
-                                                          .toList(),
-                                                    ),
-                                                  ),
+                                                      .toList(),
                                                 ),
                                               ),
                                             ),
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   );
@@ -345,21 +352,16 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                             });
                       }),
 
-
-
-
-
-
                       // خيار البحث من خلال الجذر او جذر الاسم
                       GetBuilder<AppController>(builder: (controller) {
                         return Container(
                           height: 60.h,
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
+                          padding: const EdgeInsets.all(10),
+                          decoration: const BoxDecoration(
                             color: Colors.white24,
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                           ),
-                          margin: EdgeInsets.all(10),
+                          margin: const EdgeInsets.all(10),
                           alignment: Alignment.center,
                           child: ListView.builder(
                             itemBuilder: (context, index) {
@@ -380,7 +382,7 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                         gradient:
                                             currentOptionRootOrNameOptionsIndex ==
                                                     index
-                                                ? LinearGradient(
+                                                ? const LinearGradient(
                                                     begin: Alignment.topCenter,
                                                     end: Alignment(0.9, 0.1),
                                                     colors: [
@@ -388,18 +390,15 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                                                         Color(0xFF9785EE),
                                                       ])
                                                 : null,
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(30))),
                                     alignment: Alignment.center,
-                                    //padding: EdgeInsets.all(10.w),
                                     width:
                                         MediaQuery.of(context).size.width / 2 -
                                             20,
                                     height: 50.h,
-                                    child: Expanded(
-                                      child: CustomText(
-                                          text: rootOrNameOptions[index]),
-                                    )),
+                                    child: CustomText(
+                                        text: rootOrNameOptions[index])),
                               );
                             },
                             itemCount: 2,
