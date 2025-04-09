@@ -284,7 +284,9 @@ class DatabaseQueries {
     }
 
     for (var item in list) {
-      theNamesList.add(item[columnName]);
+      if (item[columnName] != '3') {
+        theNamesList.add(item[columnName]);
+      }
     }
     return theNamesList;
   }

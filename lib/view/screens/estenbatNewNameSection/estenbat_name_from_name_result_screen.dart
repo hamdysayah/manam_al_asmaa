@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manjam_asmaa/medel/namesModel.dart';
+import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import 'package:get/get.dart';
 
@@ -10,30 +11,77 @@ import '../../../core/database/database_queries.dart';
 class EstenbatNameFromNameResultScreen extends StatelessWidget {
   AppController appController = Get.find();
   String selectedName = '';
+  var scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     appController.isVisibleNameDetailsDialog = false;
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/background_screen_search.png"),
-              fit: BoxFit.cover,
-            ),
+      drawer: CustomDrawer(),
+      key: scaffoldKey,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background_screen_search.png"),
+            fit: BoxFit.cover,
           ),
+        ),
+        child: SafeArea(
           child: Stack(
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // الهيدر
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      CustomText(
+                        text: 'اسم مشتق من جذر معين',
+                        textColor: Colors.white,
+                      ),
+                      Spacer(),
+                      InkWell(
+                        onTap: () {
+                          scaffoldKey.currentState?.openDrawer();
+                        },
+                        child: Container(
+                            padding: EdgeInsets.only(left: 10.w),
+                            alignment: Alignment.topLeft,
+                            child: Image.asset(
+                              'assets/images/drawer_open_icon.png',
+                              scale: 0.8,
+                            )),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Container(),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+
                   Container(),
                   CustomText(
-                    text:
-                        'الاسماء المشتقه من جذر الاسم ${Get.arguments}',
+                    text: 'الاسماء المشتقه من جذر الاسم ${Get.arguments}',
                     fontSize: 20.sp,
                   ),
                   GetBuilder<AppController>(builder: (controller) {
@@ -71,9 +119,10 @@ class EstenbatNameFromNameResultScreen extends StatelessWidget {
                                         appController.update();
                                       },
                                       child: Container(
-
                                           decoration: BoxDecoration(
-                                            gradient: LinearGradient(
+                                            border: Border.all(
+                                                color: Colors.white60),
+                                            gradient: const LinearGradient(
                                                 begin: Alignment.bottomRight,
                                                 end: Alignment.topLeft,
                                                 colors: [

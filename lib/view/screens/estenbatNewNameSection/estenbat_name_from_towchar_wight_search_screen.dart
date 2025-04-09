@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:manjam_asmaa/controller/app_contrller.dart';
 import 'package:manjam_asmaa/core/utils/constants.dart';
 import 'package:manjam_asmaa/view/widgets/custom_button.dart';
+import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 
 import '../../../core/database/database_queries.dart';
 import '../../widgets/custom_text.dart';
@@ -17,6 +18,7 @@ class estenbat_name_from_towchar_wight_search_screen extends StatelessWidget {
   TextEditingController textEditingController1 = TextEditingController(),
       textEditingController2 = TextEditingController(),
       textEditingController3 = TextEditingController();
+  var scaffoldKey = GlobalKey<ScaffoldState>();
 
   AppController appController = Get.find();
 
@@ -418,124 +420,206 @@ class estenbat_name_from_towchar_wight_search_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(''),
-      ),
-      body: Column(
-        children: [
-          CustomText(
-            text:
-                'اشتقاق اسماء من اول حرفين في جذر وعلى وزن معين. اختر الآحرف واختر الوزن ',
-            fontWight: FontWeight.bold,
+      drawer: const CustomDrawer(),
+      key: scaffoldKey,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background_screen_search.png"),
+            fit: BoxFit.cover,
           ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Row(
+        ),
+        child: SafeArea(
+          child: Column(
             children: [
+              // الهيدر
               SizedBox(
-                width: 10.w,
+                height: 10.h,
               ),
-              GetBuilder<AppController>(builder: (controller) {
-                return Expanded(
-                    child: CustomTextField(
-                  textEditingController: textEditingController1,
-                  hintText: 'الحرف الاول',
-                  showSuffixIcon: appController.showSuffixText4,
-                  suffixIconClick: () {
-                    textEditingController1.clear();
-                    char1 = '';
-                    appController.showSuffixText4 = false;
-                    appController.update();
-                  },
-                  onChanged: (value) {
-                    char1 = value;
-                    value.isNotEmpty
-                        ? appController.showSuffixText4 = true
-                        : appController.showSuffixText4 = false;
-                    appController.update();
-                  },
-                ));
-              }),
-              SizedBox(
-                width: 10.w,
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  CustomText(
+                    text: 'اسم مشتق من جذر معين',
+                    textColor: Colors.white,
+                  ),
+                  Spacer(),
+                  InkWell(
+                    onTap: () {
+                      scaffoldKey.currentState?.openDrawer();
+                    },
+                    child: Container(
+                        padding: EdgeInsets.only(left: 10.w),
+                        alignment: Alignment.topLeft,
+                        child: Image.asset(
+                          'assets/images/drawer_open_icon.png',
+                          scale: 0.8,
+                        )),
+                  ),
+                ],
               ),
-              GetBuilder<AppController>(builder: (contoller) {
-                return Expanded(
-                  child: Expanded(
-                      child: CustomTextField(
-                    textEditingController: textEditingController2,
-                    hintText: 'الحرف الثاني',
-                    suffixIconClick: () {
-                      textEditingController2.clear();
-                      char2 = '';
-                      appController.showSuffixText5 = false;
-                      appController.update();
-                    },
-                    showSuffixIcon: appController.showSuffixText5,
-                    onChanged: (value) {
-                      char2 = value;
-                      value.isNotEmpty
-                          ? appController.showSuffixText5 = true
-                          : appController.showSuffixText5 = false;
-                      appController.update();
-                    },
-                  )),
-                );
-              }),
               SizedBox(
-                width: 10.w,
+                height: 20.h,
+              ),
+              Container(),
+              SizedBox(
+                height: 10.h,
+              ),
+              Padding(
+                padding: EdgeInsets.all(5),
+                child: CustomText(
+                  text:
+                      'ابتكر اسمًا فريدًا لطفلك بجذر يبدأ بحرفين ويتبع وزنًا معينًا!',
+                  fontWight: FontWeight.bold,
+                ),
+              ),
+
+              Padding(
+                padding: EdgeInsets.only(right: 5, left: 5),
+                child: CustomText(
+                  fontSize: 15.sp,
+                  textColor: Colors.white60,
+                  text:
+                      'حدد أول حرفين من الجذر، واختر الوزن الذي تفضل \n  أدخل الحرفين "ج م" واختر الوزن الصرفي “مُنفَعِل” سنبتكر لك اسماء مثل : “مُنجَمِر” , “مُنجَمَد” , “مُنجَمِع”',
+                  fontWight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  GetBuilder<AppController>(builder: (controller) {
+                    return Expanded(
+                        child: CustomTextField(
+                      textEditingController: textEditingController1,
+                      hintText: 'الحرف الاول',
+                      showSuffixIcon: appController.showSuffixText4,
+                      suffixIconClick: () {
+                        textEditingController1.clear();
+                        char1 = '';
+                        appController.showSuffixText4 = false;
+                        appController.update();
+                      },
+                      onChanged: (value) {
+                        char1 = value;
+                        value.isNotEmpty
+                            ? appController.showSuffixText4 = true
+                            : appController.showSuffixText4 = false;
+                        appController.update();
+                      },
+                    ));
+                  }),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  GetBuilder<AppController>(builder: (contoller) {
+                    return Expanded(
+                      child: Expanded(
+                          child: CustomTextField(
+                        textEditingController: textEditingController2,
+                        hintText: 'الحرف الثاني',
+                        suffixIconClick: () {
+                          textEditingController2.clear();
+                          char2 = '';
+                          appController.showSuffixText5 = false;
+                          appController.update();
+                        },
+                        showSuffixIcon: appController.showSuffixText5,
+                        onChanged: (value) {
+                          char2 = value;
+                          value.isNotEmpty
+                              ? appController.showSuffixText5 = true
+                              : appController.showSuffixText5 = false;
+                          appController.update();
+                        },
+                      )),
+                    );
+                  }),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Expanded(
+                child: GridView.builder(
+                  itemCount: weightsList.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 2,
+                    childAspectRatio: MediaQuery.of(context).size.width /
+                        (MediaQuery.of(context).size.height / 5),
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return InkWell(
+                      onTap: () {
+                        String theColumnName = '';
+                        for (int x = 8; x < weightsList.length - 1; x++) {
+                          theWightGlobal =
+                              weightsList[index].toString().split('-')[0];
+                          if (theWightGlobal.replaceAll(' ', '') ==
+                              wordsMap['field$x']!) {
+                            theColumnName = 'field$x';
+                          }
+                        }
+
+                        if (char1 == '' || char2 == '') {
+                          showToast('الرجاء ادخال الاحرف');
+                        } else {
+                          Get.to(EstenbatNameFromTowcharWightResultScreen(),
+                              arguments: [
+                                char1,
+                                char2,
+                                theColumnName,
+                                theWightGlobal.replaceAll(' ', '')
+                              ]);
+                        }
+                      },
+                      child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white60),
+                            gradient: const LinearGradient(
+                                begin: Alignment.bottomRight,
+                                end: Alignment.topLeft,
+                                colors: [
+                                  Color(0xFF020202),
+                                  Color(0xFF292A2D),
+                                ]),
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                          ),
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.all(5),
+                          //لما يختار الوزن
+                          child: CustomText(
+                            text: weightsList[index].toString(),
+                          )),
+                    );
+                  },
+                ),
               ),
             ],
           ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Expanded(
-            child: GridView.builder(
-              itemCount: weightsList.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 2,
-                childAspectRatio: MediaQuery.of(context).size.width /
-                    (MediaQuery.of(context).size.height / 5),
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                return InkWell(
-                  onTap: () {
-                    String theColumnName = '';
-                    for (int x = 8; x < weightsList.length - 1; x++) {
-                      theWightGlobal =
-                          weightsList[index].toString().split('-')[0];
-                      if (theWightGlobal.replaceAll(' ', '') ==
-                          wordsMap['field$x']!) {
-                        theColumnName = 'field$x';
-                      }
-                    }
-
-                    if (char1 == '' || char2 == '') {
-                      showToast('الرجاء ادخال الاحرف');
-                    } else {
-                      Get.to(EstenbatNameFromTowcharWightResultScreen(),
-                          arguments: [char1, char2, theColumnName,theWightGlobal.replaceAll(' ', '')]);
-                    }
-                  },
-                  child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                      ),
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.all(5),
-                      //لما يختار الوزن
-                      child: CustomText(
-                        text: weightsList[index].toString(),
-                      )),
-                );
-              },
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

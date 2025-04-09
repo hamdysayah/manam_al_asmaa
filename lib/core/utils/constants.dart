@@ -48,16 +48,19 @@ void takeScreenshot(ScreenshotController _screenshotController) async {
       await imagePath.writeAsBytes(image);
 
       /// Share Plugin
-      await Share.shareXFiles([XFile(imagePath.path)]);
+      await Share.shareXFiles(
+          subject: 'منجم الآسماء',
+          text:
+              'ابحث واكتشف  المزيد في منجم  الاسماء حمل التطبيق من الرابط التالي : https://play.google.com/store/apps/details?id=com.almaany.manjam_asmaa ',
+          [XFile(imagePath.path)]);
     } else {
       print('object');
     }
   });
 }
+
 Future launchUrlFunc(String url) async {
   if (!await launchUrl(Uri.parse(url))) {
     throw Exception('Could not launch $url');
   }
-
-
 }

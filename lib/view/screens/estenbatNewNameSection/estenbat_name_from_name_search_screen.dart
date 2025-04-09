@@ -123,7 +123,7 @@ class EstenbatNameFromNameSearchScreen extends StatelessWidget {
                               if (snapshot.data!.isNotEmpty) {
                                 theNameList = snapshot.data!;
                                 return SizedBox(
-                                  width: 210.w,
+                                  width: 250.w,
                                   height: 40.h,
                                   child: GetBuilder<AppController>(
                                     builder: (controller) => Autocomplete(
@@ -221,11 +221,19 @@ class EstenbatNameFromNameSearchScreen extends StatelessWidget {
                                         alignment: Alignment.topRight,
                                         child: Material(
                                           child: Container(
-                                            color: Colors.blue,
-                                            width: 210.w,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  begin: Alignment.bottomRight,
+                                                  end: Alignment.topLeft,
+                                                  colors: [
+                                                    Color(0xFF020202),
+                                                    Color(0xFF292A2D),
+                                                  ]),
+                                            ),
+                                            width: 250.w,
                                             child: ConstrainedBox(
                                               constraints: BoxConstraints(
-                                                maxWidth: 210.w,
+                                                maxWidth: 250.w,
                                                 maxHeight:
                                                     (MediaQuery.of(context)
                                                                 .size
@@ -260,20 +268,20 @@ class EstenbatNameFromNameSearchScreen extends StatelessWidget {
                                                                         .topRight,
                                                                 child: Text(
                                                                   e,
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontSize:
-                                                                        17.sp,
-                                                                  ),
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontSize:
+                                                                          18.sp,
+                                                                      fontFamily:
+                                                                          'HekayaFont'),
                                                                 ),
                                                               ),
                                                             ),
                                                           ),
                                                           Container(
-                                                            height: 0.1,
-                                                            color: Colors.black,
+                                                            height: 0.2,
+                                                            color: Colors.white,
                                                           )
                                                         ],
                                                       ),

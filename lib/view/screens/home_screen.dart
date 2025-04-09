@@ -137,16 +137,21 @@ class HomeScreen extends StatelessWidget {
                         width: 290.w,
                         height: 45.h,
                         decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xFF9785EE)),
+                            gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment(0.9, 0.1),
+                                colors: [
+                                  Color(0xFF7060D4),
+                                  Color(0xFF9785EE),
+                                ]),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-
                             Image.asset(
                               'assets/images/Icon_star.png',
-                              color: Color(0xFF9785EE),
+                              color: Colors.white,
                               scale: 1.8,
                             ),
                             SizedBox(
@@ -154,7 +159,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                             CustomText(
                               text: 'ابتكر اسم جديد من جذور لغتنا العربية',
-                              textColor: Color(0xFF9785EE),
+                              textColor: Colors.white,
                               fontWight: FontWeight.bold,
                               fontSize: 15.sp,
                             ),
