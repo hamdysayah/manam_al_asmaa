@@ -61,7 +61,7 @@ class EstenbatNameFromNameSearchScreen extends StatelessWidget {
                           width: 10.w,
                         ),
                         CustomText(
-                          text: 'اسم مشتق من جذر معين',
+                          text: 'اسم مشتق من جذر اسم معين',
                           textColor: Colors.white,
                         ),
                         Spacer(),
@@ -94,7 +94,8 @@ class EstenbatNameFromNameSearchScreen extends StatelessWidget {
                       height: 10.h,
                     ),
                     CustomText(
-                      text: 'ابتكر اسمًا فريدًا لطفلك من جذر\n معين',
+                      text:
+                          'ابتكر اسمًا فريدًا لطفلك من خلال جذر\n اسم معين تحبه',
                       fontWight: FontWeight.bold,
                       textColor: Colors.white,
                       fontSize: 25.sp,
@@ -105,7 +106,7 @@ class EstenbatNameFromNameSearchScreen extends StatelessWidget {
                       child: CustomText(
                         textColor: Colors.white60,
                         text:
-                            'أدخل الجذر "ر ه ف" لنبتكر اسم مثل : استرهاف  , رهيف',
+                            '  أدخل اسمًا تحبه، مثل "رهف"، وسنستخرج الجذر منه (ر ه ف) وسوق نبتكر  لك اسما جديدا مشتقا منه، مثل : “مرهفة” , “مراهف”',
                         fontWight: FontWeight.bold,
                       ),
                     ),
@@ -189,7 +190,7 @@ class EstenbatNameFromNameSearchScreen extends StatelessWidget {
                                                 fontSize: 15.sp,
                                                 color: Colors.white60),
                                             hintText:
-                                                'ادخل الجذر بناء على المقترحات',
+                                                'ادخل الاسم بناء على المقترحات',
                                             border: OutlineInputBorder(
                                                 borderSide: const BorderSide(
                                                     color: Color(0xff7B7B7B),

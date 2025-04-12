@@ -108,17 +108,14 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
               ),
               Container(),
 
-
               // بداية الازرار
               InkWell(
                 onTap: () {
                   Get.to(EstenbatNameFromNameSearchScreen());
                 },
                 child: MyCustomButton(
-                  theTitle: 'اسم مشتق من جذر معين',
-                  theIconName: 'wight_search_icon.png',
-                  subTitle:
-                      'أدخل الجذر "ر ه ف" لنبتكر اسم مثل : استرهاف  , رهيف',
+                  theTitle: 'اسم مشتق من جذر اسم معين تحبه',
+                  subTitle:'أدخل اسم "رهف" (جذره: ر  ه ف) لنبتكر  اسم مثل: مرهفة , مراهف'
                 ),
               ),
 
@@ -130,10 +127,8 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
                   Get.to(EstenbatNameFromNameCheckBoxSearchScreen());
                 },
                 child: MyCustomButton(
-                  theTitle: 'اسم مشتق من جذر اسم معين تحبه',
-                  theIconName: 'wight_search_icon.png',
-                  subTitle:
-                      'أدخل اسم "رهف" (جذره: ر  ه ف) لنبتكر  اسم مثل: مرهفة , مراهف',
+                  theTitle: 'اسم مشتق على وزن اسم معين تحبه',
+                  subTitle:'أدخل اسم "رهف" واختر حرفين من جذره “ه ف” لنبتكر اسم مثل: شهف'
                 ),
               ),
 
@@ -146,10 +141,9 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
                   Get.to(estenbat_name_from_root_search_screen());
                 },
                 child: MyCustomButton(
-                    theTitle: 'اسم مشتق على وزن اسم معين تحبه',
-                    theIconName: 'wight_search_icon.png',
-                    subTitle:
-                        'أدخل اسم "رهف" واختر حرفين من جذره “ه ف” لنبتكر اسم مثل: شهف'),
+                    theTitle: 'اسم مشتق من جذر معين',
+                    subTitle:'أدخل الجذر "ر ه ف" لنبتكر اسم مثل : استرهاف  , رهيف'
+                ),
               ),
 
               SizedBox(
@@ -162,7 +156,6 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
                 },
                 child: MyCustomButton(
                     theTitle: 'اسم مشتق من جذر اوله حرفين ووزن تحبهما',
-                    theIconName: 'wight_search_icon.png',
                     subTitle:
                         'أدخل الحرفين “ ه ف” والوزن استفعال لنبتكر اسم : استهفات'),
               ),
@@ -177,7 +170,6 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
                 },
                 child: MyCustomButton(
                     theTitle: 'اسم مشتق من جذر اخره حرفين  ووزن تحبهما',
-                    theIconName: 'wight_search_icon.png',
                     subTitle:
                         'أدخل الحرفين “ ه ف” والوزن استفعال لنبتكر اسم : استجهاف'),
               ),
@@ -194,18 +186,17 @@ class MyCustomButton extends StatelessWidget {
   MyCustomButton({
     required this.theTitle,
     required this.subTitle,
-    required this.theIconName,
   });
 
-  String? theIconName;
   String theTitle;
   String subTitle;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 310.w,
-        height: 55.h,
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.only(right: 20.w,left: 20.w),
+        height: 60.h,
         decoration: BoxDecoration(
             border: Border(
               top: BorderSide(width: 1, color: Color(0xFF9785EE)),
@@ -213,7 +204,13 @@ class MyCustomButton extends StatelessWidget {
               bottom: BorderSide(width: 1, color: Color(0xFF9785EE)),
               right: BorderSide(width: 5.w, color: Color(0xFF9785EE)),
             ),
-            //  border: Border.all(color: Color(0xFF9785EE)),
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment(0.9, 0.1),
+                colors: [
+                  Color(0xFF7060D4),
+                  Color(0xFF9785EE),
+                ]),
             borderRadius: const BorderRadius.all(Radius.circular(10))),
         child: Padding(
           padding: EdgeInsets.only(right: 10.w),
@@ -232,7 +229,7 @@ class MyCustomButton extends StatelessWidget {
               CustomText(
                 textAlign: TextAlign.right,
                 text: subTitle,
-                textColor: Colors.grey,
+                textColor: Colors.white,
                 fontWight: FontWeight.bold,
                 fontSize: 13.sp,
               ),

@@ -1,17 +1,21 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manjam_asmaa/medel/namesModel.dart';
 import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import 'package:get/get.dart';
+import 'package:screenshot/screenshot.dart';
 
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
+import '../../../core/utils/constants.dart';
 
 class EstenbatNameFromRootResultScreen extends StatelessWidget {
   AppController appController = Get.find();
   String selectedName = '';
   var scaffoldKey = GlobalKey<ScaffoldState>();
+  final _screenshotController = ScreenshotController();
 
   @override
   Widget build(BuildContext context) {
@@ -172,76 +176,266 @@ class EstenbatNameFromRootResultScreen extends StatelessWidget {
                 ],
               ),
 
-              //عرض تفاصيل الاسم
+              // عرض تفاصيل الآسم
               GetBuilder<AppController>(builder: (controller) {
                 return Visibility(
                     visible: controller.isVisibleNameDetailsDialog,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(),
-                        Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(),
+                          Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                  begin: Alignment.bottomRight,
+                                  end: Alignment.topLeft,
+                                  colors: [
+                                    Color(0xFF020202),
+                                    Color(0xFF292A2D),
+                                  ]),
+                              border: Border.all(
+                                  color: const Color(0xFF585858), width: 2),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
+                                  const BorderRadius.all(Radius.circular(10)),
                               color: Colors.black,
-                              border: Border.all(width: 1)),
-                          width: 300.w,
-                          //  height: 300.h,
-                          child: FutureBuilder<List<String>>(
-                              future: DatabaseQueries()
-                                  .getResultFormEstenbat(selectedName),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  return Padding(
-                                    padding: EdgeInsets.all(10),
-                                    child: Column(
+                            ),
+                            //width: 300.w,
+                            //  height: 300.h,
+                            child: FutureBuilder<List<String>>(
+                                future: DatabaseQueries()
+                                    .getResultFormEstenbat(selectedName),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    return Column(
                                       children: [
-                                        Container(
-                                          alignment: Alignment.topRight,
-                                          child: IconButton(
-                                              onPressed: () {
-                                                controller
-                                                        .isVisibleNameDetailsDialog =
-                                                    false;
-                                                controller.update();
-                                              },
-                                              icon: const Icon(Icons.close)),
+                                        // الشكل الذي سيتم مشاركته
+                                        Screenshot(
+                                          controller: _screenshotController,
+                                          child: Container(
+                                            width: double.infinity,
+                                            //  height: 200.h,
+                                            decoration: BoxDecoration(
+                                                color: Colors.black,
+                                                image: DecorationImage(
+                                                    image: AssetImage(
+                                                        "assets/images/drawer_header.png"),
+                                                    fit: BoxFit.cover)),
+                                            child: Column(
+                                              children: [
+                                                // ايقونة اغلاق الديالوج
+                                                Container(
+                                                  alignment: Alignment.topRight,
+                                                  child: IconButton(
+                                                      onPressed: () {
+                                                        controller
+                                                                .isVisibleNameDetailsDialog =
+                                                            false;
+                                                        controller.update();
+                                                      },
+                                                      icon: const Icon(
+                                                        Icons.close,
+                                                        color: Colors.white,
+                                                      )),
+                                                ),
+
+                                                // اسم الشخص
+                                                CustomText(
+                                                  text: ' $selectedName',
+                                                  fontSize: 90.sp,
+                                                  fontFamily: 'BIXIE_Regular',
+                                                ),
+
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: 10.w),
+                                                  child: CustomText(
+                                                    textColor: Colors.white,
+                                                    text: 'المعنى :',
+                                                    fontSize: 20.sp,
+                                                    fontWight: FontWeight.bold,
+                                                  ),
+                                                ),
+
+                                                CustomText(
+                                                  fontSize: 17.sp,
+                                                  fontWight: FontWeight.bold,
+                                                  text:
+                                                      'الاسم $selectedName مشتق على الوزن ( ${snapshot.data?[0]})  من الجذر (${snapshot.data?[1].replaceAll('1', '')}) وهو جذر (${snapshot.data?[2] == 'معروف' ? 'مستخدم' : 'غير مستخدم'} ) في اللغة العربية.\n\n ',
+                                                ),
+                                              ],
+                                            ),
+                                          ),
                                         ),
-                                        SizedBox(
-                                          width: 10.w,
-                                        ),
-                                        CustomText(
-                                            text:
-                                                'الاسم $selectedName مشتق على الوزن ( ${snapshot.data?[0]})  من الجذر (${snapshot.data?[1].replaceAll('1', '')}) وهو جذر (${snapshot.data?[2] == 'معروف' ? 'مستخدم' : 'غير مستخدم'} ) في اللغة العربية. لمعرفة معنى الجذر إن كان مستخدما ارجع على موقع almaany.com.  إذا أعجبك هذا الاشتقاق وترى أنه يصلح اسم لشخص انقر على أيقونة شارك لمشاركته مع الآخرين في صورة.'),
+
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(),
+                                            Padding(
+                                              padding: EdgeInsets.all(10),
+                                              child: RichText(
+                                                text: TextSpan(
+                                                  text: '',
+                                                  style: TextStyle(
+                                                      fontFamily: 'ZainRegular',
+                                                      fontSize: 15.sp,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                  children: [
+                                                    TextSpan(
+                                                      text:
+                                                          ' لمعرفة معنى الجذر  إن كان مستخدما ارجع على موقع ',
+                                                    ),
+                                                    TextSpan(
+                                                      text: 'almaany.com\n\n',
+                                                      style: TextStyle(
+                                                        color: Color(
+                                                            kPrimaryColor),
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 21,
+                                                      ),
+                                                      recognizer:
+                                                          TapGestureRecognizer()
+                                                            ..onTap = () {
+                                                              launchUrlFunc(
+                                                                  'https://www.almaany.com/');
+                                                            },
+                                                    ),
+                                                    TextSpan(
+                                                        text:
+                                                            ' إذا أعجبك هذا الاشتقاق وترى أنه يصلح اسم لشخص انقر على زر آعجبني '),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        )
                                       ],
-                                    ),
-                                  );
-                                } else if (snapshot.hasError) {
-                                  return CustomText(
-                                      text: snapshot.error.toString());
-                                } else {
-                                  return Column(
+                                    );
+                                  } else if (snapshot.hasError) {
+                                    return CustomText(
+                                        text: snapshot.error.toString());
+                                  } else {
+                                    return Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          height: 10.h,
+                                        ),
+                                        Container(),
+                                        const CircularProgressIndicator(),
+                                        SizedBox(
+                                          height: 5.h,
+                                        ),
+                                        CustomText(text: '....جاري التحميل ')
+                                      ],
+                                    );
+                                  }
+                                }),
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Row(
+                            children: [
+                              //زر مشاركة كصورة
+                              InkWell(
+                                onTap: () {
+                                  takeScreenshot(_screenshotController);
+                                },
+                                child: Container(
+                                  padding:
+                                      EdgeInsets.only(right: 30.w, left: 30.w),
+                                  height: 45.h,
+                                  decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment(0.9, 0.1),
+                                          colors: [
+                                            Color(0xFF7060D4),
+                                            Color(0xFF9785EE),
+                                          ]),
+                                      border: Border.all(
+                                          color: Colors.white24, width: 2),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10))),
+                                  child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
                                     children: [
-                                      SizedBox(
-                                        height: 10.h,
+                                      Icon(
+                                        Icons.share,
+                                        color: Colors.white,
                                       ),
-                                      Container(),
-                                      const CircularProgressIndicator(),
                                       SizedBox(
-                                        height: 5.h,
+                                        width: 5.w,
                                       ),
-                                      CustomText(text: '....جاري التحميل ')
+                                      CustomText(
+                                        text: 'مشاركة الاسم كصورة',
+                                        textColor: Colors.white,
+                                        fontWight: FontWeight.bold,
+                                        fontSize: 17.sp,
+                                      ),
                                     ],
-                                  );
-                                }
-                              }),
-                        ),
-                      ],
+                                  ),
+                                ),
+                              ),
+
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              // زر اعجبني
+                              InkWell(
+                                onTap: () async {
+                                  addOrUpdateLike(selectedName);
+                                },
+                                child: Container(
+                                  padding:
+                                      EdgeInsets.only(right: 10.w, left: 10.w),
+                                  height: 45.h,
+                                  decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment(0.9, 0.1),
+                                          colors: [
+                                            Color(0xFF7060D4),
+                                            Color(0xFF9785EE),
+                                          ]),
+                                      border: Border.all(
+                                          color: Colors.white24, width: 2),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10))),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.favorite,
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(
+                                        width: 5.w,
+                                      ),
+                                      CustomText(
+                                        text: 'اعجبني',
+                                        textColor: Colors.white,
+                                        fontWight: FontWeight.bold,
+                                        fontSize: 17.sp,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ));
               }),
             ],

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
@@ -62,5 +63,56 @@ void takeScreenshot(ScreenshotController _screenshotController) async {
 Future launchUrlFunc(String url) async {
   if (!await launchUrl(Uri.parse(url))) {
     throw Exception('Could not launch $url');
+  }
+}
+
+Future<void> addOrUpdateName(String name) async {
+  final namesCollection = FirebaseFirestore.instance.collection('names');
+
+  // ابحث عن الاسم (تطابق تام)
+  final query =
+      await namesCollection.where('theName', isEqualTo: name).limit(1).get();
+
+  if (query.docs.isNotEmpty) {
+    // الاسم موجود → حدث اللايك
+    final docId = query.docs.first.id;
+    await namesCollection.doc(docId).update({
+      'likes': FieldValue.increment(1),
+    });
+    print('تم تحديث اللايك للاسم "$name"');
+  } else {
+    // الاسم غير موجود → أضفه جديد
+    await namesCollection.add({
+      'name': name,
+      'likes': 1,
+    });
+    print('تم إضافة الاسم "$name" مع أول لايك');
+  }
+}
+
+final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+Future<void> addOrUpdateLike(String name) async {
+  final collection = _firestore.collection('names');
+
+  try {
+    final querySnapshot =
+        await collection.where('theName', isEqualTo: name).get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      // الاسم موجود: نحدث عدد اللايكات
+      final doc = querySnapshot.docs.first;
+      final currentLikes = doc['likes'] ?? 0;
+      await collection.doc(doc.id).update({'likes': currentLikes + 1});
+    } else {
+      // الاسم مش موجود: نضيف وثيقة جديدة
+      await collection.add({
+        'theName': name,
+        'likes': 1,
+      });
+    }
+    showToast('شكرا لك');
+  } catch (e) {
+    print('حصل خطأ: $e');
   }
 }

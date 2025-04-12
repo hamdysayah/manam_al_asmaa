@@ -299,7 +299,7 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
                       height: 10.h,
                     ),
                     CustomText(
-                      text: 'ابتكر اسمًا فريدًا لطفلك من جذر\n اسم معين تحبه',
+                      text: 'ابتكر اسمًا فريدًا لطفلك من وزن \nاسم معين تحبه',
                       fontWight: FontWeight.bold,
                       textColor: Colors.white,
                       fontSize: 25.sp,
@@ -310,8 +310,7 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
                       child: CustomText(
                         fontSize: 15.sp,
                         textColor: Colors.white60,
-                        text:
-                            ' أدخل اسمًا تحبه، مثل "رهف"، وسنستخرج الجذر منه (ر ه ف) وسوق نبتكر  لك اسما جديدا مشتقا منه، مثل : “مرهفة” , “مراهف”',
+                        text:' أدخل اسمًا تحبه، مثل "علا"، وسنستخرج الجذر منه (علو) اختر حرفين من الجذر مثل “ ع “ و “ و “ وسوف نبتكر  لك اسما جديدا على وزنه، مثل : “عُتو” , “عُزو”',
                         fontWight: FontWeight.bold,
                       ),
                     ),

@@ -119,7 +119,7 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10),
-                                          gradient: LinearGradient(
+                                          gradient: const LinearGradient(
                                               begin: Alignment.bottomRight,
                                               end: Alignment.topLeft,
                                               colors: [
@@ -171,7 +171,7 @@ class GlobalNameWightResultScreen extends StatelessWidget {
               ),
             ),
 
-           // عرض محتوى الاسم
+            // عرض محتوى الاسم
 
             //عرض تفاصيل الاسم
             GetBuilder<AppController>(builder: (controller) {
@@ -198,7 +198,7 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                               border: Border.all(
                                   color: Color(0xFF585858), width: 2),
                               borderRadius:
-                              BorderRadius.all(Radius.circular(10)),
+                                  BorderRadius.all(Radius.circular(10)),
                               color: Colors.black,
                             ),
                             //width: 300.w,
@@ -228,8 +228,8 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                                                 child: IconButton(
                                                     onPressed: () {
                                                       controller
-                                                          .isVisibleNameDetailsDialog =
-                                                      false;
+                                                              .isVisibleNameDetailsDialog =
+                                                          false;
                                                       controller.update();
                                                     },
                                                     icon: const Icon(
@@ -240,15 +240,14 @@ class GlobalNameWightResultScreen extends StatelessWidget {
 
                                               // اسم الشخص
                                               CustomText(
-                                                text:
-                                                ' ${snapshot.data!.name}',
+                                                text: ' ${snapshot.data!.name}',
                                                 fontSize: 90.sp,
                                                 fontFamily: 'BIXIE_Regular',
                                               ),
                                               // نوع الاسم
                                               CustomText(
                                                 text:
-                                                '${snapshot.data!.typeOfName}',
+                                                    '${snapshot.data!.typeOfName}',
                                                 fontWight: FontWeight.bold,
                                                 fontSize: 20.sp,
                                               ),
@@ -262,27 +261,26 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                                         // الوزن الفعل الاصل
                                         Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                              MainAxisAlignment.center,
                                           children: [
                                             Container(
                                                 decoration: BoxDecoration(
                                                     color: Color(0XFF1C1A1A),
                                                     border: Border.all(
                                                         color:
-                                                        Color(0xFF585858),
+                                                            Color(0xFF585858),
                                                         width: 1),
                                                     borderRadius:
-                                                    BorderRadius.all(
-                                                        Radius.circular(
-                                                            7))),
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                7))),
                                                 padding: EdgeInsets.only(
                                                     right: 20.w, left: 20.w),
                                                 height: 70.h,
                                                 alignment: Alignment.center,
                                                 child: Column(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .center,
+                                                      MainAxisAlignment.center,
                                                   children: [
                                                     CustomText(text: 'الوزن'),
                                                     SizedBox(
@@ -290,11 +288,11 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                                                     ),
                                                     CustomText(
                                                         text: snapshot.data!
-                                                            .nameWight ==
-                                                            '1'
+                                                                    .nameWight ==
+                                                                '1'
                                                             ? '_'
                                                             : snapshot.data!
-                                                            .nameWight),
+                                                                .nameWight),
                                                   ],
                                                 )),
                                             SizedBox(
@@ -306,29 +304,27 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                                                     color: Color(0XFF1C1A1A),
                                                     border: Border.all(
                                                         color:
-                                                        Color(0xFF585858),
+                                                            Color(0xFF585858),
                                                         width: 1),
                                                     borderRadius:
-                                                    BorderRadius.all(
-                                                        Radius.circular(
-                                                            7))),
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                7))),
                                                 padding: EdgeInsets.only(
                                                     right: 20.w, left: 20.w),
                                                 height: 70.h,
                                                 alignment: Alignment.center,
                                                 child: Column(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .center,
+                                                      MainAxisAlignment.center,
                                                   children: [
-                                                    CustomText(
-                                                        text: 'الجذر '),
+                                                    CustomText(text: 'الجذر '),
                                                     SizedBox(
                                                       height: 5.h,
                                                     ),
                                                     CustomText(
                                                         text:
-                                                        '${snapshot.data!.root}'),
+                                                            '${snapshot.data!.root}'),
                                                   ],
                                                 )),
                                             SizedBox(
@@ -340,30 +336,28 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                                                     color: Color(0XFF1C1A1A),
                                                     border: Border.all(
                                                         color:
-                                                        Color(0xFF585858),
+                                                            Color(0xFF585858),
                                                         width: 1),
                                                     borderRadius:
-                                                    BorderRadius.all(
-                                                        Radius.circular(
-                                                            7))),
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                7))),
                                                 padding: EdgeInsets.only(
                                                     right: 20.w, left: 20.w),
                                                 height: 70.h,
                                                 alignment: Alignment.center,
                                                 child: Column(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .center,
+                                                      MainAxisAlignment.center,
                                                   children: [
-                                                    CustomText(
-                                                        text: 'الاصل '),
+                                                    CustomText(text: 'الاصل '),
                                                     SizedBox(
                                                       height: 5.h,
                                                     ),
                                                     CustomText(
                                                         fontSize: 18.sp,
                                                         text:
-                                                        '  ${snapshot.data!.origin}'),
+                                                            '  ${snapshot.data!.origin}'),
                                                   ],
                                                 )),
                                             SizedBox(
@@ -379,7 +373,7 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                                           child: CustomText(
                                             textAlign: TextAlign.right,
                                             text:
-                                            'المعنى :  \n${snapshot.data!.meaning}',
+                                                'المعنى :  \n${snapshot.data!.meaning}',
                                             fontWight: FontWeight.bold,
                                           ),
                                         ),
@@ -391,9 +385,9 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                                   } else {
                                     return Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         SizedBox(
                                           height: 10.h,

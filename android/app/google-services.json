@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "546579719450",
+    "project_id": "manjam-9c864",
+    "storage_bucket": "manjam-9c864.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546579719450:android:550d5af1870523b3d0b8a3",
+        "android_client_info": {
+          "package_name": "com.almaany.manjam_asmaa.manjam_asmaa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDP1RcCaibuE8bImrdvf913ri4CCuI4mZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

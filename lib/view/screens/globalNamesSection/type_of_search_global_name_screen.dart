@@ -33,7 +33,9 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              SizedBox(height: 10.h,),
+              SizedBox(
+                height: 10.h,
+              ),
               Row(
                 children: [
                   InkWell(
@@ -182,22 +184,31 @@ class MyCustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      width: 310.w,
+      // width: 310.w,
+      margin: EdgeInsets.only(right: 30.w, left: 30.w),
       height: 55.h,
       decoration: BoxDecoration(
           border: Border(
             top: BorderSide(width: 1, color: Color(0xFF9785EE)),
             left: BorderSide(width: 1, color: Color(0xFF9785EE)),
             bottom: BorderSide(width: 1, color: Color(0xFF9785EE)),
-
             right: BorderSide(width: 5.w, color: Color(0xFF9785EE)),
           ),
-        //  border: Border.all(color: Color(0xFF9785EE)),
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment(0.9, 0.1),
+              colors: [
+                Color(0xFF7060D4),
+                Color(0xFF9785EE),
+              ]),
           borderRadius: const BorderRadius.all(Radius.circular(10))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/images/$theIconName'),
+          Image.asset(
+            'assets/images/$theIconName',
+            color: Colors.white,
+          ),
           SizedBox(
             width: 10.w,
           ),
@@ -213,7 +224,7 @@ class MyCustomButton extends StatelessWidget {
               //نص فرعي
               CustomText(
                 text: subTitle,
-                textColor: Colors.grey,
+                textColor: Colors.white,
                 fontWight: FontWeight.bold,
                 fontSize: 13.sp,
               ),

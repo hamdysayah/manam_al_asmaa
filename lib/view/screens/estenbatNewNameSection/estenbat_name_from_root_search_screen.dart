@@ -87,20 +87,24 @@ class estenbat_name_from_root_search_screen extends StatelessWidget {
                 height: 10.h,
               ),
               CustomText(
-                text: 'ابتكر اسمًا فريدًا لطفلك من وزن اسم معين تحبه',
+                text: 'ابتكر اسمًا فريدًا لطفلك من جذر معين',
                 fontWight: FontWeight.bold,
                 textColor: Colors.white,
                 fontSize: 25.sp,
               ),
-
+              SizedBox(
+                height: 10.h,
+              ),
               Padding(
                 padding: EdgeInsets.all(5.w),
                 child: CustomText(
                   textColor: Colors.white60,
-                  text:
-                      'اختر حرفين من جذر علا وهو “ علو “ لنبتكر  اسم على وزن علا',
+                  text: 'أدخل الجذر "ر ه ف" لنبتكر اسم مثل : استرهاف  , رهيف',
                   fontWight: FontWeight.bold,
                 ),
+              ),
+              SizedBox(
+                height: 20.h,
               ),
 
               Row(
