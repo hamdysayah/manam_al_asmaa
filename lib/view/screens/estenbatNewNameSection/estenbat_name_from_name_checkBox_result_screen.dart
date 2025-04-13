@@ -15,6 +15,7 @@ class EstenbatNameFromNameCheckboxResultScreen extends StatelessWidget {
   String selectedName = '';
   var scaffoldKey = GlobalKey<ScaffoldState>();
   final _screenshotController = ScreenshotController();
+  bool likeButtonIsVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +85,7 @@ class EstenbatNameFromNameCheckboxResultScreen extends StatelessWidget {
                   Container(),
                   CustomText(
                     text:
-                        'الاسماء المشتقة على وزن الاسم (${Get.arguments[4]}) ومشتركة في الحرفين (${Get.arguments[0] + Get.arguments[1]}) ',
+                        'الاسماء المشتقة على وزن الاسم (${Get.arguments[4]}) ومشتركة في الحرفين (${Get.arguments[0] + Get.arguments[1]}) انقر على الاسم لمعرفة تفاصيله ',
                     fontSize: 20.sp,
                   ),
                   SizedBox(
@@ -156,7 +157,8 @@ class EstenbatNameFromNameCheckboxResultScreen extends StatelessWidget {
                                 ),
                               );
                             } else {
-                              return CustomText(text: 'لا يوجد نتائج');
+                              return Expanded(
+                                  child: CustomText(text: 'لا يوجد نتائج'));
                             }
                           } else if (snapshot.hasError) {
                             return CustomText(text: snapshot.error.toString());
@@ -232,22 +234,6 @@ class EstenbatNameFromNameCheckboxResultScreen extends StatelessWidget {
                                                     fit: BoxFit.cover)),
                                             child: Column(
                                               children: [
-                                                // ايقونة اغلاق الديالوج
-                                                Container(
-                                                  alignment: Alignment.topRight,
-                                                  child: IconButton(
-                                                      onPressed: () {
-                                                        controller
-                                                                .isVisibleNameDetailsDialog =
-                                                            false;
-                                                        controller.update();
-                                                      },
-                                                      icon: const Icon(
-                                                        Icons.close,
-                                                        color: Colors.white,
-                                                      )),
-                                                ),
-
                                                 // اسم الشخص
                                                 CustomText(
                                                   text: ' $selectedName',
@@ -399,48 +385,96 @@ class EstenbatNameFromNameCheckboxResultScreen extends StatelessWidget {
                                 width: 10.w,
                               ),
                               // زر اعجبني
-                              InkWell(
-                                onTap: () async {
-                                  addOrUpdateLike(selectedName);
-                                },
-                                child: Container(
-                                  padding:
-                                      EdgeInsets.only(right: 10.w, left: 10.w),
-                                  height: 45.h,
-                                  decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment(0.9, 0.1),
-                                          colors: [
-                                            Color(0xFF7060D4),
-                                            Color(0xFF9785EE),
-                                          ]),
-                                      border: Border.all(
-                                          color: Colors.white24, width: 2),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(10))),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.favorite,
-                                        color: Colors.white,
-                                      ),
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      CustomText(
-                                        text: 'اعجبني',
-                                        textColor: Colors.white,
-                                        fontWight: FontWeight.bold,
-                                        fontSize: 17.sp,
-                                      ),
-                                    ],
+                              Visibility(
+                                visible: likeButtonIsVisible,
+                                child: InkWell(
+                                  onTap: () async {
+                                    await addOrUpdateLike(selectedName);
+                                    likeButtonIsVisible = false;
+                                    appController.update();
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.only(
+                                        right: 10.w, left: 10.w),
+                                    height: 45.h,
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            begin: Alignment.topCenter,
+                                            end: Alignment(0.9, 0.1),
+                                            colors: [
+                                              Color(0xFF7060D4),
+                                              Color(0xFF9785EE),
+                                            ]),
+                                        border: Border.all(
+                                            color: Colors.white24, width: 2),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(10))),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.favorite,
+                                          color: Colors.white,
+                                        ),
+                                        SizedBox(
+                                          width: 5.w,
+                                        ),
+                                        CustomText(
+                                          text: 'اعجبني',
+                                          textColor: Colors.white,
+                                          fontWight: FontWeight.bold,
+                                          fontSize: 17.sp,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
+
+                              SizedBox(
+                                height: 10.h,
+                              ),
                             ],
-                          )
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+
+                          // زر اغلاق
+                          InkWell(
+                            onTap: () {
+                              controller.isVisibleNameDetailsDialog = false;
+                              likeButtonIsVisible = true;
+                              controller.update();
+                            },
+                            child: Container(
+                              width: 150.w,
+                              height: 45.h,
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment(0.9, 0.1),
+                                      colors: [
+                                        Color(0xFF7060D4),
+                                        Color(0xFF9785EE),
+                                      ]),
+                                  border: Border.all(color: Color(0xFF9785EE)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10))),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CustomText(
+                                    text: 'اغلاق',
+                                    textColor: Colors.white,
+                                    fontWight: FontWeight.bold,
+                                    fontSize: 17.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ));

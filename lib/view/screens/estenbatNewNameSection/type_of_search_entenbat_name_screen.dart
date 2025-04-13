@@ -114,9 +114,9 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
                   Get.to(EstenbatNameFromNameSearchScreen());
                 },
                 child: MyCustomButton(
-                  theTitle: 'اسم مشتق من جذر اسم معين تحبه',
-                  subTitle:'أدخل اسم "رهف" (جذره: ر  ه ف) لنبتكر  اسم مثل: مرهفة , مراهف'
-                ),
+                    theTitle: 'اسم مشتق من جذر اسم معين تحبه',
+                    subTitle:
+                        'أدخل اسم "رهف" (جذره: ر  ه ف) لنبتكر  اسم مثل: مرهفة , مراهف'),
               ),
 
               SizedBox(
@@ -127,9 +127,9 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
                   Get.to(EstenbatNameFromNameCheckBoxSearchScreen());
                 },
                 child: MyCustomButton(
-                  theTitle: 'اسم مشتق على وزن اسم معين تحبه',
-                  subTitle:'أدخل اسم "رهف" واختر حرفين من جذره “ه ف” لنبتكر اسم مثل: شهف'
-                ),
+                    theTitle: 'اسم مشتق على وزن اسم معين تحبه',
+                    subTitle:
+                        'أدخل اسم "رهف" واختر حرفين من جذره “ه ف” لنبتكر اسم مثل: شهف'),
               ),
 
               SizedBox(
@@ -142,8 +142,8 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
                 },
                 child: MyCustomButton(
                     theTitle: 'اسم مشتق من جذر معين',
-                    subTitle:'أدخل الجذر "ر ه ف" لنبتكر اسم مثل : استرهاف  , رهيف'
-                ),
+                    subTitle:
+                        'أدخل الجذر "ر ه ف" لنبتكر اسم مثل : استرهاف  , رهيف'),
               ),
 
               SizedBox(
@@ -195,7 +195,7 @@ class MyCustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.only(right: 20.w,left: 20.w),
+        margin: EdgeInsets.only(right: 20.w, left: 20.w),
         height: 60.h,
         decoration: BoxDecoration(
             border: Border(
@@ -215,7 +215,7 @@ class MyCustomButton extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.only(right: 10.w),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomText(
@@ -223,16 +223,9 @@ class MyCustomButton extends StatelessWidget {
                 text: theTitle,
                 textColor: Colors.white,
                 fontWight: FontWeight.bold,
-                fontSize: 15.sp,
+                fontSize: 18.sp,
               ),
-              //نص فرعي
-              CustomText(
-                textAlign: TextAlign.right,
-                text: subTitle,
-                textColor: Colors.white,
-                fontWight: FontWeight.bold,
-                fontSize: 13.sp,
-              ),
+
             ],
           ),
         ));

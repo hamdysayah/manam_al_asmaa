@@ -17,6 +17,8 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
   var scaffoldKey = GlobalKey<ScaffoldState>();
   final _screenshotController = ScreenshotController();
 
+  bool likeButtonIsVisible = true;
+
   @override
   Widget build(BuildContext context) {
     appController.isVisibleNameDetailsDialog = false;
@@ -82,18 +84,20 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-          
+
                   Container(),
                   CustomText(
                     text:
-                        'الاسماء المشتقة من الحرفين الاولين (${Get.arguments[0] + Get.arguments[1]}) على الوزن (${Get.arguments[3]})',
+                        'الاسماء المشتقة من الحرفين الاولين (${Get.arguments[0] + Get.arguments[1]}) على الوزن (${Get.arguments[3]}) انقر على الاسم لمعرفة تفاصيله ',
                     fontSize: 20.sp,
                   ),
                   GetBuilder<AppController>(builder: (controller) {
                     return FutureBuilder<List<String>>(
                         future: DatabaseQueries()
-                            .getNamesFromTowCharAndWightEstenbat(Get.arguments[0],
-                                Get.arguments[1], Get.arguments[2]),
+                            .getNamesFromTowCharAndWightEstenbat(
+                                Get.arguments[0],
+                                Get.arguments[1],
+                                Get.arguments[2]),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             if (snapshot.data!.isNotEmpty) {
@@ -108,24 +112,26 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                                     childAspectRatio: MediaQuery.of(context)
                                             .size
                                             .width /
-                                        (MediaQuery.of(context).size.height / 5),
+                                        (MediaQuery.of(context).size.height /
+                                            5),
                                   ),
-                                  itemBuilder: (BuildContext context, int index) {
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
                                     return InkWell(
                                       onTap: () {
                                         selectedName = theNamesList[index]
                                             .toString()
                                             .replaceAll('[', '')
                                             .replaceAll(']', '');
-          
-                                        appController.isVisibleNameDetailsDialog =
-                                            true;
+
+                                        appController
+                                            .isVisibleNameDetailsDialog = true;
                                         appController.update();
                                       },
                                       child: Container(
                                           decoration: BoxDecoration(
-                                            border:
-                                                Border.all(color: Colors.white60),
+                                            border: Border.all(
+                                                color: Colors.white60),
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                             gradient: const LinearGradient(
@@ -150,7 +156,8 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                                 ),
                               );
                             } else {
-                              return CustomText(text: 'لا يوجد نتائج');
+                              return Expanded(
+                                  child: CustomText(text: 'لا يوجد نتائج'));
                             }
                           } else if (snapshot.hasError) {
                             return CustomText(text: snapshot.error.toString());
@@ -176,7 +183,6 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                 ],
               ),
 
-
               // عرض تفاصيل الآسم
               GetBuilder<AppController>(builder: (controller) {
                 return Visibility(
@@ -200,7 +206,7 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                               border: Border.all(
                                   color: const Color(0xFF585858), width: 2),
                               borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
+                                  const BorderRadius.all(Radius.circular(10)),
                               color: Colors.black,
                             ),
                             //width: 300.w,
@@ -208,7 +214,7 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                             child: FutureBuilder<List<String>>(
                                 future: DatabaseQueries()
                                     .getResultFormEstenbatWithNoWight(
-                                    selectedName, Get.arguments[2]),
+                                        selectedName, Get.arguments[2]),
                                 builder: (context, snapshot) {
                                   if (snapshot.hasData) {
                                     return Column(
@@ -227,22 +233,6 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                                                     fit: BoxFit.cover)),
                                             child: Column(
                                               children: [
-                                                // ايقونة اغلاق الديالوج
-                                                Container(
-                                                  alignment: Alignment.topRight,
-                                                  child: IconButton(
-                                                      onPressed: () {
-                                                        controller
-                                                            .isVisibleNameDetailsDialog =
-                                                        false;
-                                                        controller.update();
-                                                      },
-                                                      icon: const Icon(
-                                                        Icons.close,
-                                                        color: Colors.white,
-                                                      )),
-                                                ),
-
                                                 // اسم الشخص
                                                 CustomText(
                                                   text: ' $selectedName',
@@ -265,7 +255,7 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                                                   fontSize: 17.sp,
                                                   fontWight: FontWeight.bold,
                                                   text:
-                                                  'الاسم $selectedName مشتق على الوزن ( ${snapshot.data?[0]})  من الجذر (${snapshot.data?[1].replaceAll('1', '')}) وهو جذر (${snapshot.data?[2] == 'معروف' ? 'مستخدم' : 'غير مستخدم'} ) في اللغة العربية.\n\n ',
+                                                      'الاسم $selectedName مشتق على الوزن ( ${snapshot.data?[0]})  من الجذر (${snapshot.data?[1].replaceAll('1', '')}) وهو جذر (${snapshot.data?[2] == 'معروف' ? 'مستخدم' : 'غير مستخدم'} ) في اللغة العربية.\n\n ',
                                                 ),
                                               ],
                                             ),
@@ -274,7 +264,7 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
 
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Container(),
                                             Padding(
@@ -286,11 +276,11 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                                                       fontFamily: 'ZainRegular',
                                                       fontSize: 15.sp,
                                                       fontWeight:
-                                                      FontWeight.bold),
+                                                          FontWeight.bold),
                                                   children: [
                                                     TextSpan(
                                                       text:
-                                                      ' لمعرفة معنى الجذر  إن كان مستخدما ارجع على موقع ',
+                                                          ' لمعرفة معنى الجذر  إن كان مستخدما ارجع على موقع ',
                                                     ),
                                                     TextSpan(
                                                       text: 'almaany.com\n\n',
@@ -298,19 +288,19 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                                                         color: Color(
                                                             kPrimaryColor),
                                                         fontWeight:
-                                                        FontWeight.bold,
+                                                            FontWeight.bold,
                                                         fontSize: 21,
                                                       ),
                                                       recognizer:
-                                                      TapGestureRecognizer()
-                                                        ..onTap = () {
-                                                          launchUrlFunc(
-                                                              'https://www.almaany.com/');
-                                                        },
+                                                          TapGestureRecognizer()
+                                                            ..onTap = () {
+                                                              launchUrlFunc(
+                                                                  'https://www.almaany.com/');
+                                                            },
                                                     ),
                                                     TextSpan(
                                                         text:
-                                                        ' إذا أعجبك هذا الاشتقاق وترى أنه يصلح اسم لشخص انقر على زر آعجبني '),
+                                                            ' إذا أعجبك هذا الاشتقاق وترى أنه يصلح اسم لشخص انقر على زر آعجبني '),
                                                   ],
                                                 ),
                                               ),
@@ -325,9 +315,9 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                                   } else {
                                     return Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         SizedBox(
                                           height: 10.h,
@@ -355,7 +345,7 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                                 },
                                 child: Container(
                                   padding:
-                                  EdgeInsets.only(right: 30.w, left: 30.w),
+                                      EdgeInsets.only(right: 30.w, left: 30.w),
                                   height: 45.h,
                                   decoration: BoxDecoration(
                                       gradient: LinearGradient(
@@ -394,48 +384,94 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                                 width: 10.w,
                               ),
                               // زر اعجبني
-                              InkWell(
-                                onTap: () async {
-                                  addOrUpdateLike(selectedName);
-                                },
-                                child: Container(
-                                  padding:
-                                  EdgeInsets.only(right: 10.w, left: 10.w),
-                                  height: 45.h,
-                                  decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment(0.9, 0.1),
-                                          colors: [
-                                            Color(0xFF7060D4),
-                                            Color(0xFF9785EE),
-                                          ]),
-                                      border: Border.all(
-                                          color: Colors.white24, width: 2),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(10))),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.favorite,
-                                        color: Colors.white,
-                                      ),
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      CustomText(
-                                        text: 'اعجبني',
-                                        textColor: Colors.white,
-                                        fontWight: FontWeight.bold,
-                                        fontSize: 17.sp,
-                                      ),
-                                    ],
+                              Visibility(
+                                visible: likeButtonIsVisible,
+                                child: InkWell(
+                                  onTap: () async {
+                                    await addOrUpdateLike(selectedName);
+                                    likeButtonIsVisible = false;
+                                    appController.update();
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.only(
+                                        right: 10.w, left: 10.w),
+                                    height: 45.h,
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            begin: Alignment.topCenter,
+                                            end: Alignment(0.9, 0.1),
+                                            colors: [
+                                              Color(0xFF7060D4),
+                                              Color(0xFF9785EE),
+                                            ]),
+                                        border: Border.all(
+                                            color: Colors.white24, width: 2),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(10))),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.favorite,
+                                          color: Colors.white,
+                                        ),
+                                        SizedBox(
+                                          width: 5.w,
+                                        ),
+                                        CustomText(
+                                          text: 'اعجبني',
+                                          textColor: Colors.white,
+                                          fontWight: FontWeight.bold,
+                                          fontSize: 17.sp,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
+
+                              SizedBox(
+                                height: 10.h,
+                              ),
                             ],
-                          )
+                          ),
+                          SizedBox(height:10.h,),
+                          // زر اغلاق
+                          InkWell(
+                            onTap: () {
+                              controller.isVisibleNameDetailsDialog = false;
+                              likeButtonIsVisible = true;
+                              controller.update();
+                            },
+                            child: Container(
+                              width: 150.w,
+                              height: 45.h,
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment(0.9, 0.1),
+                                      colors: [
+                                        Color(0xFF7060D4),
+                                        Color(0xFF9785EE),
+                                      ]),
+                                  border: Border.all(
+                                      color: Colors.white24, width: 2),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10))),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CustomText(
+                                    text: 'اغلاق',
+                                    textColor: Colors.white,
+                                    fontWight: FontWeight.bold,
+                                    fontSize: 17.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ));

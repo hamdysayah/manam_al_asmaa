@@ -80,7 +80,8 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                   ),
                   Container(),
                   CustomText(
-                    text: ' اسماء على وزن ${Get.arguments[0]}',
+                    text:
+                        ' اسماء على وزن ${Get.arguments[0]} انقر على الاسم لمعرفة تفاصيله ',
                     fontSize: 20.sp,
                   ),
                   FutureBuilder<List<String>>(
@@ -222,22 +223,6 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                                                   fit: BoxFit.cover)),
                                           child: Column(
                                             children: [
-                                              // ايقونة اغلاق الديالوج
-                                              Container(
-                                                alignment: Alignment.topRight,
-                                                child: IconButton(
-                                                    onPressed: () {
-                                                      controller
-                                                              .isVisibleNameDetailsDialog =
-                                                          false;
-                                                      controller.update();
-                                                    },
-                                                    icon: const Icon(
-                                                      Icons.close,
-                                                      color: Colors.white,
-                                                    )),
-                                              ),
-
                                               // اسم الشخص
                                               CustomText(
                                                 text: ' ${snapshot.data!.name}',
@@ -438,6 +423,41 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                                 ),
                                 CustomText(
                                   text: 'مشاركة الاسم كصورة',
+                                  textColor: Colors.white,
+                                  fontWight: FontWeight.bold,
+                                  fontSize: 17.sp,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10.h,),
+                        // زر اغلاق
+                        InkWell(
+                          onTap: () {
+                            controller.isVisibleNameDetailsDialog = false;
+                            controller.update();
+                          },
+                          child: Container(
+                            width: 150.w,
+                            height: 45.h,
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment(0.9, 0.1),
+                                    colors: [
+                                      Color(0xFF7060D4),
+                                      Color(0xFF9785EE),
+                                    ]),
+                                border: Border.all(color: Color(0xFF9785EE)),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10))),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+
+                                CustomText(
+                                  text: 'اغلاق',
                                   textColor: Colors.white,
                                   fontWight: FontWeight.bold,
                                   fontSize: 17.sp,

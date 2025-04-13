@@ -37,7 +37,6 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       drawer: CustomDrawer(),
       key: scaffoldKey,
@@ -184,8 +183,7 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                                 border: OutlineInputBorder(
                                     borderSide: const BorderSide(
                                         color: Color(0xff7B7B7B), width: 2),
-                                    borderRadius: BorderRadius.circular(10)
-                                ),
+                                    borderRadius: BorderRadius.circular(10)),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
                                         color: Color(0xff7B7B7B), width: 2),
@@ -295,6 +293,10 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
 
               SizedBox(
                 height: 30.h,
+              ),
+              CustomText(
+                text: 'حدد خيار البحث',
+                fontWight: FontWeight.bold,
               ),
               // الاختيارات تبدا او تنتهي بحرف
               GetBuilder<AppController>(builder: (controller) {

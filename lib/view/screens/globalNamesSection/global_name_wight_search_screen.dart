@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:manjam_asmaa/core/utils/constants.dart';
 import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../../controller/app_contrller.dart';
@@ -627,12 +628,14 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                             ),
                             // الفاصل
                             Row(children: <Widget>[
+                              Expanded(child: Divider()),
                               SizedBox(
                                 width: 5.w,
                               ),
                               CustomText(
                                 text: "او",
-                                fontSize: 20.sp,
+                                fontSize: 25.sp,
+                                textColor: Color(kPrimaryColor),
                               ),
                               SizedBox(
                                 width: 5.w,
@@ -796,8 +799,8 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    width: 300.w,
-                    height: 300.h,
+                    width: 350.w,
+                    height: 500.h,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -809,7 +812,10 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                 controller.isVisibleChoiceWight = false;
                                 controller.update();
                               },
-                              icon: const Icon(Icons.close)),
+                              icon: const Icon(
+                                Icons.close,
+                                color: Colors.white,
+                              )),
                         ),
                         CustomText(
                           text: 'اختر الوزن',
@@ -835,7 +841,7 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                                 (MediaQuery.of(context)
                                                         .size
                                                         .height /
-                                                    3),
+                                                    4),
                                       ),
                                       itemBuilder:
                                           (BuildContext context, int index) {
@@ -860,7 +866,8 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                                 border: Border.all(
                                                     width: 1,
                                                     color: Colors.white60),
-                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
                                                 gradient: LinearGradient(
                                                     begin:
                                                         Alignment.bottomRight,
@@ -875,6 +882,7 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                               margin: EdgeInsets.all(5),
                                               //لما يختار الوزن
                                               child: CustomText(
+                                                fontSize: 20.sp,
                                                 text: weightsList[index]
                                                     .toString(),
                                               )),

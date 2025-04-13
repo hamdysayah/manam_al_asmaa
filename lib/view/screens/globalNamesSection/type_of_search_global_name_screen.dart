@@ -210,7 +210,7 @@ class MyCustomButton extends StatelessWidget {
             color: Colors.white,
           ),
           SizedBox(
-            width: 10.w,
+            width: 20.w,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -219,15 +219,15 @@ class MyCustomButton extends StatelessWidget {
                 text: theTitle,
                 textColor: Colors.white,
                 fontWight: FontWeight.bold,
-                fontSize: 15.sp,
+                fontSize: 18.sp,
               ),
-              //نص فرعي
-              CustomText(
-                text: subTitle,
-                textColor: Colors.white,
-                fontWight: FontWeight.bold,
-                fontSize: 13.sp,
-              ),
+              // //نص فرعي
+              // CustomText(
+              //   text: subTitle,
+              //   textColor: Colors.white,
+              //   fontWight: FontWeight.bold,
+              //   fontSize: 13.sp,
+              // ),
             ],
           )
         ],

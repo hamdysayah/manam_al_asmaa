@@ -9,7 +9,6 @@ import '../../../core/database/database_queries.dart';
 
 class EstenbatNameFromNameSearchScreen extends StatelessWidget {
   AppController appController = Get.find();
-
   String nameFromTextField = '';
 
   var _controller = TextEditingController();
