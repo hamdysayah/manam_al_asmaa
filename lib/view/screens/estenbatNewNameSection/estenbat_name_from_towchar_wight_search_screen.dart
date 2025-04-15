@@ -7,6 +7,7 @@ import 'package:manjam_asmaa/view/widgets/custom_button.dart';
 import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 
 import '../../../core/database/database_queries.dart';
+import '../../widgets/custom_banner.dart';
 import '../../widgets/custom_text.dart';
 import '../../widgets/custom_text_field.dart';
 import 'estenbat_name_from_root_result_screen.dart';
@@ -444,17 +445,21 @@ class estenbat_name_from_towchar_wight_search_screen extends StatelessWidget {
                     onTap: () {
                       Get.back();
                     },
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        CustomText(
+                          text: 'اسم مشتق من جذر معين',
+                          textColor: Colors.white,
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  CustomText(
-                    text: 'اسم مشتق من جذر معين',
-                    textColor: Colors.white,
                   ),
                   Spacer(),
                   InkWell(
@@ -617,6 +622,10 @@ class estenbat_name_from_towchar_wight_search_screen extends StatelessWidget {
                   },
                 ),
               ),
+
+              SizedBox(height: 10.h,),
+              MyBannerAd()
+
             ],
           ),
         ),

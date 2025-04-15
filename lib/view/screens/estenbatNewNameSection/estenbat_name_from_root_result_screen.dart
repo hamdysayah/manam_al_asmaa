@@ -10,6 +10,7 @@ import 'package:screenshot/screenshot.dart';
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
 import '../../../core/utils/constants.dart';
+import '../../widgets/custom_banner.dart';
 
 class EstenbatNameFromRootResultScreen extends StatelessWidget {
   AppController appController = Get.find();
@@ -49,17 +50,21 @@ class EstenbatNameFromRootResultScreen extends StatelessWidget {
                         onTap: () {
                           Get.back();
                         },
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            CustomText(
+                              text: 'اسم مشتق من جذر معين',
+                              textColor: Colors.white,
+                            ),
+                          ],
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      CustomText(
-                        text: 'اسم مشتق من جذر معين',
-                        textColor: Colors.white,
                       ),
                       Spacer(),
                       InkWell(
@@ -175,6 +180,9 @@ class EstenbatNameFromRootResultScreen extends StatelessWidget {
                           }
                         });
                   }),
+                  SizedBox(height: 10.h,),
+                  MyBannerAd()
+
                 ],
               ),
 

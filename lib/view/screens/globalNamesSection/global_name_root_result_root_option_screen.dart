@@ -9,6 +9,7 @@ import 'package:screenshot/screenshot.dart';
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
 import '../../../core/utils/constants.dart';
+import '../../widgets/custom_banner.dart';
 
 class GlobalNameRootResultRootOptionScreen extends StatelessWidget {
   var theNamesList = [];
@@ -48,17 +49,21 @@ class GlobalNameRootResultRootOptionScreen extends StatelessWidget {
                         onTap: () {
                           Get.back();
                         },
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            CustomText(
+                              text: 'البحث في الاسماء المستخدمة',
+                              textColor: Colors.white,
+                            ),
+                          ],
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      CustomText(
-                        text: 'البحث في الاسماء المستخدمة',
-                        textColor: Colors.white,
                       ),
                       Spacer(),
                       InkWell(
@@ -148,7 +153,8 @@ class GlobalNameRootResultRootOptionScreen extends StatelessWidget {
                               ),
                             );
                           } else {
-                            return Expanded(child: CustomText(text: 'لا يوجد نتائج'));
+                            return Expanded(
+                                child: CustomText(text: 'لا يوجد نتائج'));
                           }
                         } else if (snapshot.hasError) {
                           return CustomText(text: snapshot.error.toString());
@@ -170,6 +176,11 @@ class GlobalNameRootResultRootOptionScreen extends StatelessWidget {
                           );
                         }
                       }),
+
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  MyBannerAd()
                 ],
               ),
 
@@ -222,8 +233,6 @@ class GlobalNameRootResultRootOptionScreen extends StatelessWidget {
                                                     fit: BoxFit.cover)),
                                             child: Column(
                                               children: [
-
-
                                                 // اسم الشخص
                                                 CustomText(
                                                   text:
@@ -438,7 +447,9 @@ class GlobalNameRootResultRootOptionScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10.h,),
+                          SizedBox(
+                            height: 10.h,
+                          ),
 
                           // زر اغلاق
                           InkWell(
@@ -463,7 +474,6 @@ class GlobalNameRootResultRootOptionScreen extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-
                                   CustomText(
                                     text: 'اغلاق',
                                     textColor: Colors.white,

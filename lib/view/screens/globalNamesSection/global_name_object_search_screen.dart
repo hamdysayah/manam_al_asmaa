@@ -8,6 +8,7 @@ import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
+import '../../widgets/custom_banner.dart';
 
 class GlobalNameObjectSearchScreen extends StatelessWidget {
   AppController appController = Get.find();
@@ -45,17 +46,21 @@ class GlobalNameObjectSearchScreen extends StatelessWidget {
                     onTap: () {
                       Get.back();
                     },
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        CustomText(
+                          text: 'البحث في الاسماء المستخدمة',
+                          textColor: Colors.white,
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  CustomText(
-                    text: 'البحث في الاسماء المستخدمة',
-                    textColor: Colors.white,
                   ),
                   Spacer(),
                   InkWell(
@@ -135,8 +140,18 @@ class GlobalNameObjectSearchScreen extends StatelessWidget {
                               itemBuilder: (BuildContext context, int index) {
                                 return InkWell(
                                   onTap: () {
-                                    Get.to(GlobalObjectNameResultScreen(),
-                                        arguments: objectList[index]);
+                                    if (appController.showAdsIndex == 0 &&
+                                        appController.interstitialAd != null) {
+                                      appController.interstitialAd?.show();
+                                      appController.showAdsIndex = 4;
+                                      appController.loadAdInterstitial();
+                                      Get.to(GlobalObjectNameResultScreen(),
+                                          arguments: objectList[index]);
+                                    } else {
+                                      appController.showAdsIndex--;
+                                      Get.to(GlobalObjectNameResultScreen(),
+                                          arguments: objectList[index]);
+                                    }
                                   },
                                   child: Container(
                                       decoration: BoxDecoration(
@@ -185,6 +200,10 @@ class GlobalNameObjectSearchScreen extends StatelessWidget {
                       }
                     });
               }),
+              SizedBox(
+                height: 10.h,
+              ),
+              MyBannerAd()
             ],
           ),
         ),

@@ -6,6 +6,7 @@ import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
+import '../../widgets/custom_banner.dart';
 import '../../widgets/custom_button.dart';
 import 'estenbat_name_from_name_checkBox_result_screen.dart';
 
@@ -264,17 +265,21 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
                           onTap: () {
                             Get.back();
                           },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              CustomText(
+                                text: 'ابتكر اسم جديد من جذور لغتنا العربية',
+                                textColor: Colors.white,
+                              ),
+                            ],
                           ),
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        CustomText(
-                          text: 'ابتكر اسم جديد من جذور لغتنا العربية',
-                          textColor: Colors.white,
                         ),
                         Spacer(),
                         InkWell(
@@ -310,7 +315,8 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
                       child: CustomText(
                         fontSize: 15.sp,
                         textColor: Colors.white60,
-                        text:' أدخل اسمًا تحبه، مثل "علا"، وسنستخرج الجذر منه (علو) اختر حرفين من الجذر مثل “ ع “ و “ و “ وسوف نبتكر  لك اسما جديدا على وزنه، مثل : “عُتو” , “عُزو”',
+                        text:
+                            ' أدخل اسمًا تحبه، مثل "علا"، وسنستخرج الجذر منه (علو) اختر حرفين من الجذر مثل “ ع “ و “ و “ وسوف نبتكر  لك اسما جديدا على وزنه، مثل : “عُتو” , “عُزو”',
                         fontWight: FontWeight.bold,
                       ),
                     ),
@@ -765,7 +771,10 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
                               ),
                             )
                           : SizedBox.shrink();
-                    })
+                    }),
+                    SizedBox(height: 10.h,),
+                    MyBannerAd()
+
                   ],
                 ),
               ],

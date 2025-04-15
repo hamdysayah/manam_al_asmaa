@@ -4,15 +4,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:manjam_asmaa/view/screens/home_screen.dart';
+import 'package:manjam_asmaa/view/screens/splash_screen.dart';
 
 import 'core/utils/constants.dart';
-import 'core/utils/languages/translation.dart';
 import 'firebase_options.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+  MobileAds.instance.initialize();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -33,14 +35,13 @@ class MangamAlAsmaaApp extends StatelessWidget {
       // Use builder only if you need to use library outside ScreenUtilInit context
       builder: (_, child) {
         return GetMaterialApp(
-          translations: Translation(),
-          locale: Locale(GetStorage().read('langCode') ?? 'ar'),
+          locale: Locale('ar'),
           debugShowCheckedModeBanner: false,
           title: kAppName,
           home: child,
         );
       },
-      child: HomeScreen(),
+      child: SplashScreen(),
     );
   }
 }

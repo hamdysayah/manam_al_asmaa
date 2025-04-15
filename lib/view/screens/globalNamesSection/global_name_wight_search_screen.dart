@@ -6,6 +6,7 @@ import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
+import '../../widgets/custom_banner.dart';
 import '../../widgets/custom_button.dart';
 import 'global_name_wight_result_edittext_screen.dart';
 import 'global_name_wight_result_screen.dart';
@@ -255,17 +256,21 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                           onTap: () {
                             Get.back();
                           },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              CustomText(
+                                text: 'البحث في الاسماء المستخدمة',
+                                textColor: Colors.white,
+                              ),
+                            ],
                           ),
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        CustomText(
-                          text: 'البحث في الاسماء المستخدمة',
-                          textColor: Colors.white,
                         ),
                         Spacer(),
                         InkWell(
@@ -773,6 +778,11 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                         CustomText(text: 'اختر الوزن الصرفي'),
                                   ),
                                 ),
+
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                MyBannerAd(),
                               ],
                             )),
                           ],
@@ -909,7 +919,7 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                     SizedBox(
                                       height: 5.h,
                                     ),
-                                    CustomText(text: '....جاري التحميل ')
+                                    CustomText(text: '....جاري التحميل '),
                                   ],
                                 );
                               }
@@ -918,7 +928,7 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                     ),
                   ),
                 );
-              })
+              }),
             ],
           ),
         ));

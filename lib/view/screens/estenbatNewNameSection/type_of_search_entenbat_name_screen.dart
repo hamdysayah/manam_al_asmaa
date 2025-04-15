@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:manjam_asmaa/controller/app_contrller.dart';
 import 'package:manjam_asmaa/view/screens/estenbatNewNameSection/estenbat_name_from_name_search_screen.dart';
 import 'package:manjam_asmaa/view/screens/estenbatNewNameSection/estenbat_name_from_namecheckbox_search_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
+import '../../widgets/custom_banner.dart';
 import '../../widgets/custom_button.dart';
 import 'estenbat_name_from_last_towchar_root_search_screen.dart';
 import 'estenbat_name_from_root_search_screen.dart';
@@ -12,6 +14,8 @@ import 'estenbat_name_from_towchar_wight_search_screen.dart';
 
 class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
   var scaffoldKey = GlobalKey<ScaffoldState>();
+
+  AppController appController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -40,17 +44,21 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
                     onTap: () {
                       Get.back();
                     },
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        CustomText(
+                          text: 'ابتكر اسم جديد من جذور لغتنا العربية',
+                          textColor: Colors.white,
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  CustomText(
-                    text: 'ابتكر اسم جديد من جذور لغتنا العربية',
-                    textColor: Colors.white,
                   ),
                   Spacer(),
                   InkWell(
@@ -111,7 +119,17 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
               // بداية الازرار
               InkWell(
                 onTap: () {
-                  Get.to(EstenbatNameFromNameSearchScreen());
+                  if (appController.showAdsIndex == 0 &&
+                      appController.interstitialAd != null) {
+                    appController.interstitialAd?.show();
+                    appController.showAdsIndex = 4;
+                    appController.loadAdInterstitial();
+                    Get.to(EstenbatNameFromNameSearchScreen());
+                  } else {
+                    appController.showAdsIndex--;
+
+                    Get.to(EstenbatNameFromNameSearchScreen());
+                  }
                 },
                 child: MyCustomButton(
                     theTitle: 'اسم مشتق من جذر اسم معين تحبه',
@@ -124,7 +142,17 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  Get.to(EstenbatNameFromNameCheckBoxSearchScreen());
+                  if (appController.showAdsIndex == 0 &&
+                      appController.interstitialAd != null) {
+                    appController.interstitialAd?.show();
+                    appController.showAdsIndex = 4;
+                    appController.loadAdInterstitial();
+                    Get.to(EstenbatNameFromNameCheckBoxSearchScreen());
+                  } else {
+                    appController.showAdsIndex--;
+
+                    Get.to(EstenbatNameFromNameCheckBoxSearchScreen());
+                  }
                 },
                 child: MyCustomButton(
                     theTitle: 'اسم مشتق على وزن اسم معين تحبه',
@@ -138,7 +166,17 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
 
               InkWell(
                 onTap: () {
-                  Get.to(estenbat_name_from_root_search_screen());
+                  if (appController.showAdsIndex == 0 &&
+                      appController.interstitialAd != null) {
+                    appController.interstitialAd?.show();
+                    appController.showAdsIndex = 4;
+                    appController.loadAdInterstitial();
+                    Get.to(estenbat_name_from_root_search_screen());
+                  } else {
+                    appController.showAdsIndex--;
+
+                    Get.to(estenbat_name_from_root_search_screen());
+                  }
                 },
                 child: MyCustomButton(
                     theTitle: 'اسم مشتق من جذر معين',
@@ -152,7 +190,17 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
 
               InkWell(
                 onTap: () {
-                  Get.to(estenbat_name_from_towchar_wight_search_screen());
+                  if (appController.showAdsIndex == 0 &&
+                      appController.interstitialAd != null) {
+                    appController.interstitialAd?.show();
+                    appController.showAdsIndex = 4;
+                    appController.loadAdInterstitial();
+                    Get.to(estenbat_name_from_towchar_wight_search_screen());
+                  } else {
+                    appController.showAdsIndex--;
+
+                    Get.to(estenbat_name_from_towchar_wight_search_screen());
+                  }
                 },
                 child: MyCustomButton(
                     theTitle: 'اسم مشتق من جذر اوله حرفين ووزن تحبهما',
@@ -166,13 +214,29 @@ class TypeOfSearchEntenbatNameScreen extends StatelessWidget {
 
               InkWell(
                 onTap: () {
-                  Get.to(estenbat_name_from_last_towchar_root_search_screen());
+                  if (appController.showAdsIndex == 0 &&
+                      appController.interstitialAd != null) {
+                    appController.interstitialAd?.show();
+                    appController.showAdsIndex = 4;
+                    appController.loadAdInterstitial();
+                    Get.to(
+                        estenbat_name_from_last_towchar_root_search_screen());
+                  } else {
+                    appController.showAdsIndex--;
+
+                    Get.to(
+                        estenbat_name_from_last_towchar_root_search_screen());
+                  }
                 },
                 child: MyCustomButton(
                     theTitle: 'اسم مشتق من جذر اخره حرفين  ووزن تحبهما',
                     subTitle:
                         'أدخل الحرفين “ ه ف” والوزن استفعال لنبتكر اسم : استجهاف'),
               ),
+              SizedBox(
+                height: 10.h,
+              ),
+              MyBannerAd()
             ],
           ),
         ),
@@ -225,7 +289,6 @@ class MyCustomButton extends StatelessWidget {
                 fontWight: FontWeight.bold,
                 fontSize: 18.sp,
               ),
-
             ],
           ),
         ));

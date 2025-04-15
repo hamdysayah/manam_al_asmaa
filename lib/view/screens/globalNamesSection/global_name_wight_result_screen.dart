@@ -9,6 +9,7 @@ import 'package:screenshot/screenshot.dart';
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
 import '../../../core/utils/constants.dart';
+import '../../widgets/custom_banner.dart';
 
 class GlobalNameWightResultScreen extends StatelessWidget {
   var theNamesList = [];
@@ -48,17 +49,21 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                         onTap: () {
                           Get.back();
                         },
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            CustomText(
+                              text: 'البحث في الاسماء المستخدمة',
+                              textColor: Colors.white,
+                            ),
+                          ],
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      CustomText(
-                        text: 'البحث في الاسماء المستخدمة',
-                        textColor: Colors.white,
                       ),
                       Spacer(),
                       InkWell(
@@ -168,11 +173,13 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                           );
                         }
                       }),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  MyBannerAd()
                 ],
               ),
             ),
-
-            // عرض محتوى الاسم
 
             //عرض تفاصيل الاسم
             GetBuilder<AppController>(builder: (controller) {
@@ -431,7 +438,9 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 10.h,),
+                        SizedBox(
+                          height: 10.h,
+                        ),
                         // زر اغلاق
                         InkWell(
                           onTap: () {
@@ -455,7 +464,6 @@ class GlobalNameWightResultScreen extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-
                                 CustomText(
                                   text: 'اغلاق',
                                   textColor: Colors.white,

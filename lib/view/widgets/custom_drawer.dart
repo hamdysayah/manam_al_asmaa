@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:manjam_asmaa/view/screens/help_screen.dart';
 import 'package:manjam_asmaa/view/screens/home_screen.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../core/utils/constants.dart';
 import 'custom_text.dart';
@@ -84,19 +86,6 @@ class CustomDrawer extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(
-                Icons.call,
-                color: Color(kPrimaryColor),
-              ),
-              title: CustomText(
-                textColor: Colors.white,
-                textAlign: TextAlign.right,
-                text: 'تواصل',
-                fontSize: 20.sp,
-              ),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(
                 Icons.help,
                 color: Color(kPrimaryColor),
               ),
@@ -107,8 +96,7 @@ class CustomDrawer extends StatelessWidget {
                 fontSize: 20.sp,
               ),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                Get.to(HelpPage());
               },
             ),
             ListTile(
@@ -122,20 +110,10 @@ class CustomDrawer extends StatelessWidget {
                 text: 'شارك',
                 fontSize: 20.sp,
               ),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.camera_outlined,
-                color: Color(kPrimaryColor),
-              ),
-              title: CustomText(
-                textColor: Colors.white,
-                textAlign: TextAlign.right,
-                text: 'شراء نسخه بدون اعلانات',
-                fontSize: 20.sp,
-              ),
-              onTap: () {},
+              onTap: () {
+                Share.share(
+                    'ابحث واكتشف  المزيد في منجم  الاسماء حمل التطبيق من الرابط التالي : https://play.google.com/store/apps/details?id=com.almaany.manjam_asmaa.manjam_asmaa ');
+              },
             ),
           ],
         ),

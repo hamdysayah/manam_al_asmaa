@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:manjam_asmaa/core/utils/constants.dart';
 import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../../controller/app_contrller.dart';
+import '../../widgets/custom_banner.dart';
 import '../../widgets/custom_button.dart';
 import 'global_name_char_result_screen.dart';
 
@@ -64,17 +66,21 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                     onTap: () {
                       Get.back();
                     },
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        CustomText(
+                          text: 'البحث في الاسماء المستخدمة',
+                          textColor: Colors.white,
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  CustomText(
-                    text: 'البحث في الاسماء المستخدمة',
-                    textColor: Colors.white,
                   ),
                   Spacer(),
                   InkWell(
@@ -212,11 +218,27 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                               nameFromTextField = '';
                               _controller.clear();
                               appController.update();
-                              Get.to(GlobalCharNameResultScreen(), arguments: [
-                                currentOption,
-                                text,
-                                genderCurrentOption
-                              ]);
+
+                              if (appController.showAdsIndex == 0 &&
+                                  appController.interstitialAd != null) {
+                                appController.interstitialAd?.show();
+                                appController.loadAdInterstitial();
+                                appController.showAdsIndex = 4;
+                                Get.to(GlobalCharNameResultScreen(),
+                                    arguments: [
+                                      currentOption,
+                                      text,
+                                      genderCurrentOption
+                                    ]);
+                              } else {
+                                appController.showAdsIndex-- ;
+                                Get.to(GlobalCharNameResultScreen(),
+                                    arguments: [
+                                      currentOption,
+                                      text,
+                                      genderCurrentOption
+                                    ]);
+                              }
                             } else {
                               showToast('الرحاء ادخال الحروف');
                             }
@@ -361,6 +383,10 @@ class GlobalNameCharSearchScreen extends StatelessWidget {
                   ),
                 );
               }),
+              SizedBox(
+                height: 10.h,
+              ),
+              const MyBannerAd()
             ],
           ),
         ),

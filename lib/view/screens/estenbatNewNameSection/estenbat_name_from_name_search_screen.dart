@@ -6,6 +6,7 @@ import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
+import '../../widgets/custom_banner.dart';
 
 class EstenbatNameFromNameSearchScreen extends StatelessWidget {
   AppController appController = Get.find();
@@ -51,17 +52,21 @@ class EstenbatNameFromNameSearchScreen extends StatelessWidget {
                           onTap: () {
                             Get.back();
                           },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              CustomText(
+                                text: 'اسم مشتق من جذر اسم معين',
+                                textColor: Colors.white,
+                              ),
+                            ],
                           ),
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        CustomText(
-                          text: 'اسم مشتق من جذر اسم معين',
-                          textColor: Colors.white,
                         ),
                         Spacer(),
                         InkWell(
@@ -320,6 +325,9 @@ class EstenbatNameFromNameSearchScreen extends StatelessWidget {
                             }
                           });
                     }),
+                    SizedBox(height: 10.h,),
+                    MyBannerAd()
+
                   ],
                 ),
               ),

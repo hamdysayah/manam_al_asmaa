@@ -3,10 +3,14 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../controller/app_contrller.dart';
 
 const kAppName = 'منجم الاسماء';
 const kPrimaryColor = 0xff9785EE;
@@ -15,6 +19,11 @@ const kFontAppName = 'almaraiFont';
 const kDbName = 'MangamNameDbV2.db';
 const kBlackDarkColor = 0xFF292925;
 const kWhiteLightColor = 0xfff4f9fc;
+
+const kBannerAdsAndroid = 'ca-app-pub-3940256099942544/9214589741';
+const kBannerAdsIos = 'ca-app-pub-3940256099942544/2435281174';
+const kInterstitialAdsAndroid = 'ca-app-pub-3940256099942544/1033173712';
+const kInterstitialAdsIos = 'ca-app-pub-3940256099942544/4411468910';
 
 void showToast(String message) {
   Fluttertoast.showToast(
@@ -52,7 +61,7 @@ void takeScreenshot(ScreenshotController _screenshotController) async {
       await Share.shareXFiles(
           subject: 'منجم الآسماء',
           text:
-              'ابحث واكتشف  المزيد في منجم  الاسماء حمل التطبيق من الرابط التالي : https://play.google.com/store/apps/details?id=com.almaany.manjam_asmaa ',
+              'ابحث واكتشف  المزيد في منجم  الاسماء حمل التطبيق من الرابط التالي : https://play.google.com/store/apps/details?id=com.almaany.manjam_asmaa.manjam_asmaa ',
           [XFile(imagePath.path)]);
     } else {
       print('object');
@@ -69,19 +78,19 @@ Future launchUrlFunc(String url) async {
 Future<void> addOrUpdateName(String name) async {
   final namesCollection = FirebaseFirestore.instance.collection('names');
 
-  // ابحث عن الاسم (تطابق تام)
+// ابحث عن الاسم (تطابق تام)
   final query =
       await namesCollection.where('theName', isEqualTo: name).limit(1).get();
 
   if (query.docs.isNotEmpty) {
-    // الاسم موجود → حدث اللايك
+// الاسم موجود → حدث اللايك
     final docId = query.docs.first.id;
     await namesCollection.doc(docId).update({
       'likes': FieldValue.increment(1),
     });
     print('تم تحديث اللايك للاسم "$name"');
   } else {
-    // الاسم غير موجود → أضفه جديد
+// الاسم غير موجود → أضفه جديد
     await namesCollection.add({
       'name': name,
       'likes': 1,
@@ -100,12 +109,12 @@ Future<void> addOrUpdateLike(String name) async {
         await collection.where('theName', isEqualTo: name).get();
 
     if (querySnapshot.docs.isNotEmpty) {
-      // الاسم موجود: نحدث عدد اللايكات
+// الاسم موجود: نحدث عدد اللايكات
       final doc = querySnapshot.docs.first;
       final currentLikes = doc['likes'] ?? 0;
       await collection.doc(doc.id).update({'likes': currentLikes + 1});
     } else {
-      // الاسم مش موجود: نضيف وثيقة جديدة
+// الاسم مش موجود: نضيف وثيقة جديدة
       await collection.add({
         'theName': name,
         'likes': 1,

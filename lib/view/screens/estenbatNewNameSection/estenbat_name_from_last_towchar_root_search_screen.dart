@@ -7,6 +7,7 @@ import 'package:manjam_asmaa/view/widgets/custom_button.dart';
 import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 
 import '../../../core/database/database_queries.dart';
+import '../../widgets/custom_banner.dart';
 import '../../widgets/custom_text.dart';
 import '../../widgets/custom_text_field.dart';
 import 'estenbat_name_from_last_towchar_root_result_screen.dart';
@@ -445,17 +446,21 @@ class estenbat_name_from_last_towchar_root_search_screen
                     onTap: () {
                       Get.back();
                     },
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        CustomText(
+                          text: 'اسم مشتق من جذر معين',
+                          textColor: Colors.white,
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  CustomText(
-                    text: 'اسم مشتق من جذر معين',
-                    textColor: Colors.white,
                   ),
                   Spacer(),
                   InkWell(
@@ -486,7 +491,6 @@ class estenbat_name_from_last_towchar_root_search_screen
 
               Padding(
                 padding: EdgeInsets.all(5),
-
                 child: CustomText(
                   textColor: Colors.white60,
                   text:
@@ -615,6 +619,9 @@ class estenbat_name_from_last_towchar_root_search_screen
                   },
                 ),
               ),
+              SizedBox(height: 10.h,),
+              MyBannerAd()
+
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:manjam_asmaa/core/utils/constants.dart';
 import 'package:manjam_asmaa/view/screens/globalNamesSection/type_of_search_global_name_screen.dart';
+import 'package:manjam_asmaa/view/widgets/custom_banner.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../controller/app_contrller.dart';
 import '../widgets/custom_button.dart';
@@ -14,6 +15,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    appController.loadAdInterstitial();
     return Scaffold(
       key: appController.scaffoldKey,
       drawer: const CustomDrawer(),
@@ -67,19 +69,21 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CustomText(
-                      text: 'homeScreenTitle'.tr,
+                      text: 'رحلة البحث عن اسم\n طفلك  تبدأ هنا!',
                       fontSize: 25.sp,
                       textColor: Colors.white,
                       fontWight: FontWeight.bold,
                     ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    CustomText(
-                      text: 'homeScreenDescriptionApp'.tr,
-                      fontSize: 15.sp,
-                      textColor: Colors.white,
-                      fontWight: FontWeight.bold,
+
+                    Padding(
+                      padding: EdgeInsets.all(5),
+                      child: CustomText(
+                        text:
+                            'سواء كنت تبحث عن اسم عربي أصيل من بين آلاف الأسماء أو ترغب في ابتكار اسم فريد مستوحى من جذور اللغة العربية، منجم الأسماء يمنحك الأدوات المثالية لاختيار الاسم الأمثل لطفلك.',
+                        fontSize: 15.sp,
+                        textColor: Colors.white,
+                        fontWight: FontWeight.bold,
+                      ),
                     ),
                     SizedBox(
                       height: 20.h,
@@ -88,7 +92,17 @@ class HomeScreen extends StatelessWidget {
                     // زر الاول
                     InkWell(
                       onTap: () {
-                        Get.to(TypeOfSearchGlobalNameScreen());
+                        if (appController.showAdsIndex == 0 &&
+                            appController.interstitialAd != null) {
+                          appController.interstitialAd?.show();
+                          appController.showAdsIndex = 4;
+                          appController.loadAdInterstitial();
+
+                          Get.to(TypeOfSearchGlobalNameScreen());
+                        } else {
+                          appController.showAdsIndex--;
+                          Get.to(TypeOfSearchGlobalNameScreen());
+                        }
                       },
                       child: Container(
                         width: 290.w,
@@ -125,13 +139,23 @@ class HomeScreen extends StatelessWidget {
                     ),
 
                     SizedBox(
-                      height: 20.h,
+                      height: 10.h,
                     ),
 
                     // زر الثاني
                     InkWell(
                       onTap: () {
-                        Get.to(TypeOfSearchEntenbatNameScreen());
+                        if (appController.showAdsIndex == 0 &&
+                            appController.interstitialAd != null) {
+                          appController.interstitialAd?.show();
+                          appController.showAdsIndex = 4;
+                          appController.loadAdInterstitial();
+
+                          Get.to(TypeOfSearchEntenbatNameScreen());
+                        } else {
+                          appController.showAdsIndex--;
+                          Get.to(TypeOfSearchEntenbatNameScreen());
+                        }
                       },
                       child: Container(
                         width: 290.w,
@@ -169,11 +193,12 @@ class HomeScreen extends StatelessWidget {
                     ),
 
                     SizedBox(
-                      height: 40.h,
+                      height: 20.h,
                     ),
                   ],
                 ),
-              )
+              ),
+              MyBannerAd()
             ],
           ),
         ),

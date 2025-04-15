@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
+import '../../widgets/custom_banner.dart';
 import 'global_name_root_result_nameRoot_option_screen.dart';
 import 'global_name_root_result_root_option_screen.dart';
 
@@ -61,17 +62,21 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                             onTap: () {
                               Get.back();
                             },
-                            child: Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(
+                                  width: 10.w,
+                                ),
+                                CustomText(
+                                  text: 'البحث في الاسماء المستخدمة',
+                                  textColor: Colors.white,
+                                ),
+                              ],
                             ),
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          CustomText(
-                            text: 'البحث في الاسماء المستخدمة',
-                            textColor: Colors.white,
                           ),
                           Spacer(),
                           InkWell(
@@ -519,8 +524,9 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
                       }),
 
                       SizedBox(
-                        height: 20.h,
+                        height: 10.h,
                       ),
+                      MyBannerAd()
                     ],
                   ),
                 ],

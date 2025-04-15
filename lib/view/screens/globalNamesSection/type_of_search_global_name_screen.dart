@@ -6,7 +6,7 @@ import 'package:manjam_asmaa/core/utils/constants.dart';
 import 'package:manjam_asmaa/view/screens/globalNamesSection/global_name_char_search_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
-import '../../widgets/custom_button.dart';
+import '../../widgets/custom_banner.dart';
 import 'global_name_object_search_screen.dart';
 import 'global_name_root_search_screen.dart';
 import 'global_name_wight_search_screen.dart';
@@ -33,6 +33,7 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
+              //  الهيدر
               SizedBox(
                 height: 10.h,
               ),
@@ -42,17 +43,21 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
                     onTap: () {
                       Get.back();
                     },
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        CustomText(
+                          text: 'البحث في الاسماء المستخدمة',
+                          textColor: Colors.white,
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  CustomText(
-                    text: 'البحث في الاسماء المستخدمة',
-                    textColor: Colors.white,
                   ),
                   Spacer(),
                   InkWell(
@@ -107,7 +112,17 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
 
               InkWell(
                 onTap: () {
-                  Get.to(GlobalNameCharSearchScreen());
+                  if (appController.showAdsIndex == 0 &&
+                      appController.interstitialAd != null) {
+                    appController.interstitialAd?.show();
+                    appController.showAdsIndex = 4;
+                    appController.loadAdInterstitial();
+
+                    Get.to(GlobalNameCharSearchScreen());
+                  } else {
+                    appController.showAdsIndex--;
+                    Get.to(GlobalNameCharSearchScreen());
+                  }
                 },
                 child: MyCustomButton(
                   theTitle: 'ابحث من خلال حروف الاسم',
@@ -122,7 +137,17 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
 
               InkWell(
                 onTap: () {
-                  Get.to(GlobalNameObjectSearchScreen());
+                  if (appController.showAdsIndex == 0 &&
+                      appController.interstitialAd != null) {
+                    appController.interstitialAd?.show();
+                    appController.showAdsIndex = 4;
+                    appController.loadAdInterstitial();
+
+                    Get.to(GlobalNameObjectSearchScreen());
+                  } else {
+                    appController.showAdsIndex--;
+                    Get.to(GlobalNameObjectSearchScreen());
+                  }
                 },
                 child: MyCustomButton(
                   theTitle: 'ابحث من خلال موضوع الاسم',
@@ -137,7 +162,17 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
 
               InkWell(
                 onTap: () {
-                  Get.to(GlobalNameWightSearchScreen());
+                  if (appController.showAdsIndex == 0 &&
+                      appController.interstitialAd != null) {
+                    appController.interstitialAd?.show();
+                    appController.showAdsIndex = 4;
+                    appController.loadAdInterstitial();
+                    Get.to(GlobalNameWightSearchScreen());
+                  } else {
+                    appController.showAdsIndex--;
+
+                    Get.to(GlobalNameWightSearchScreen());
+                  }
                 },
                 child: MyCustomButton(
                   theTitle: 'ابحث من خلال الوزن الصرفي',
@@ -152,7 +187,17 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  Get.to(GlobalNameRootSearchScreen());
+                  if (appController.showAdsIndex == 0 &&
+                      appController.interstitialAd != null) {
+                    appController.interstitialAd?.show();
+                    appController.loadAdInterstitial();
+
+                    appController.showAdsIndex = 4;
+                    Get.to(GlobalNameRootSearchScreen());
+                  } else {
+                    appController.showAdsIndex--;
+                    Get.to(GlobalNameRootSearchScreen());
+                  }
                 },
                 child: MyCustomButton(
                   theTitle: 'ابحث من خلال الجذر اللغوي',
@@ -160,6 +205,11 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
                   theIconName: 'root_search_icon.png',
                 ),
               ),
+
+              SizedBox(
+                height: 10.h,
+              ),
+              const MyBannerAd()
             ],
           ),
         ),
@@ -221,13 +271,6 @@ class MyCustomButton extends StatelessWidget {
                 fontWight: FontWeight.bold,
                 fontSize: 18.sp,
               ),
-              // //نص فرعي
-              // CustomText(
-              //   text: subTitle,
-              //   textColor: Colors.white,
-              //   fontWight: FontWeight.bold,
-              //   fontSize: 13.sp,
-              // ),
             ],
           )
         ],

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:manjam_asmaa/medel/namesModel.dart';
 import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
@@ -11,6 +12,7 @@ import 'package:screenshot/screenshot.dart';
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
 import '../../../core/utils/constants.dart';
+import '../../widgets/custom_banner.dart';
 
 class GlobalCharNameResultScreen extends StatelessWidget {
   AppController appController = Get.find();
@@ -50,17 +52,21 @@ class GlobalCharNameResultScreen extends StatelessWidget {
                         onTap: () {
                           Get.back();
                         },
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            CustomText(
+                              text: 'البحث في الاسماء المستخدمة',
+                              textColor: Colors.white,
+                            ),
+                          ],
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      CustomText(
-                        text: 'البحث في الاسماء المستخدمة',
-                        textColor: Colors.white,
                       ),
                       Spacer(),
                       InkWell(
@@ -200,6 +206,10 @@ class GlobalCharNameResultScreen extends StatelessWidget {
                           }
                         });
                   }),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  MyBannerAd()
                 ],
               ),
 
