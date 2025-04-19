@@ -209,7 +209,7 @@ class TypeOfSearchGlobalNameScreen extends StatelessWidget {
               SizedBox(
                 height: 10.h,
               ),
-              const MyBannerAd()
+              Expanded(child: MyBannerAd())
             ],
           ),
         ),

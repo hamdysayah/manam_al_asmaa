@@ -162,7 +162,7 @@ class EstenbatNameFromLastTowcharRootResultScreen extends StatelessWidget {
                                   child: CustomText(text: 'لا يوجد نتائج'));
                             }
                           } else if (snapshot.hasError) {
-                            return CustomText(text: snapshot.error.toString());
+                            return Expanded(child: CustomText(text: snapshot.error.toString()));
                           } else {
                             return Column(
                               mainAxisAlignment: MainAxisAlignment.center,

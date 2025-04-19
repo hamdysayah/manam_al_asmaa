@@ -782,13 +782,15 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                                 SizedBox(
                                   height: 10.h,
                                 ),
-                                MyBannerAd(),
                               ],
                             )),
                           ],
                         ),
                       );
                     }),
+                    Container(
+                      child: MyBannerAd(),
+                    )
                   ],
                 ),
               ),

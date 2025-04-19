@@ -450,7 +450,7 @@ class DatabaseQueries {
         "SELECT $theColumnName FROM EstenbatNamesMa3rofahTBL WHERE  id ='no'");
     resultList.add(list[0][theColumnName]);
 
-    list = await dbClient!.rawQuery(
+    list = await dbClient.rawQuery(
         "SELECT root FROM EstenbatNamesMa3rofahTBL WHERE $theColumnName='$name'");
     resultList.add(list[0]['root']);
 

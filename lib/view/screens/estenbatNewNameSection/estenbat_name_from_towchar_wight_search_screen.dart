@@ -421,6 +421,7 @@ class estenbat_name_from_towchar_wight_search_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       drawer: const CustomDrawer(),
       key: scaffoldKey,
       body: Container(
@@ -552,6 +553,8 @@ class estenbat_name_from_towchar_wight_search_screen extends StatelessWidget {
                           value.isNotEmpty
                               ? appController.showSuffixText5 = true
                               : appController.showSuffixText5 = false;
+                          FocusScope.of(context).unfocus();
+
                           appController.update();
                         },
                       )),
@@ -578,12 +581,12 @@ class estenbat_name_from_towchar_wight_search_screen extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                         String theColumnName = '';
-                        for (int x = 8; x < weightsList.length - 1; x++) {
+                        for (int x = 0; x < weightsList.length; x++) {
                           theWightGlobal =
                               weightsList[index].toString().split('-')[0];
-                          if (theWightGlobal.replaceAll(' ', '') ==
-                              wordsMap['field$x']!) {
-                            theColumnName = 'field$x';
+                           if (theWightGlobal.replaceAll(' ', '') ==
+                              wordsMap['field${x + 8}']!) {
+                            theColumnName = 'field${x + 8}';
                           }
                         }
 
@@ -623,9 +626,13 @@ class estenbat_name_from_towchar_wight_search_screen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 10.h,),
-              MyBannerAd()
-
+              SizedBox(
+                height: 10.h,
+              ),
+              const MyBannerAd(),
+              SizedBox(
+                height: 10.h,
+              ),
             ],
           ),
         ),

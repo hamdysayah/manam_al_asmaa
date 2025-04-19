@@ -23,6 +23,7 @@ class estenbat_name_from_root_search_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       key: scaffoldKey,
       body: Container(
         width: double.infinity,
@@ -183,6 +184,8 @@ class estenbat_name_from_root_search_screen extends StatelessWidget {
                         value.isNotEmpty
                             ? appController.showSuffixText3 = true
                             : appController.showSuffixText3 = false;
+                        FocusScope.of(context).unfocus();
+
                         appController.update();
                       },
                     ));
@@ -209,7 +212,14 @@ class estenbat_name_from_root_search_screen extends StatelessWidget {
               SizedBox(
                 height: 10.h,
               ),
-              MyBannerAd()
+              Expanded(
+                  child: Container(
+                alignment: Alignment.bottomCenter,
+                child: const MyBannerAd(),
+              )),
+              SizedBox(
+                height: 10.h,
+              ),
             ],
           ),
         ),

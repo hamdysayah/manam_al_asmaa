@@ -408,82 +408,76 @@ class GlobalNameRootResultRootOptionScreen extends StatelessWidget {
                           SizedBox(
                             height: 10.h,
                           ),
-                          //زر مشاركة كصورة
-                          InkWell(
-                            onTap: () {
-                              takeScreenshot(_screenshotController);
-                            },
-                            child: Container(
-                              margin: EdgeInsets.only(right: 30.w, left: 30.w),
-                              height: 45.h,
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment(0.9, 0.1),
-                                      colors: [
-                                        Color(0xFF7060D4),
-                                        Color(0xFF9785EE),
-                                      ]),
-                                  border: Border.all(color: Color(0xFF9785EE)),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.share,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  CustomText(
-                                    text: 'مشاركة الاسم كصورة',
-                                    textColor: Colors.white,
-                                    fontWight: FontWeight.bold,
-                                    fontSize: 17.sp,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              //زر مشاركة كصورة
+                              InkWell(
+                                onTap: () {
+                                  takeScreenshot(_screenshotController);
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
 
-                          // زر اغلاق
-                          InkWell(
-                            onTap: () {
-                              controller.isVisibleNameDetailsDialog = false;
-                              controller.update();
-                            },
-                            child: Container(
-                              width: 150.w,
-                              height: 45.h,
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment(0.9, 0.1),
-                                      colors: [
-                                        Color(0xFF7060D4),
-                                        Color(0xFF9785EE),
-                                      ]),
-                                  border: Border.all(color: Color(0xFF9785EE)),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  CustomText(
-                                    text: 'اغلاق',
+                                  padding: EdgeInsets.only(right: 30.w, left: 30.w),
+                                  height: 45.h,
+                                  decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment(0.9, 0.1),
+                                          colors: [
+                                            Color(0xFF7060D4),
+                                            Color(0xFF9785EE),
+                                          ]),
+                                      border: Border.all(color: Color(0xFF9785EE)),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10))),
+                                  child: CustomText(
+                                    text: 'شارك في صورة',
                                     textColor: Colors.white,
                                     fontWight: FontWeight.bold,
                                     fontSize: 17.sp,
                                   ),
-                                ],
+                                ),
                               ),
-                            ),
-                          ),
+                              SizedBox(
+                                width: 10.h,
+                              ),
+                              // زر اغلاق
+                              InkWell(
+                                onTap: () {
+                                  controller.isVisibleNameDetailsDialog = false;
+                                  controller.update();
+                                },
+                                child: Container(
+                                  width: 100.w,
+                                  height: 45.h,
+                                  decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment(0.9, 0.1),
+                                          colors: [
+                                            Color(0xFF7060D4),
+                                            Color(0xFF9785EE),
+                                          ]),
+                                      border: Border.all(color: Color(0xFF9785EE)),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10))),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CustomText(
+                                        text: 'اغلاق',
+                                        textColor: Colors.white,
+                                        fontWight: FontWeight.bold,
+                                        fontSize: 17.sp,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ));

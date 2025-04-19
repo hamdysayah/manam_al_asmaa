@@ -772,9 +772,17 @@ class EstenbatNameFromNameCheckBoxSearchScreen extends StatelessWidget {
                             )
                           : SizedBox.shrink();
                     }),
-                    SizedBox(height: 10.h,),
-                    MyBannerAd()
-
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Expanded(
+                        child: Container(
+                      alignment: Alignment.bottomCenter,
+                      child: const MyBannerAd(),
+                    )),
+                    SizedBox(
+                      height: 10.h,
+                    ),
                   ],
                 ),
               ],

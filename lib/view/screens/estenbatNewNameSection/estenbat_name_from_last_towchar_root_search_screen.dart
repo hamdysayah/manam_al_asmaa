@@ -422,6 +422,7 @@ class estenbat_name_from_last_towchar_root_search_screen
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       drawer: const CustomDrawer(),
       key: scaffoldKey,
       body: Container(
@@ -523,6 +524,7 @@ class estenbat_name_from_last_towchar_root_search_screen
                         value.isNotEmpty
                             ? appController.showSuffixText6 = true
                             : appController.showSuffixText6 = false;
+
                         appController.update();
                       },
                     ));
@@ -548,6 +550,7 @@ class estenbat_name_from_last_towchar_root_search_screen
                           value.isNotEmpty
                               ? appController.showSuffixText7 = true
                               : appController.showSuffixText7 = false;
+                          FocusScope.of(context).unfocus();
                           appController.update();
                         },
                       )),
@@ -574,13 +577,13 @@ class estenbat_name_from_last_towchar_root_search_screen
                     return InkWell(
                       onTap: () {
                         String theColumnName = '';
-                        for (int x = 8; x < weightsList.length - 1; x++) {
+                        for (int x = 0; x < weightsList.length - 1; x++) {
                           if (weightsList[index]
                                   .toString()
                                   .split('-')[0]
                                   .replaceAll(' ', '') ==
-                              wordsMap['field$x']!) {
-                            theColumnName = 'field$x';
+                              wordsMap['field${x + 8}']!) {
+                            theColumnName = 'field${x + 8}';
                           }
                         }
                         if (char1 == '' || char2 == '') {
@@ -619,9 +622,10 @@ class estenbat_name_from_last_towchar_root_search_screen
                   },
                 ),
               ),
-              SizedBox(height: 10.h,),
+              SizedBox(
+                height: 10.h,
+              ),
               MyBannerAd()
-
             ],
           ),
         ),

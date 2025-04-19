@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:manjam_asmaa/view/screens/estenbatNewNameSection/estenbat_name_from_name_result_screen.dart';
 import 'package:manjam_asmaa/view/widgets/custom_drawer.dart';
 import 'package:manjam_asmaa/view/widgets/custom_text.dart';
+import 'package:screenshot/screenshot.dart';
 import '../../../controller/app_contrller.dart';
 import '../../../core/database/database_queries.dart';
 import '../../widgets/custom_banner.dart';
@@ -325,9 +326,14 @@ class EstenbatNameFromNameSearchScreen extends StatelessWidget {
                             }
                           });
                     }),
-                    SizedBox(height: 10.h,),
-                    MyBannerAd()
-
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Expanded(
+                        child: Container(
+                      alignment: Alignment.bottomCenter,
+                      child: const MyBannerAd(),
+                    ))
                   ],
                 ),
               ),
