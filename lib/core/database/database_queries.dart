@@ -1,3 +1,4 @@
+import 'package:manjam_asmaa/core/utils/constants.dart';
 import 'package:manjam_asmaa/medel/nameTashkelAndNo.dart';
 import 'package:manjam_asmaa/medel/namesModel.dart';
 
@@ -43,6 +44,22 @@ class DatabaseQueries {
     return theObjectList;
   }
 
+  // جلب الاسماء حسب الجنس
+  Future<List<String>> getNamesFromDbForWight(String maleOrFemale) async {
+    List<String> theObjectList = [];
+    var dbClient = await dbHelper.db;
+    List<Map<String, dynamic>> list;
+
+    list = await dbClient!.rawQuery(
+        "SELECT  DISTINCT nameNoTashkel from GlobalNameTbl where  nameWight !=''  and (typeOfName='$maleOrFemale' or typeOfName='عائلي' or  typeOfName='مذكر ومؤنث') ");
+
+    for (var item in list) {
+      theObjectList.add(item['nameNoTashkel']);
+    }
+    return theObjectList;
+  }
+
+
   Future<List<String>> getNamesFromDb() async {
     List<String> theObjectList = [];
     var dbClient = await dbHelper.db;
@@ -63,6 +80,7 @@ class DatabaseQueries {
     var dbClient = await dbHelper.db;
     List<Map<String, dynamic>> list;
 
+    showToast(maleOrFemale);
     list = await dbClient!.rawQuery(
         "SELECT  DISTINCT nameNoTashkel from GlobalNameTbl where  nameWight !='' and (typeOfName='$maleOrFemale' or typeOfName='عائلي' or  typeOfName='مذكر ومؤنث')");
 

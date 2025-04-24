@@ -16,14 +16,15 @@ const kAppName = 'منجم الاسماء';
 const kPrimaryColor = 0xff9785EE;
 const kScaffoldBackgroundColor = 0xffF3F3F3;
 const kFontAppName = 'almaraiFont';
-const kDbName = 'MangamNameDbV2.db';
+const kDbName = 'MangamNameDbV3.db';
 const kBlackDarkColor = 0xFF292925;
 const kWhiteLightColor = 0xfff4f9fc;
 
-const kBannerAdsAndroid = 'ca-app-pub-3940256099942544/9214589741';
-const kBannerAdsIos = 'ca-app-pub-3940256099942544/2435281174';
-const kInterstitialAdsAndroid = 'ca-app-pub-3940256099942544/1033173712';
-const kInterstitialAdsIos = 'ca-app-pub-3940256099942544/4411468910';
+const kBannerAdsIos = 'ca-app-pub-2936008211113256/5246091819';
+const kBannerAdsAndroid = 'ca-app-pub-2936008211113256/4501115657';
+
+const kInterstitialAdsAndroid = 'ca-app-pub-2936008211113256/1630280439';
+const kInterstitialAdsIos = 'ca-app-pub-2936008211113256/7315901124';
 
 void showToast(String message) {
   Fluttertoast.showToast(
@@ -56,13 +57,23 @@ void takeScreenshot(ScreenshotController _screenshotController) async {
       final directory = await getApplicationDocumentsDirectory();
       final imagePath = await File('${directory.path}/image.png').create();
       await imagePath.writeAsBytes(image);
+      final params = ShareParams(
+        subject: 'منجم الآسماء',
+        text: Platform.isAndroid
+            ? 'ابحث واكتشف  المزيد في منجم  الاسماء حمل التطبيق من الرابط التالي : https://play.google.com/store/apps/details?id=com.almaany.manjam_asmaa.manjam_asmaa '
+            : 'ابحث واكتشف  المزيد في منجم  الاسماء حمل التطبيق من الرابط التالي :https://apps.apple.com/us/app/id987229874 ',
+        files: [
+          XFile(imagePath.path),
+        ],
+        sharePositionOrigin:
+            Rect.fromPoints(const Offset(2, 2), const Offset(3, 3)),
+      );
 
-      /// Share Plugin
-      await Share.shareXFiles(
-          subject: 'منجم الآسماء',
-          text:
-              'ابحث واكتشف  المزيد في منجم  الاسماء حمل التطبيق من الرابط التالي : https://play.google.com/store/apps/details?id=com.almaany.manjam_asmaa.manjam_asmaa ',
-          [XFile(imagePath.path)]);
+      final result = await SharePlus.instance.share(params);
+
+      if (result.status == ShareResultStatus.dismissed) {
+        print('Did you not like the pictures?');
+      }
     } else {
       print('object');
     }

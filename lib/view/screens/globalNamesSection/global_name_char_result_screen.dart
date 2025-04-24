@@ -253,7 +253,7 @@ class GlobalCharNameResultScreen extends StatelessWidget {
                                           // الشكل الذي سيتم مشاركته
                                           Container(
                                             width: double.infinity,
-                                            height: 200.h,
+                                            height: 220.h,
                                             decoration: BoxDecoration(
                                                 color: Colors.black,
                                                 image: DecorationImage(

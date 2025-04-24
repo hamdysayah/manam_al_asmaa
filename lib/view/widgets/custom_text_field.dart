@@ -30,6 +30,10 @@ class CustomTextField extends StatelessWidget {
       controller: textEditingController,
       textInputAction: TextInputAction.next,
       onChanged: onChanged,
+      onTapOutside: (event) {
+        FocusManager.instance.primaryFocus
+            ?.unfocus();
+      },
       style: TextStyle(
           color: Colors.white, fontSize: 17.sp, fontWeight: FontWeight.bold),
       inputFormatters: [LengthLimitingTextInputFormatter(1)],

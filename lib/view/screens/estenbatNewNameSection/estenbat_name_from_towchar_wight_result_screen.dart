@@ -166,7 +166,7 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                             }
                           } else if (snapshot.hasError) {
                             return Expanded(
-                                child: CustomText(text: snapshot.error.toString()));
+                                child: CustomText(text: 'لا يوجد نتائج'));
                           } else {
                             return Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -186,9 +186,10 @@ class EstenbatNameFromTowcharWightResultScreen extends StatelessWidget {
                           }
                         });
                   }),
-                  SizedBox(height: 10.h,),
+                  SizedBox(
+                    height: 10.h,
+                  ),
                   MyBannerAd()
-
                 ],
               ),
 

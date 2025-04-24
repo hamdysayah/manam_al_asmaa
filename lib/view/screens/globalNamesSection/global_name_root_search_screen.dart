@@ -31,9 +31,7 @@ class GlobalNameRootSearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    currentOptionMaleOrFemale = maleOrFemaleList[0];
     appController.isVisibleChoiceWight = false;
-
     return Scaffold(
         key: scaffoldKey,
         body: Container(

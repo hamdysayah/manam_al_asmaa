@@ -27,199 +27,199 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
 
   List<String> weightsList = [
     'اسْتِفْعَال - ( اسْتِمال)',
-    'مِفْعَلَانَة - ( مِنسَمانة)',
-    'مِفْعَلَان - ( مِنسَمان)',
-    'مِفْعِيل - ( منصير)',
-    'مُنْفَعِلَة - ( منتصرة)',
-    'مُنْفَعِل - ( منتصر)',
-    'مِفْعَلَة - ( مِشْكاة)',
-    'مِفْعِل - ( مِذْحِج)',
-    'مِفْعَل - ( مِنسَم)',
-    'مِفْعَالِيّ - ( مِنْقارِيّ)',
-    'مِفْعَال - ( منسام)',
-    'مُفْعَال - ( مبسام)',
-    'مَفْعِلَة - ( مَوْهِبة)',
-    'مُفْعِلِيّ - ( مُرْشِدي)',
-    'مُفْعِلَة - ( مُهيبة)',
-    'مُفْعِل - ( مُريد)',
-    'مُفْعَلَة - ( مُعاذَة)',
-    'مُفْعَل - ( مُهاب)',
-    'مُفْتَعِلَة - ( مُزْدَلِفَة)',
-    'مُفْتَعِل - ( مُهْتَدي)',
-    'مُفْتَعَلَة - ( مُمْتازة)',
-    'مُفْتَعَل - ( مُنْتَهى)',
-    'مُفَعِّلَة - ( مُوَفِّية)',
-    'مُفَعَّلَة - ( مُزَنَّرة)',
-    'مُفَعِّل - ( مُؤَيِّد)',
-    'مُفَعَّل - ( مُيَسَّر)',
-    'مُفَاعَلَة - ( مُكافَأة)',
-    'مُفَاعِلَة - ( مُعاوِية)',
-    'مُفَاعَل - ( مُبارَك)',
-    'مَفَاعِل - ( مناسم)',
-    'مُفَاعِل - ( مُهاجِر)',
-    'مُسْتَفْعِل - ( مُسْتوْثق)',
-    'مُتَفَعِّل - ( مُتَوَكِّل)',
-    'تُفَاعِل - ( تُماضِر)',
-    'مُتَفَاعِل - ( متناصر)',
-    'مَفْعِل - ( مَوْئِل)',
-    'مَفْعُولَة - ( مَرْضِيّة)',
-    'مَفْعُولَاء - ( منسوماء)',
-    'مَفْعُول - ( منصور)',
-    'مَفْعَل - ( مَيْسَم)',
-    'فِعليل - ( نمرير)',
-    'فِعِّيلَة - ( صِدِّيقة)',
-    'فِعِّيل - ( غِرِّيد)',
-    'فِعْلِياء - ( نريماء)',
-    'فُعْلَى - ( أُلْفَى)',
-    'فِعْلَى - ( نِعْمَى)',
-    'فِعْلَات - ( نِعْمات)',
-    'فُعْلَت - ( أُلْفَتْ)',
-    'فِعْلَت - ( نِعْمَتْ)',
-    'فِعْلَة - ( حِمنة)',
-    'فِعَل - ( نِعَم)',
-    'فِعْل - ( هِنْد)',
-    'فِعَالِيّ - ( نِساليّ)',
-    'فِعَالَات - ( عِنايات)',
-    'فِعَالَة - ( نِسالة)',
-    'فِعَال - ( ثِمال)',
-    'فُنْعُلاء - ( سنبلاء)',
-    'فُعَّالَة - ( نُوَّارة)',
-    'فُعَّال - ( عُنّاب)',
-    'فُعَّلَة - ( سُكَّرَة)',
-    'فُعْلَة - ( طُعْمة)',
-    'فُعْل - ( رُشْد)',
-    'فُعُولَة - ( مُروءة)',
-    'فُعُول - ( بُدور)',
-    'فُعَيِّل - ( كُثَيِّر)',
-    'فُعَلَى - ( زُهَرَى)',
-    'فُعَلاء - ( جُملاء)',
-    'فُعَلَة - ( زُهَرَة)',
-    'فُعَل - ( هُدى)',
-    'فُعَالِيّ - ( سُباعِيّ)',
-    'فُعَالَة - ( لُبانة)',
-    'فِعَالَى - ( نِسالى)',
-    'فُعَالَى - ( لُبانى)',
-    'فُعَال - ( هُيام)',
-    'فَيْعُول - ( شَيْبوب)',
-    'فُوَيْعَل - ( نويسم)',
-    'فَيْعَل - ( هَيْصَر)',
-    'فَيْعَلَة - ( نيسمة)',
-    'فَيْعَلَان - ( نيصران)',
-    'فَوَاعِل - ( نَواهل)',
-    'فَوْعَل - ( كَوْثَر)',
-    'فَعُّولَة - ( قَدّورَة)',
-    'فَعُّول - ( سَمّور)',
-    'فَعَّالِيّ - ( كيّالِيّ)',
-    'فَعَّالَة - ( جَبّارَة)',
-    'فَعَّال - ( ورّاق)',
-    'فَعْلُوت - ( نسموت)',
-    'فُعْلَانَة - ( نورانة)',
-    'فِعْلَاوِي - ( حِنّاوي)',
-    'فَعْلَاوِي - ( غَزّاوي)',
-    'فِعْلَانَة - ( وِجْدانة)',
-    'فَعْلَانِيّ - ( عَدْناني)',
-    'فَعْلَات - ( فَرْحات)',
-    'فَعْلَانَة - ( غيسانة)',
-    'فُعْلَان - ( نوران)',
-    'فِعْلَان - ( وِجْدان)',
-    'فَعْلَتِي - ( نَصْرَتي)',
-    'فَعَلُول - ( نجمون)',
-    'فَعْلَان - ( حوكان)',
-    'فَعْلَت - ( نَصْرَتْ)',
-    'فَعْلَى - ( نصرى)',
-    'فَعَلَة - ( عَرَفَة)',
-    'فَعْلَة - ( جَهْرَة)',
-    'فَعْلَاء - ( سَرّاء)',
-    'فَعْل - ( بَطْش)',
-    'فَعِيلَات - ( عَطِيّات)',
-    'فَعِيلِيّ - ( شَبيبِيّ)',
-    'فَعِيلَة - ( لَميحَة)',
-    'فَعِيْل - ( عَدِيّ)',
-    'فَعِلَة - ( نَضِرة)',
-    'فَعِل - ( رَتِل)',
-    'فَعَلَاتِي - ( نجداتي)',
-    'فَعَلَانَة - ( نَسَمانة)',
-    'فَعَلات - ( لَمَعات)',
-    'فَعَلَان - ( نَسَمان)',
-    'فَعَلَى - ( نَسَمى)',
-    'فَعَلَاء - ( نشَداء)',
-    'فَعَل - ( نَسَم)',
-    'فَعَالِيَّة - ( يَمانِيَّة)',
-    'فَعَالِيَة - ( عَتاهِيَة)',
-    'فَعَالِي - ( هَنادي)',
-    'فَعَالَى - ( نَجامى)',
-    'فَعَالَة - ( سَواحَة)',
-    'فَعَالِيّ - ( يَمانِيّ)',
-    'فَعَال - ( بَهار)',
-    'فَاعِلاء - ( سالِماء)',
-    'فَاعِيل - ( قابيل)',
-    'فَاعِلِيَّة - ( هاشِمِيَّة)',
-    'فَاعِلِيّ - ( ذاكِرِيّ)',
-    'فَاعِلِين - ( صابرين)',
-    'فَاعِلَة - ( تالِية)',
-    'أَفَاعِل - ( أَكابٍر)',
-    'أَفَاعِيل - ( أَغاريد)',
-    'فَاعِل - ( صامِد)',
-    'فَيْعَالَة - ( فَيْنانة)',
-    'فَاعُولِيّ - ( ماضوني)',
-    'فَاعُول - ( حاووط)',
-    'فَعُولِيّ - ( نَبولى)',
-    'فَعُولَة - ( نَبولة)',
-    'فَعُل - ( عَضُد)',
-    'فَعُول - ( كنوس)',
-    'أَفْعَالَة - ( أنسمامة)',
-    'أَفْعَال - ( أَزْهار)',
-    'أفْعَالِيّ - ( أَنْصارِيّ)',
-    'إفْعَالَة - ( إنْعامة)',
-    'إفْعَال - ( إنْعام)',
-    'افْتِعَالَة - ( انتجامة)',
     'افْتِعَال - ( ابْتِسال)',
-    'إِفْعِلالَة - ( انجمامة)',
-    'فِعْلَالَة - ( سِلْهابة)',
-    'فِعْلَال - ( سِلْهاب)',
-    'إِفْعِلَال - ( انجمام)',
-    'انْفِعَالَة - ( انْسِجامة)',
+    'افْتِعَالَة - ( انتجامة)',
     'انْفِعَال - ( انْسِجام)',
-    'أُفْعِلَة - ( أُمْنِيَة)',
+    'انْفِعَالَة - ( انْسِجامة)',
+    'إفْعَال - ( إنْعام)',
+    'إفْعَالَة - ( إنْعامة)',
+    'إِفْعِلَال - ( انجمام)',
+    'إِفْعِلالَة - ( انجمامة)',
     'إِفْعِلَة - ( إنسمة)',
     'إفْعَلَة  - ( إنْعمة)',
+    'أَفَاعِل - ( أَكابٍر)',
+    'أَفَاعِيل - ( أَغاريد)',
+    'أَفْعَال - ( أَزْهار)',
+    'أَفْعَالَة - ( أنسمامة)',
+    'أفْعَالِيّ - ( أَنْصارِيّ)',
     'أَفْعَل - ( أَسْعَد)',
     'أَفْعِلَاء - ( أسعداء)',
     'أَفْعِلَان - ( إسجمان)',
-    'تَفَاعُلَة - ( تجاملة)',
-    'تَفَاعِيل - ( تَرانيم)',
+    'أُفْعِلَة - ( أُمْنِيَة)',
+    'تُفَاعِل - ( تُماضِر)',
     'تَفَاعِل - ( تَهادي)',
     'تَفَاعُل - ( تَسامُح)',
+    'تَفَاعُلَة - ( تجاملة)',
+    'تَفَاعِيل - ( تَرانيم)',
+    'تِفْعَال - ( تِبْيان)',
+    'تِفْعَالَة - ( تِبْيانة)',
     'تَفَعُّل - ( تَيَمُّن)',
     'تَفْعِلَات - ( تيمنات)',
     'تَفْعِلَة - ( تفرِحة)',
-    'تَفْعِيلَة - ( تَوْفيقة)',
-    'تِفْعَالَة - ( تِبْيانة)',
     'تَفْعِيل - ( تَيسير)',
-    'تِفْعَال - ( تِبْيان)',
+    'تَفْعِيلَة - ( تَوْفيقة)',
+    'فَاعِل - ( صامِد)',
+    'فَاعِلاء - ( سالِماء)',
+    'فَاعِلَة - ( تالِية)',
+    'فَاعِلِيّ - ( ذاكِرِيّ)',
+    'فَاعِلِيَّة - ( هاشِمِيَّة)',
+    'فَاعِلِين - ( صابرين)',
+    'فَاعُول - ( حاووط)',
+    'فَاعُولِيّ - ( ماضوني)',
+    'فَاعِيل - ( قابيل)',
+    'فِعَال - ( ثِمال)',
+    'فُعَّال - ( عُنّاب)',
+    'فُعَال - ( هُيام)',
+    'فَعَّال - ( ورّاق)',
+    'فَعَال - ( بَهار)',
+    'فِعَالَات - ( عِنايات)',
+    'فِعَالَة - ( نِسالة)',
+    'فُعَّالَة - ( نُوَّارة)',
+    'فُعَالَة - ( لُبانة)',
+    'فَعَّالَة - ( جَبّارَة)',
+    'فَعَالَة - ( سَواحَة)',
+    'فِعَالَى - ( نِسالى)',
+    'فُعَالَى - ( لُبانى)',
+    'فَعَالَى - ( نَجامى)',
+    'فِعَالِيّ - ( نِساليّ)',
+    'فُعَالِيّ - ( سُباعِيّ)',
+    'فَعَّالِيّ - ( كيّالِيّ)',
+    'فَعَالِي - ( هَنادي)',
+    'فَعَالِيّ - ( يَمانِيّ)',
+    'فَعَالِيَّة - ( يَمانِيَّة)',
+    'فَعَالِيَة - ( عَتاهِيَة)',
+    'فَعَايِل - ( نسايم)',
+    'فَعَائِل - ( لَطائف)',
+    'فِعَل - ( نِعَم)',
+    'فِعْل - ( هِنْد)',
+    'فُعْل - ( رُشْد)',
+    'فُعَل - ( هُدى)',
+    'فَعْل - ( بَطْش)',
+    'فَعِل - ( رَتِل)',
+    'فَعَل - ( نَسَم)',
+    'فَعُل - ( عَضُد)',
+    'فُعَلاء - ( جُملاء)',
+    'فَعْلَاء - ( سَرّاء)',
+    'فَعَلَاء - ( نشَداء)',
+    'فِعْلَات - ( نِعْمات)',
+    'فَعْلَات - ( فَرْحات)',
+    'فَعَلات - ( لَمَعات)',
+    'فَعَلَاتِي - ( نجداتي)',
+    'فِعْلَال - ( سِلْهاب)',
+    'فِعْلَالَة - ( سِلْهابة)',
+    'فُعْلَان - ( نوران)',
+    'فِعْلَان - ( وِجْدان)',
+    'فَعْلَان - ( حوكان)',
+    'فَعَلَان - ( نَسَمان)',
+    'فُعْلَانَة - ( نورانة)',
+    'فِعْلَانَة - ( وِجْدانة)',
+    'فَعْلَانَة - ( غيسانة)',
+    'فَعَلَانَة - ( نَسَمانة)',
+    'فَعْلَانِيّ - ( عَدْناني)',
+    'فِعْلَاوِي - ( حِنّاوي)',
+    'فَعْلَاوِي - ( غَزّاوي)',
+    'فِعْلَة - ( حِمنة)',
+    'فُعَّلَة - ( سُكَّرَة)',
+    'فُعْلَة - ( طُعْمة)',
+    'فُعَلَة - ( زُهَرَة)',
+    'فَعَلَة - ( عَرَفَة)',
+    'فَعْلَة - ( جَهْرَة)',
+    'فَعِلَة - ( نَضِرة)',
+    'فُعْلَت - ( أُلْفَتْ)',
+    'فِعْلَت - ( نِعْمَتْ)',
+    'فَعْلَت - ( نَصْرَتْ)',
+    'فَعْلَتِي - ( نَصْرَتي)',
+    'فَعْلُوت - ( نسموت)',
+    'فَعَلُول - ( نجمون)',
+    'فَعْلُول - ( شَلْهوب)',
+    'فَعَلُون - ( جملون)',
+    'فَعْلُوْن - ( نسمون)',
+    'فَعْلُوْنَة - ( نسمونة)',
+    'فُعْلَى - ( أُلْفَى)',
+    'فِعْلَى - ( نِعْمَى)',
+    'فُعَلَى - ( زُهَرَى)',
+    'فَعْلَى - ( نصرى)',
+    'فَعَلَى - ( نَسَمى)',
+    'فِعْلِيّ - ( فِكْرِيّ)',
+    'فُعْلِيّ - ( قُدْسي)',
+    'فَعْلِيّ - ( حَرْبي)',
+    'فَعَلِيّ - ( قَمَري)',
+    'فِعْلِياء - ( نريماء)',
+    'فِعْلِيَّة - ( زَهِيَّة)',
+    'فُعْلِيَّة - ( يُسْرية)',
+    'فَعْلِيَّة - ( حَرْبِيَّة)',
+    'فَعَلِيَّة - ( نَبَوِيَّة)',
+    'فِعليل - ( نمرير)',
+    'فَعَلِيْن - ( لمسين)',
+    'فُعُول - ( بُدور)',
+    'فَعُّول - ( سَمّور)',
+    'فَعُول - ( كنوس)',
+    'فُعُولَة - ( مُروءة)',
+    'فَعُّولَة - ( قَدّورَة)',
+    'فَعُولَة - ( نَبولة)',
+    'فَعُولِيّ - ( نَبولى)',
+    'فِعِّيل - ( غِرِّيد)',
+    'فُعَيِّل - ( كُثَيِّر)',
+    'فَعِيْل - ( عَدِيّ)',
     'فُعَيْل - ( دُغَيم)',
-    'فُعَيْلِيّ - ( عُرَيْبِيّ)',
     'فُعَيْلَاء - ( رُتَيْلاء)',
+    'فَعِيلَات - ( عَطِيّات)',
     'فِعَيْلَان - ( عِلَيَّان)',
     'فُعَيْلَان - ( حُمَيْدان)',
     'فَعَيْلَان - ( سْبيتان )',
-    'فُعَيْلَى - ( زُبَيْدَى)',
+    'فِعِّيلَة - ( صِدِّيقة)',
+    'فَعِيلَة - ( لَميحَة)',
     'فُعَيْلَة - ( زُبَيْدَة)',
-    'فِعْلِيّ - ( فِكْرِيّ)',
-    'فُعْلِيّ - ( قُدْسي)',
-    'فِعْلِيَّة - ( زَهِيَّة)',
-    'فُعْلِيَّة - ( يُسْرية)',
-    'فَعْلِيّ - ( حَرْبي)',
-    'فَعْلِيَّة - ( حَرْبِيَّة)',
-    'فَعَلِيّ - ( قَمَري)',
-    'فَعَلِيَّة - ( نَبَوِيَّة)',
-    'فَعَائِل - ( لَطائف)',
-    'فَعَايِل - ( نسايم)',
-    'فَعَلِيْن - ( لمسين)',
-    'فَعَلُون - ( جملون)',
-    'فَعْلُول - ( شَلْهوب)',
-    'فَعْلُوْنَة - ( نسمونة)',
-    'فَعْلُوْن - ( نسمون)',
+    'فُعَيْلَى - ( زُبَيْدَى)',
+    'فَعِيلِيّ - ( شَبيبِيّ)',
+    'فُعَيْلِيّ - ( عُرَيْبِيّ)',
+    'فُنْعُلاء - ( سنبلاء)',
+    'فَوَاعِل - ( نَواهل)',
+    'فَوْعَل - ( كَوْثَر)',
+    'فُوَيْعَل - ( نويسم)',
+    'فَيْعَالَة - ( فَيْنانة)',
+    'فَيْعَل - ( هَيْصَر)',
+    'فَيْعَلَان - ( نيصران)',
+    'فَيْعَلَة - ( نيسمة)',
+    'فَيْعُول - ( شَيْبوب)',
+    'مُتَفَاعِل - ( متناصر)',
+    'مُتَفَعِّل - ( مُتَوَكِّل)',
+    'مُسْتَفْعِل - ( مُسْتوْثق)',
+    'مُفَاعَل - ( مُبارَك)',
+    'مَفَاعِل - ( مناسم)',
+    'مُفَاعِل - ( مُهاجِر)',
+    'مُفَاعَلَة - ( مُكافَأة)',
+    'مُفَاعِلَة - ( مُعاوِية)',
+    'مُفْتَعِل - ( مُهْتَدي)',
+    'مُفْتَعَل - ( مُنْتَهى)',
+    'مُفْتَعِلَة - ( مُزْدَلِفَة)',
+    'مُفْتَعَلَة - ( مُمْتازة)',
+    'مِفْعَال - ( منسام)',
+    'مُفْعَال - ( مبسام)',
+    'مِفْعَالِيّ - ( مِنْقارِيّ)',
+    'مِفْعِل - ( مِذْحِج)',
+    'مِفْعَل - ( مِنسَم)',
+    'مُفْعِل - ( مُريد)',
+    'مُفْعَل - ( مُهاب)',
+    'مُفَعِّل - ( مُؤَيِّد)',
+    'مُفَعَّل - ( مُيَسَّر)',
+    'مَفْعِل - ( مَوْئِل)',
+    'مَفْعَل - ( مَيْسَم)',
+    'مِفْعَلَان - ( مِنسَمان)',
+    'مِفْعَلَانَة - ( مِنسَمانة)',
+    'مِفْعَلَة - ( مِشْكاة)',
+    'مَفْعِلَة - ( مَوْهِبة)',
+    'مُفْعِلَة - ( مُهيبة)',
+    'مُفْعَلَة - ( مُعاذَة)',
+    'مُفَعِّلَة - ( مُوَفِّية)',
+    'مُفَعَّلَة - ( مُزَنَّرة)',
+    'مُفْعِلِيّ - ( مُرْشِدي)',
+    'مَفْعُول - ( منصور)',
+    'مَفْعُولَاء - ( منسوماء)',
+    'مَفْعُولَة - ( مَرْضِيّة)',
+    'مِفْعِيل - ( منصير)',
+    'مُنْفَعِل - ( منتصر)',
+    'مُنْفَعِلَة - ( منتصرة)',
   ];
 
   @override
@@ -414,211 +414,218 @@ class GlobalNameWightSearchScreen extends StatelessWidget {
                     ),
 
                     // مربع الادخال
-                    FutureBuilder<List<String>>(
-                        future: DatabaseQueries().getNamesFromDb(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            if (snapshot.data!.isNotEmpty) {
-                              theNameList = snapshot.data!;
-                              return Container(
-                                width: 210.w,
-                                height: 40.h,
-                                child: GetBuilder<AppController>(
-                                  builder: (controller) => Autocomplete(
-                                    optionsBuilder:
-                                        (TextEditingValue textEditingValue) {
-                                      if (textEditingValue.text == '') {
-                                        return const Iterable<String>.empty();
-                                      } else {
-                                        List<String> matches = <String>[];
-                                        matches.addAll(
-                                            theNameList as Iterable<String>);
-                                        matches.retainWhere((s) {
-                                          return s.toLowerCase().contains(
-                                              textEditingValue.text
-                                                  .toLowerCase());
-                                        });
+                    GetBuilder<AppController>(builder: (controller) {
+                      return FutureBuilder<List<String>>(
+                          future: DatabaseQueries().getNamesFromDbForWight(
+                              currentOption == 1 ? 'مذكر' : 'مؤنث'),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              if (snapshot.data!.isNotEmpty) {
+                                theNameList = snapshot.data!;
+                                return Container(
+                                  width: 210.w,
+                                  height: 40.h,
+                                  child: GetBuilder<AppController>(
+                                    builder: (controller) => Autocomplete(
+                                      optionsBuilder:
+                                          (TextEditingValue textEditingValue) {
+                                        if (textEditingValue.text == '') {
+                                          return const Iterable<String>.empty();
+                                        } else {
+                                          List<String> matches = <String>[];
+                                          matches.addAll(
+                                              theNameList as Iterable<String>);
+                                          matches.retainWhere((s) {
+                                            return s.toLowerCase().contains(
+                                                textEditingValue.text
+                                                    .toLowerCase());
+                                          });
 
-                                        return matches;
-                                      }
-                                    },
-                                    fieldViewBuilder: (BuildContext context,
-                                        TextEditingController
-                                            textEditingController,
-                                        FocusNode focusNode,
-                                        VoidCallback onFieldSubmitted) {
-                                      textEditingControllerTest =
-                                          textEditingController;
-                                      return TextField(
-                                        cursorColor: const Color(0xFF292925),
-                                        autofocus: false,
-                                        controller: textEditingController,
-                                        onTapOutside: (event) {
-                                          FocusManager.instance.primaryFocus
-                                              ?.unfocus();
-                                        },
-                                        onChanged: (value) {
-                                          nameFromTextField = value;
-                                          appController.update();
-                                        },
-                                        style: TextStyle(
-                                            fontSize: 15.sp,
-                                            color: Colors.white60),
-                                        textAlign: TextAlign.center,
-                                        textAlignVertical:
-                                            TextAlignVertical.bottom,
-                                        decoration: InputDecoration(
-                                          suffixIcon:
-                                              nameFromTextField.isNotEmpty
-                                                  ? InkWell(
-                                                      onTap: () {
-                                                        textEditingController
-                                                            .clear();
-                                                        nameFromTextField = '';
-                                                        appController.update();
-                                                      },
-                                                      child: Icon(
-                                                        Icons.clear,
-                                                        color: Colors.white,
-                                                      ),
-                                                    )
-                                                  : null,
-                                          hintStyle: TextStyle(
-                                            fontSize: 15.sp,
-                                            color: Colors.white54,
-                                          ),
-                                          hintText: "أدخل الاسم الذي تحبه",
-                                          enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Color(0xff7B7B7B),
-                                                  width: 2),
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          focusedBorder: OutlineInputBorder(
-                                              // width: 0.0 produces a thin "hairline" border
-                                              borderSide: BorderSide(
-                                                  color: Color(0xff7B7B7B),
-                                                  width: 2),
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                        ),
-                                        focusNode: focusNode,
-                                      );
-                                    },
-                                    onSelected: (String selection) async {
-                                      textEditingControllerTest.clear();
-                                      nameFromTextField = '';
-                                      appController.update();
-
-                                      Get.to(
-                                          GlobalNameWightResultEdittextScreen(),
-                                          arguments: [
-                                            selection,
-                                            currentOption
-                                          ]);
-                                    },
-                                    optionsViewBuilder:
-                                        (context, onSelected, options) => Align(
-                                      alignment: Alignment.topRight,
-                                      child: Material(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                                begin: Alignment.bottomRight,
-                                                end: Alignment.topLeft,
-                                                colors: [
-                                                  Color(0xFF020202),
-                                                  Color(0xFF292A2D),
-                                                ]),
-                                          ),
-                                          width: 210.w,
-                                          child: ConstrainedBox(
-                                            constraints: BoxConstraints(
-                                              maxWidth: 210.w,
-                                              maxHeight: (MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      2) -
-                                                  (MediaQuery.of(context)
-                                                          .viewInsets
-                                                          .bottom /
-                                                      3),
+                                          return matches;
+                                        }
+                                      },
+                                      fieldViewBuilder: (BuildContext context,
+                                          TextEditingController
+                                              textEditingController,
+                                          FocusNode focusNode,
+                                          VoidCallback onFieldSubmitted) {
+                                        textEditingControllerTest =
+                                            textEditingController;
+                                        return TextField(
+                                          cursorColor: const Color(0xFF292925),
+                                          autofocus: false,
+                                          controller: textEditingController,
+                                          onTapOutside: (event) {
+                                            FocusManager.instance.primaryFocus
+                                                ?.unfocus();
+                                          },
+                                          onChanged: (value) {
+                                            nameFromTextField = value;
+                                            appController.update();
+                                          },
+                                          style: TextStyle(
+                                              fontSize: 15.sp,
+                                              color: Colors.white60),
+                                          textAlign: TextAlign.center,
+                                          textAlignVertical:
+                                              TextAlignVertical.bottom,
+                                          decoration: InputDecoration(
+                                            suffixIcon: nameFromTextField
+                                                    .isNotEmpty
+                                                ? InkWell(
+                                                    onTap: () {
+                                                      textEditingController
+                                                          .clear();
+                                                      nameFromTextField = '';
+                                                      appController.update();
+                                                    },
+                                                    child: Icon(
+                                                      Icons.clear,
+                                                      color: Colors.white,
+                                                    ),
+                                                  )
+                                                : null,
+                                            hintStyle: TextStyle(
+                                              fontSize: 15.sp,
+                                              color: Colors.white54,
                                             ),
-                                            child: ListView(
-                                              shrinkWrap: true,
-                                              padding: EdgeInsets.zero,
-                                              children: options
-                                                  .map(
-                                                    (e) => Column(
-                                                      children: [
-                                                        InkWell(
-                                                          onTap: () =>
-                                                              onSelected(e),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    top: 5,
-                                                                    bottom: 5,
-                                                                    right: 10),
-                                                            child: Align(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .topRight,
-                                                              child: Text(
-                                                                e,
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      'HekayaFont',
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize:
-                                                                      17.sp,
+                                            hintText: "أدخل الاسم الذي تحبه",
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Color(0xff7B7B7B),
+                                                    width: 2),
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            focusedBorder: OutlineInputBorder(
+                                                // width: 0.0 produces a thin "hairline" border
+                                                borderSide: BorderSide(
+                                                    color: Color(0xff7B7B7B),
+                                                    width: 2),
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                          ),
+                                          focusNode: focusNode,
+                                        );
+                                      },
+                                      onSelected: (String selection) async {
+                                        textEditingControllerTest.clear();
+                                        nameFromTextField = '';
+                                        appController.update();
+
+                                        Get.to(
+                                            GlobalNameWightResultEdittextScreen(),
+                                            arguments: [
+                                              selection,
+                                              currentOption
+                                            ]);
+                                      },
+                                      optionsViewBuilder:
+                                          (context, onSelected, options) =>
+                                              Align(
+                                        alignment: Alignment.topRight,
+                                        child: Material(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  begin: Alignment.bottomRight,
+                                                  end: Alignment.topLeft,
+                                                  colors: [
+                                                    Color(0xFF020202),
+                                                    Color(0xFF292A2D),
+                                                  ]),
+                                            ),
+                                            width: 210.w,
+                                            child: ConstrainedBox(
+                                              constraints: BoxConstraints(
+                                                maxWidth: 210.w,
+                                                maxHeight:
+                                                    (MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            2) -
+                                                        (MediaQuery.of(context)
+                                                                .viewInsets
+                                                                .bottom /
+                                                            3),
+                                              ),
+                                              child: ListView(
+                                                shrinkWrap: true,
+                                                padding: EdgeInsets.zero,
+                                                children: options
+                                                    .map(
+                                                      (e) => Column(
+                                                        children: [
+                                                          InkWell(
+                                                            onTap: () =>
+                                                                onSelected(e),
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      top: 5,
+                                                                      bottom: 5,
+                                                                      right:
+                                                                          10),
+                                                              child: Align(
+                                                                alignment:
+                                                                    Alignment
+                                                                        .topRight,
+                                                                child: Text(
+                                                                  e,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        'HekayaFont',
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        17.sp,
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
                                                           ),
-                                                        ),
-                                                        Container(
-                                                          height: 0.2,
-                                                          color: Colors.white,
-                                                        )
-                                                      ],
-                                                    ),
-                                                  )
-                                                  .toList(),
+                                                          Container(
+                                                            height: 0.2,
+                                                            color: Colors.white,
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                    .toList(),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
+                                );
+                              } else {
+                                return CustomText(text: 'لا يوجد نتائج');
+                              }
+                            } else if (snapshot.hasError) {
+                              return CustomText(
+                                  text: snapshot.error.toString());
                             } else {
-                              return CustomText(text: 'لا يوجد نتائج');
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  Container(),
+                                  const CircularProgressIndicator(),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  CustomText(text: '....جاري التحميل ')
+                                ],
+                              );
                             }
-                          } else if (snapshot.hasError) {
-                            return CustomText(text: snapshot.error.toString());
-                          } else {
-                            return Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 10.h,
-                                ),
-                                Container(),
-                                const CircularProgressIndicator(),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                CustomText(text: '....جاري التحميل ')
-                              ],
-                            );
-                          }
-                        }),
+                          });
+                    }),
 
                     SizedBox(
                       height: 10.h,

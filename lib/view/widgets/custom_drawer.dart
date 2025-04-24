@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -50,7 +52,7 @@ class CustomDrawer extends StatelessWidget {
                           padding: EdgeInsets.only(bottom: 7.h),
                           child: CustomText(
                             text: 'منجم الآسماء',
-                            fontSize: 30.sp,
+                            fontSize: 10.sp,
                             textColor: Colors.white,
                             fontFamily: 'BIXIE_Regular',
                           ),
@@ -111,8 +113,13 @@ class CustomDrawer extends StatelessWidget {
                 fontSize: 20.sp,
               ),
               onTap: () {
-                Share.share(
-                    'ابحث واكتشف  المزيد في منجم  الاسماء حمل التطبيق من الرابط التالي : https://play.google.com/store/apps/details?id=com.almaany.manjam_asmaa.manjam_asmaa ');
+                SharePlus.instance.share(ShareParams(
+                  text: Platform.isAndroid
+                      ? 'ابحث واكتشف  المزيد في منجم  الاسماء حمل التطبيق من الرابط التالي : https://play.google.com/store/apps/details?id=com.almaany.manjam_asmaa.manjam_asmaa '
+                      : 'ابحث واكتشف  المزيد في منجم  الاسماء حمل التطبيق من الرابط التالي :https://apps.apple.com/us/app/id987229874 ',
+                  sharePositionOrigin:
+                      Rect.fromPoints(const Offset(2, 2), const Offset(3, 3)),
+                ));
               },
             ),
           ],
